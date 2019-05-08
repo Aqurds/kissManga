@@ -1,0 +1,806 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head id="ctl00_Head1">
+		<title>
+			KissManga - Read manga online in high quality
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta property="fb:admins" content="683024937" />
+		<meta property="fb:app_id" content="111670815619329" />
+		<script src="../static/js/jquery17.min.js" type="text/javascript"></script>
+		<link href="../static/css/tpl_style.css?" rel="stylesheet" type="text/css" />
+		<link href="../static/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="https://kissmanga.com/Content/images/favicon.ico" type="image/x-icon" />
+		<!--[if IE 6]>
+		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<meta name="description" content="Read manga online in high quality for free, fast update, daily update. Unique reading type: All pages - just need to scroll to read next page, and many more..." />
+		<meta name="keywords" content="manga,read manga,manga online,manga scans,manga volume,manga chapter,online manga,read free manga,free manga,read free manga online,manga viewer,manga download,manga downloads,japanese comic, manhwa online" />
+		<link rel="stylesheet" href="../static/css/jquery.ui.core.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.slider.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.theme.css">
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'UA-1712467-38');
+		</script>
+		<link rel="manifest" href="/manifest.json" />
+	</head>
+	<body>
+		<div id="containerRoot">
+			<div id="head">
+				<h3>
+
+					<!-- Login/Register button top section -->
+					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
+						<div id="topHolderBox" style="width: 230px; height: 27px;">
+							<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+							<a href="#">Login</a> or <a href="#">
+							Register</a>
+						</div>
+					</div>
+					<!-- Login/Register button top section end here -->
+
+					<!-- Search form -->
+					<div id="search" style="position: relative">
+						<form id="formSearch" method="post">
+							<p>
+								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
+								<select id="selectSearch">
+									<option value="Manga">Series Name</option>
+									<option value="AuthorArtist">Author/Artist</option>
+								</select>
+								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
+							</p>
+						</form>
+					</div>
+					<!-- Search form end here -->
+
+					<script type="text/javascript">
+						$('#imgSearch').click(function () {
+						    Submit();
+						});
+
+						var delay = (function () {
+						    var timer = 0;
+						    return function (callback, ms) {
+						        clearTimeout(timer);
+						        timer = setTimeout(callback, ms);
+						    };
+						})();
+
+						$('#keyword').keyup(function () {
+						    delay(function () {
+						        Suggest();
+						    }, 500);
+						});
+
+						$('#selectSearch').change(function () {
+						    Suggest();
+						});
+
+						$("#selectSearch option").each(function () {
+						    var url = location.href;
+						    if (url.indexOf($(this).attr('value')) != -1)
+						        $(this).attr("selected", "selected");
+						});
+
+						function Submit() {
+						    if ($.trim($('#keyword').val()).length < 2) {
+						        $('#keyword').blur();
+						        alert('Keyword must be more than one character!');
+						    }
+						    else {
+						        $("#formSearch").attr('action', "https://kissmanga.com/Search/" + $('#selectSearch').val());
+						        $("#formSearch").submit();
+						    }
+						}
+
+						function Suggest() {
+						    var keyword = $.trim($('#keyword').val());
+						    if (keyword != "" && $.trim($('#keyword').val()).length > 2) {
+						        $('#result_box').html("<span id='loader'></span>");
+						        $('#result_box').css('display', 'block');
+						        $.ajax(
+						        {
+						            type: "POST",
+						            url: "/Search/SearchSuggest",
+						            data: "type=" + $('#selectSearch').val() + '&keyword=' + keyword,
+						            success: function (message) {
+						                if (message != "") {
+						                    message += '<a href="#" onclick="return false;">---------------</a>';
+						                    message += '<a href="#" onclick="return false;">PRESS ENTER TO SEARCH MORE...</a>';
+
+						                    $('#result_box').html(message);
+						                }
+						                else {
+						                    $('#result_box').html('<a href="#" onclick="return false;">Press Enter to search...</a>');
+						                }
+						            }
+						        });
+						    }
+						    else {
+						        $('#result_box').html('');
+						        $('#result_box').css('display', 'none');
+						    }
+						}
+					</script>
+				</h3>
+
+				<!-- Logo -->
+				<h1>
+					<a href="https://kissmanga.com" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+				</h1>
+				<!-- Logo end -->
+
+			</div>
+			<div class="clear"></div>
+
+
+
+			<!-- Navigation header -->
+			<div id="headnav">
+
+				<!-- Navigation bar -->
+				<div id="navbar">
+					<div id="navcontainer">
+						<ul>
+							<li id="liHome"><a href="https://kissmanga.com">Home</a></li>
+							<li id="liDS"><a href="https://kissmanga.com/MangaList">Manga
+								List</a>
+							</li>
+							<li id="liComic">
+								<a target="_blank" href="http://readcomiconline.to/">Comic
+								List</a>
+							</li>
+							<li id="liReport">
+								<a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+								Report/Request</a>
+							</li>
+							<li id="liCommunity">
+								<a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+								Forum</a>
+							</li>
+							<li id="liAnimeOnline">
+								<a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+								Watch anime</a>
+							</li>
+							<li id="liGame">
+								<a target="_blank" href="http://novelplanet.com">Read Novel</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- Navigation bar end -->
+
+				<script type="text/javascript">
+					var path = 'Home';
+					var action = 'Index';
+					if (path == 'Home')
+					    $('#liHome a').attr('id', 'currentTab');
+					else if (path == 'Manga' || path == 'Genre' || path == 'Group' || path == 'AuthorArtist')
+					    $('#liDS a').attr('id', 'currentTab');
+					else if (action == 'Report')
+					    $('#liReport a').attr('id', 'currentTab');
+					else if (action == 'RequestManga')
+					    $('#liRequest a').attr('id', 'currentTab');
+					else if (action == 'Guide')
+					    $('#liGuide a').attr('id', 'currentTab')
+					else
+					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
+				</script>
+
+				<div id="navsubbar">
+					<p>
+						<a href="#">Register</a>
+					</p>
+				</div>
+			</div>
+
+
+
+
+			<script src="../static/js/customjavascript.js" type="text/javascript"></script>
+			<script src="../static/js/jquery.tools.min.js" type="text/javascript"></script>
+
+
+			<div id="container">
+				<div id="leftside">
+					<div class="clear"></div>
+					<div class="banner">
+						<div class="details">
+							<a href="#">
+							<img width="150px" height="195px" src="{{most_popular_manga[0]['image']}}" /></a>
+							<div style="float: left; width: 530px">
+								<a Class="bigChar" href="#">{{most_popular_manga[0]['title']}}</a>
+								<p>
+									<span class="info">Genres:</span>
+									&nbsp;
+									{% for item in most_popular_manga[0]['genres'] %}
+										<a href="#" class="dotUnder" title="">{{ item }}</a>
+										<span class="info">,</span>
+									{% endfor %}
+								</p>
+								<p>
+									{{most_popular_manga[0]['summary']}}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div id="divAds2" style="text-align: center; overflow: hidden; width: 728px">
+
+					</div>
+					<div class="clear2"></div>
+					<div class="bigBarContainer">
+						<div class="barTitle">
+							<div class="scrollable_title">
+								Latest update
+							</div>
+							<div id="recently-nav">
+								<a class="prev"></a>
+								<div class="navi">
+									Page 1
+								</div>
+								<a class="next"></a>
+								<div class="clear"></div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div class="scrollable">
+								<div class="items">
+
+									<div>
+										{% for x in range (0,6) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (6,11) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (11,16) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (16,21) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (21,26) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (26,31) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (31,36) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (36,41) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (41,46) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+									<div>
+										{% for x in range (46,51) %}
+											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
+												<br />{{latest_mange_releases[x]['title']}}<br />
+												<!-- <span class='textDark'>Last chapter link will go here</span> -->
+											</a>
+											&nbsp;&nbsp;&nbsp;
+										{% endfor %}
+									</div>
+
+								</div>
+
+
+								<div class="clear"></div>
+							</div>
+							<script type="text/javascript">
+								$(".scrollable").scrollable();
+								var api = $(".scrollable").data("scrollable");
+
+								$(".prev").click(function () {
+								    DoPrev();
+										$(".next").show();
+								});
+
+								function DoPrev() {
+								    if (scrollPage > 1) {
+								        scrollPage -= 1;
+								        SetScrollPage();
+								    }
+								}
+
+								$(document).keydown(function (e) {
+								    if (e.keyCode == 37) {
+								        DoPrev();
+								    }
+								    else if (e.keyCode == 39) {
+								        GoNext($(".next"));
+								    }
+								});
+
+
+								$(".next").click(function () {
+								    GoNext($(this));
+								});
+
+
+								var scrollPage = 1;
+								function SetScrollPage() {
+								    $('.navi').html('Page ' + scrollPage);
+								}
+
+								function GoNext(nextVar) {
+								    var nextEle = nextVar;
+								    nextEle.hide();
+
+								    if (scrollPage < api.getSize()) {
+								        scrollPage += 1;
+								        SetScrollPage();
+								    }
+
+								    var aCurrPage = $('.items div > a img[page=' + (scrollPage + 1) + ']');
+								    aCurrPage.each(function () {
+								        $(this).attr('src', $(this).attr('srcTemp'));
+								    });
+
+								    if (api.getSize() == scrollPage) {
+								        var numItems = $('.items div > a').size();
+								        $.ajax({
+								            url: '/Home/GetNextUpdatedManga',
+								            type: "POST",
+								            dataType: "html",
+								            data: { id: numItems, page: scrollPage },
+								            beforeSend: function () {
+								                $(".ajxloading").css({ "bottom": "0" }).show();
+								            },
+								            success: function (dataResponse, textStatus) {
+								                if (dataResponse != "") {
+								                    api.addItem(dataResponse);
+								                    if (api.getSize() == api.getIndex() + 1) // last div
+								                        api.next();
+
+								                    var aCurrPage = $('.items div > a img[page=' + (scrollPage + 1) + ']');
+								                    aCurrPage.each(function () {
+								                        $(this).attr('src', $(this).attr('srcTemp'));
+								                    });
+								                }
+
+								                nextEle.show();
+								            },
+								            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+								            },
+								            complete: function (XMLHttpRequest, textStatus) {
+
+								            }
+								        }); // end ajax
+								    }
+								    else
+								        nextEle.show();
+								}
+							</script>
+						</div>
+					</div>
+					<div class="clear2"></div>
+					<div id="submenu">
+						<div id="tabmenucontainer">
+							<ul>
+								<li><a href="javascript:void(0);" id="liNewesttab" title="New manga" onclick="showTabData('newest')" style="background-position: '0% -25px'" class="tabactive">New manga</a></li>
+								<li><a href="javascript:void(0);" id="liTrendingtab" title="Trending manga" onclick="showTabData('trending')">Trending manga</a></li>
+								<li><a href="javascript:void(0);" id="liMostViewtab" title="Most popular manga" onclick="showTabData('mostview')">
+									Most popular</a>
+								</li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+
+
+
+						<div id="subcontent">
+
+							<!-- Newest manga list tab -->
+							<div id="tab-newest">
+								<script type="text/javascript">
+									function AddCloseButton(id) {
+									    var elem = $('#' + id);
+									    if (elem.position() != null) {
+									        var top = elem.position().top + elem.height();
+									        var left = elem.position().left + elem.width() - 24;
+									        elem.after('<div class="divCloseBut" style="z-index:1000; width:50px; text-align:left;position:absolute; left:' + left + 'px; top: ' + top + 'px"><a href="#" onclick="$(\'#' + id + '\').remove();$(this).remove(); InitCloseButton(); return false;">Hide</a></div>');
+									    }
+									}
+
+									function InitCloseButton() {
+									    $('.divCloseBut').remove();
+									    AddCloseButton('adsIfrme1');
+									}
+									InitCloseButton();
+
+								</script>
+								<!-- New 10 manga list in tab -->
+								{% for x in range (0,10) %}
+									{% if x%2 == 0 %}
+										<div style='position:relative'>
+											<a href="#">
+												<img width="80px" height="100px" src="{{new_manga[x]['image']}}" />
+											</a>
+											<a href="#"><span class="title">{{new_manga[x]['title']}}</span></a>
+											<p>
+												<span class="info">Genres:</span>
+												&nbsp;
+												{% for item in new_manga[x]['genres'] %}
+													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<span class="info">,</span>
+												{% endfor %}
+											</p>
+											<!-- <p>
+												<span class="info">Latest:</span>
+												&nbsp;
+												<a href="/Manga/One-Piece/941---The-Talk-of-Ebisu-Town?id=518004" title="Read Online One Piece 941 - The Talk of Ebisu Town">941 - The Talk of Ebisu Town</a>
+											</p> -->
+											<div style='position:absolute;top:0px; left:680px; width:28px; height:28px'><img src='../static/images/{{x+1}}.png' /></div>
+										</div>
+									{% endif %}
+
+									{% if x%2 != 0 %}
+										<div style='position:relative' class='blue'>
+											<a href="#">
+												<img width="80px" height="100px" src="{{new_manga[x]['image']}}" />
+											</a>
+											<a href="#"><span class="title">{{new_manga[x]['title']}}</span></a>
+											<p>
+												<span class="info">Genres:</span>
+												&nbsp;
+												{% for item in new_manga[x]['genres'] %}
+													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<span class="info">,</span>
+												{% endfor %}
+											</p>
+											<!-- <p>
+												<span class="info">Latest:</span>
+												&nbsp;
+												<a href="/Manga/One-Piece/941---The-Talk-of-Ebisu-Town?id=518004" title="Read Online One Piece 941 - The Talk of Ebisu Town">941 - The Talk of Ebisu Town</a>
+											</p> -->
+											<div style='position:absolute;top:0px; left:680px; width:28px; height:28px; background-color:#161616'><img src='../static/images/{{x+1}}.png' /></div>
+										</div>
+									{% endif %}
+								{% endfor %}
+								<div style="text-align: right; font-size: 16px">
+									<a href="/MangaList/Newest">More...</a>
+								</div>
+							</div>
+							<!-- Newest manga list tab end here -->
+
+
+							<!-- Trending manga list tab -->
+							<div id="tab-trending" style="display: none">
+								<!-- Trending 10 manga list in tab -->
+								{% for x in range (0,10) %}
+									{% if x%2 == 0 %}
+										<div style='position:relative'>
+											<a href="#">
+												<img width="80px" height="100px" src="{{popular_manga_list[x]['image']}}" />
+											</a>
+											<a href="#"><span class="title">{{popular_manga_list[x]['title']}}</span></a>
+											<p>
+												<span class="info">Genres:</span>
+												&nbsp;
+												{% for item in popular_manga_list[x]['genres'] %}
+													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<span class="info">,</span>
+												{% endfor %}
+											</p>
+											<!-- <p>
+												<span class="info">Latest:</span>
+												&nbsp;
+												<a href="/Manga/One-Piece/941---The-Talk-of-Ebisu-Town?id=518004" title="Read Online One Piece 941 - The Talk of Ebisu Town">941 - The Talk of Ebisu Town</a>
+											</p> -->
+											<div style='position:absolute;top:0px; left:680px; width:28px; height:28px'><img src='../static/images/{{x+1}}.png' /></div>
+										</div>
+									{% endif %}
+
+									{% if x%2 != 0 %}
+										<div style='position:relative' class='blue'>
+											<a href="#">
+												<img width="80px" height="100px" src="{{popular_manga_list[x]['image']}}" />
+											</a>
+											<a href="#"><span class="title">{{popular_manga_list[x]['title']}}</span></a>
+											<p>
+												<span class="info">Genres:</span>
+												&nbsp;
+												{% for item in popular_manga_list[x]['genres'] %}
+													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<span class="info">,</span>
+												{% endfor %}
+											</p>
+											<!-- <p>
+												<span class="info">Latest:</span>
+												&nbsp;
+												<a href="/Manga/One-Piece/941---The-Talk-of-Ebisu-Town?id=518004" title="Read Online One Piece 941 - The Talk of Ebisu Town">941 - The Talk of Ebisu Town</a>
+											</p> -->
+											<div style='position:absolute;top:0px; left:680px; width:28px; height:28px; background-color:#161616'><img src='../static/images/{{x+1}}.png' /></div>
+										</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+							<!-- Trending manga list tab end here -->
+
+
+							<!-- Most popular manga list tab -->
+							<div id="tab-mostview" style="display: none">
+								<!-- Most popular 10 manga list in tab -->
+								{% for x in range (0,10) %}
+									{% if x%2 == 0 %}
+										<div style='position:relative'>
+											<a href="#">
+												<img width="80px" height="100px" src="{{most_popular_manga[x]['image']}}" />
+											</a>
+											<a href="#"><span class="title">{{most_popular_manga[x]['title']}}</span></a>
+											<p>
+												<span class="info">Genres:</span>
+												&nbsp;
+												{% for item in most_popular_manga[x]['genres'] %}
+													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<span class="info">,</span>
+												{% endfor %}
+											</p>
+											<!-- <p>
+												<span class="info">Latest:</span>
+												&nbsp;
+												<a href="/Manga/One-Piece/941---The-Talk-of-Ebisu-Town?id=518004" title="Read Online One Piece 941 - The Talk of Ebisu Town">941 - The Talk of Ebisu Town</a>
+											</p> -->
+											<div style='position:absolute;top:0px; left:680px; width:28px; height:28px'><img src='../static/images/{{x+1}}.png' /></div>
+										</div>
+									{% endif %}
+
+									{% if x%2 != 0 %}
+										<div style='position:relative' class='blue'>
+											<a href="#">
+												<img width="80px" height="100px" src="{{most_popular_manga[x]['image']}}" />
+											</a>
+											<a href="#"><span class="title">{{most_popular_manga[x]['title']}}</span></a>
+											<p>
+												<span class="info">Genres:</span>
+												&nbsp;
+												{% for item in most_popular_manga[x]['genres'] %}
+													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<span class="info">,</span>
+												{% endfor %}
+											</p>
+											<!-- <p>
+												<span class="info">Latest:</span>
+												&nbsp;
+												<a href="/Manga/One-Piece/941---The-Talk-of-Ebisu-Town?id=518004" title="Read Online One Piece 941 - The Talk of Ebisu Town">941 - The Talk of Ebisu Town</a>
+											</p> -->
+											<div style='position:absolute;top:0px; left:680px; width:28px; height:28px; background-color:#161616'><img src='../static/images/{{x+1}}.png' /></div>
+										</div>
+									{% endif %}
+								{% endfor %}
+								<div style="text-align: right; font-size: 16px">
+									<a href="#">More...</a>
+								</div>
+							</div>
+							<!-- Most polular manga list tab end here -->
+
+
+							<div class="clear"></div>
+						</div>
+
+
+
+
+					</div>
+					<div class="clear2"></div>
+				</div>
+
+
+
+
+
+				<!-- Right side box start here -->
+				<div id="rightside">
+					<div class="rightBox">
+						<div class="barTitle">
+							Announcement
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div style="margin-top: -5px; font-weight: bold;">
+								<p>
+									This site is not compatible with Adblock/uBlock. Please disable them before accessing the site.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="clear2"></div>
+
+
+					<div class="rightBox">
+						<div class="barTitle">
+							Latest update
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div>
+
+								{% for x in range (0,21) %}
+									<img src="../static/images/bullet.png" />
+									&nbsp;
+									<a title="{{latest_mange_releases[x]['title']}}" href="#">
+										{{latest_mange_releases[x]['title']}}
+									</a>
+									<!-- <a class="textDark" title="Read online How to be God Ch.005 - Match made in heaven" href="/Manga/How-to-be-God/Ch-005---Match-made-in-heaven?id=519350">
+										Ch.005 - Match made in heaven
+									</a> -->
+									<div class="clear" style="height:5px"></div>
+								{% endfor %}
+
+								<div style="text-align: right; font-size: 14px; padding-top: 5px">
+									<a href="#">More...</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="clear2"></div>
+
+					<div class="clear2"></div>
+					<script type="text/javascript">
+						$('#aCommentHide').click(function () {
+						    $('#divCommentHide').show();
+						    $(this).hide();
+						});
+					</script>
+				</div>
+				<!-- Right side box end here -->
+
+
+
+
+
+				<div class="clear"></div>
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<script type="text/javascript">
+				function AddHideButtonToDynamic()
+				{
+						var elemDyna = $('div[style*="width:100%;height:768px;"]')[0];
+						if (elemDyna == null)
+						{
+							elemDyna = $('div[style*="width: 100%; height: 768px;"]')[0];
+						}
+						var elemDyna2 = $('div[style*="width:100%;height:768px;"]')[1];
+						if (elemDyna2 == null)
+						{
+							elemDyna2 = $('div[style*="width: 100%; height: 768px;"]')[1];
+						}
+				    	if ($(elemDyna).offset() != null) {
+				            var topDyna = 220;
+				            var leftDyna = ($(window).width() - 1000) / 2 - 45;
+				            $(elemDyna).after('<div class="divCloseBut" style="z-index:1000;visibility:visible;position:absolute; right:' + leftDyna + 'px; top: ' + topDyna + 'px"><a href="#" onclick="$(\'#' + $(elemDyna).attr('id') + '\').remove();$(\'#' + $(elemDyna2).attr('id') + '\').remove();$(this).remove(); InitCloseButton(); return false;"><b>[Hide]</b></a></div>');
+				        }
+				}
+				window.setTimeout(AddHideButtonToDynamic, 5000);
+			</script>
+		</div>
+
+
+
+		<div id="footer">
+			<div id="footcontainer" style="position: relative">
+				<p>
+					<a href="http://kissmanga.com">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
+					&nbsp;&nbsp;
+				</p>
+				<div style="position: absolute; left: 200px; top: 20px"></div>
+			</div>
+		</div>
+
+
+
+		<script type="text/javascript">
+			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
+		</script>
+
+
+
+	</body>
+</html>

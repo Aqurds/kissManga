@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head id="ctl00_Head1">
+		<title>
+			Bookmark list
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta property="fb:admins" content="683024937" />
+		<meta property="fb:app_id" content="111670815619329" />
+		<script src="https://kissmanga.com/Scripts/jquery17.min.js" type="text/javascript"></script>
+		<link href="https://kissmanga.com/Content/css/tpl_style.css?v=2" rel="stylesheet" type="text/css" />
+		<link href="https://kissmanga.com/Content/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="https://kissmanga.com/Content/images/favicon.ico" type="image/x-icon" />
+		<!--[if IE 6]>
+		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<meta name="description" content="Bookmark manga list" />
+		<meta name="keywords" content="bookmarks, list manga, bookmark list" />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1712467-38"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'UA-1712467-38');
+		</script>
+		<link rel="manifest" href="/manifest.json" />
+	</head>
+	<body>
+		<div id="containerRoot">
+			<div id="head">
+				<h3>
+					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
+						<div id="topHolderBox" style="width: 140px; height: 27px;">
+							<img src="https://kissmanga.com/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+							<span style="color: #888">Hi</span>&nbsp;&nbsp;<a id="aDropDown" class="boxDropDown" style="margin-top: -7px; cursor: pointer"><span>
+							getty <span class="clsHadUnread"></span>
+							<small style="color: #8D65A0">▼</small></span></a>
+							<div id="menu_box" style="display: none">
+								<a href="https://kissmanga.com/BookmarkList">&nbsp;&nbsp;<img src="https://kissmanga.com/Content/images/bookmark1.png" />&nbsp;Bookmark list
+								<span class="clsHadUnread">...</span></a> <a href="https://kissmanga.com/Profile">
+								&nbsp;&nbsp;<img src="https://kissmanga.com/Content/images/change.png" />&nbsp;Profile</a> <a href="https://kissmanga.com/Logout">
+								&nbsp;&nbsp;<img src="https://kissmanga.com/Content/images/logout.png" />&nbsp;Logout</a>
+							</div>
+						</div>
+						<script type="text/javascript">
+							var hasUnRead = false;
+
+							function NotifyUnReadUser() {
+							    if (hasUnRead == true)
+							        $('.clsHadUnread').html('(!)');
+							}
+
+						</script>
+						<script type="text/javascript">
+							var isChecking = false;
+							$('#topHolderBox').mouseover(function () {
+							    if (!isChecking) {
+							        isChecking = true;
+							        $.ajax(
+							        {
+							            type: "POST",
+							            url: "/CheckHasUnread",
+							            success: function (message) {
+							                if (message != "") {
+							                    if (message == 'true') {
+							                        hasUnRead = true;
+							                        NotifyUnReadUser();
+							                    }
+							                }
+							            }
+							        });
+							    }
+							});
+						</script>
+						<script type="text/javascript">
+							// re-position
+							var userBarWidth = $('#aDropDown').width();
+							$('#aDropDown').width(userBarWidth + 30);
+							$('#topHolderBox').width($('#topHolderBox').width() + userBarWidth);
+							$('#menu_box').css('left', 389 - $('#menu_box').width());
+
+							function HideBox() {
+							    $('#menu_box').css('display', 'none');
+							}
+
+							function UnhideBox() {
+							    $('#menu_box').css('display', 'block');
+							}
+
+							$('.boxDropDown').mouseover(function () {
+							    UnhideBox();
+							});
+
+							$('#menu_box').mouseleave(function () {
+							    HideBox();
+							});
+						</script>
+					</div>
+					<div id="search" style="position: relative">
+						<form id="formSearch" method="post">
+							<p>
+								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
+								<select id="selectSearch">
+									<option value="Manga">Series Name</option>
+									<option value="AuthorArtist">Author/Artist</option>
+								</select>
+								<input id="imgSearch" type="image" src="https://kissmanga.com/Content/images/search.png" class="button" onclick="return false;" />
+							</p>
+							<div id="result_box" style="display: none; margin-top: -3px; max-height: 300px; overflow-y: auto; overflow-x: hidden;"></div>
+							<div style="float: left; width: 250px; text-align: left; margin-left: 2px">
+								<div style="float: left; width: 90px">
+									<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FKissManga&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font&amp;height=21&amp;appId=111670815619329" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;
+										height: 21px;" allowtransparency="true"></iframe>
+								</div>
+								<div style="float: left; width: 85px">
+									<div class="g-plusone" data-size="medium" data-href="http://kissmanga.com"></div>
+									<script type="text/javascript">
+										(function () {
+										    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+										    po.src = 'https://apis.google.com/js/plusone.js';
+										    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+										})();
+									</script>
+								</div>
+							</div>
+							<div style="margin: 10px 48px 10px 0">
+								<a href="https://kissmanga.com/AdvanceSearch">
+								<img src="https://kissmanga.com/Content/images/read.png" width="16px" border="0" style="vertical-align: middle" />&nbsp;&nbsp;Advanced
+								Search</a>
+							</div>
+						</form>
+					</div>
+					<script type="text/javascript">
+						$('#imgSearch').click(function () {
+						    Submit();
+						});
+
+						var delay = (function () {
+						    var timer = 0;
+						    return function (callback, ms) {
+						        clearTimeout(timer);
+						        timer = setTimeout(callback, ms);
+						    };
+						})();
+
+						$('#keyword').keyup(function () {
+						    delay(function () {
+						        Suggest();
+						    }, 500);
+						});
+
+						$('#selectSearch').change(function () {
+						    Suggest();
+						});
+
+						$("#selectSearch option").each(function () {
+						    var url = location.href;
+						    if (url.indexOf($(this).attr('value')) != -1)
+						        $(this).attr("selected", "selected");
+						});
+
+						function Submit() {
+						    if ($.trim($('#keyword').val()).length < 2) {
+						        $('#keyword').blur();
+						        alert('Keyword must be more than one character!');
+						    }
+						    else {
+						        $("#formSearch").attr('action', "https://kissmanga.com/Search/" + $('#selectSearch').val());
+						        $("#formSearch").submit();
+						    }
+						}
+
+						function Suggest() {
+						    var keyword = $.trim($('#keyword').val());
+						    if (keyword != "" && $.trim($('#keyword').val()).length > 2) {
+						        $('#result_box').html("<span id='loader'></span>");
+						        $('#result_box').css('display', 'block');
+						        $.ajax(
+						        {
+						            type: "POST",
+						            url: "/Search/SearchSuggest",
+						            data: "type=" + $('#selectSearch').val() + '&keyword=' + keyword,
+						            success: function (message) {
+						                if (message != "") {
+						                    message += '<a href="#" onclick="return false;">---------------</a>';
+						                    message += '<a href="#" onclick="return false;">PRESS ENTER TO SEARCH MORE...</a>';
+
+						                    $('#result_box').html(message);
+						                }
+						                else {
+						                    $('#result_box').html('<a href="#" onclick="return false;">Press Enter to search...</a>');
+						                }
+						            }
+						        });
+						    }
+						    else {
+						        $('#result_box').html('');
+						        $('#result_box').css('display', 'none');
+						    }
+						}
+					</script>
+				</h3>
+				<h1>
+					<a href="https://kissmanga.com" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+				</h1>
+			</div>
+			<div class="clear"></div>
+			<div id="headnav">
+				<div id="navbar">
+					<div id="navcontainer">
+						<ul>
+							<li id="liHome"><a href="https://kissmanga.com">Home</a></li>
+							<li id="liDS"><a href="https://kissmanga.com/MangaList">Manga
+								List</a>
+							</li>
+							<li id="liComic"><a target="_blank" href="http://readcomiconline.to/">Comic
+								List</a>
+							</li>
+							<li id="liReport"><a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+								Report/Request</a>
+							</li>
+							<li id="liCommunity"><a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+								Forum</a>
+							</li>
+							<li id="liAnimeOnline"><a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+								Watch anime</a>
+							</li>
+							<li id="liGame"><a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
+						</ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+					var path = 'Manga';
+					var action = 'BookmarkList';
+					if (path == 'Home')
+					    $('#liHome a').attr('id', 'currentTab');
+					else if (path == 'Manga' || path == 'Genre' || path == 'Group' || path == 'AuthorArtist')
+					    $('#liDS a').attr('id', 'currentTab');
+					else if (action == 'Report')
+					    $('#liReport a').attr('id', 'currentTab');
+					else if (action == 'RequestManga')
+					    $('#liRequest a').attr('id', 'currentTab');
+					else if (action == 'Guide')
+					    $('#liGuide a').attr('id', 'currentTab')
+					else
+					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
+				</script>
+				<div id="navsubbar">
+					<p>
+						<a href="/MangaList">Sort by alphabet</a>| <a href="/MangaList/MostPopular">Sort by popularity
+						</a> | <a href="/MangaList/LatestUpdate">Latest update</a> | <a href="/MangaList/Newest">
+						New manga</a>
+					</p>
+				</div>
+			</div>
+			<style>
+				.tooltip
+				{
+				display: none;
+				background: url('../../Content/images/black_arrow_big.png') no-repeat;
+				height: 180px;
+				padding: 25px 10px 0px 30px;
+				width: 450px;
+				font-size: 11px;
+				color: #fff;
+				}
+				.alphabet
+				{
+				background: none repeat scroll 0 0 #161616;
+				color:gray;
+				text-align:center;
+				font-size:14px;
+				}
+				.alphabet a
+				{
+				font-weight:bold;
+				}
+				.loading_page
+				{
+				width: 100%;
+				height: 100%;
+				background-color: Gray;
+				opacity: 0.5;
+				filter: alpha(opacity = 50);
+				z-index: 9998;
+				top: 0;
+				left: 0;
+				position: fixed;
+				padding-top: 100px;
+				}
+				.loading_text
+				{
+				z-index: 9999;
+				background: #ffffff url('/Content/images/loading.gif') center center no-repeat;
+				width: 150px;
+				height: 20px;
+				text-align: center;
+				position: fixed;
+				font-weight: bold;
+				top: 40%;
+				left: 40%;
+				padding: 50px 0px 0px 0px;
+				margin: 0;
+				opacity: 0.9;
+				color:#676767;
+				}
+			</style>
+			<script type="text/javascript" src="../../Scripts/jqueryTooltip.js"></script>
+			<div id="divLoadingOver" style="display:none">
+				<div class="loading_page"></div>
+				<div class="loading_text">Loading...</div>
+			</div>
+			<div id="container" style="text-align: left">
+				<div class="bigBarContainer">
+					<div class="barTitle">
+						Bookmark list
+					</div>
+					<div class="barContent">
+						<div class="arrow-general">
+							&nbsp;
+						</div>
+						<div style="position:relative">
+							<div style="font-size:11px;position:absolute; right:5px; top: 0px">
+								TIPS:<br />
+								- Empty folder will be automatically removed.<br />
+								- When manga has new episode, its status will be changed to 'Unread'.
+							</div>
+							<div class="clear2" style="padding-top:50px"></div>
+							<div id="divListCategories" style="font-size: 14px"><span style="font-weight:bold">Folder:</span>&nbsp;&nbsp;<select id="selectListCategories" style="width: 200px"></select>
+								&nbsp;&nbsp;
+								<a href="#" onclick="return false;" id="btnSetAsDefault"><img src="/Content/images/subdub.png" style="vertical-align:middle" />&nbsp;Set as default</a>
+								&nbsp;&nbsp;<a href="#" onclick="return false;" id="btnRename" style="display:none"><img src="/Content/images/change.png" style="vertical-align:middle" />&nbsp;Rename</a>
+							</div>
+							<div class="clear2"></div>
+							<div class="clear2"></div>
+							<table class="listing">
+								<tr class="head">
+									<th width="37%">
+										Manga name
+									</th>
+									<th width="15%">
+										Latest
+									</th>
+									<th width="12%">
+										Status
+									</th>
+									<th width="10%"></th>
+									<th width="26%"></th>
+								</tr>
+								<tr style="height: 10px"></tr>
+								<tr class="trManga" catName="">
+									<td title='
+										<img width="120" height="150" src="http://kissmanga.com/Uploads/Etc/11-24-2011/857622SINS_Oneshot_000.jpg" style="float: left; padding-right: 10px" />
+										<div style="float: left; width: 300px">
+										<a class="bigChar" href="/Manga/Sins">- Sins -</a>
+										<p>
+										N/A
+										</p>
+										</div>'>
+										<a class="aManga" href="/Manga/Sins">
+										- Sins -</a>
+									</td>
+									<td>
+										Completed
+									</td>
+									<td>
+										<a bdid="28794116" style="display: none" class="aRead" href="#" onclick="return false;" title="Click to mark as Unread. When manga has new episode, its status will be changed to 'Unread'."><img border="0" style="vertical-align:middle" src="/Content/Images/include.png" /> Read</a>
+										<a bdid="28794116" style="display: inline" class="aUnRead" href="#" onclick="return false;" title="Click to mark as Read"><img border="0" style="vertical-align:middle" src="/Content/Images/notread.png" /> Unread</a>
+									</td>
+									<td>
+										<a mid="3099" mname="- Sins -" class="aRemove" href="#" onclick="return false;" title="Remove from bookmark list"><img border="0" style="vertical-align:middle" src="/Content/Images/exclude.png" /> Remove</a>
+									</td>
+									<td>
+										<a bdid="28794116" catName="" class="aCategory" href="#" onclick="return false;" title="Move to other folder"><img border="0" style="vertical-align:middle" src="/Content/Images/folder.png" /> Folder</a>
+									</td>
+								</tr>
+							</table>
+							<script type="text/javascript">
+								$(".listing td[title]").tooltip({ offset: [10, 200], effect: 'slide', predelay: 300 }).dynamic({ bottom: { direction: 'down', bounce: true} });
+								var strUncate = '- Uncategorized';
+								var strAll = '- All Manga';
+
+								// begin categories section
+
+								var lstCats = new Array();
+
+								lstCats.push(strUncate);
+								lstCats.sort();
+
+								function CreateCategoriesDropDown(except)
+								{
+								    if (except == '')
+								        except = strUncate;
+
+								    var result = $('<select class="selectCats" />');
+								    $('<option />', {value: '0', text: 'Choose one'}).appendTo(result);
+								    $('<option />', {value: '1', text: '- Create new...'}).appendTo(result);
+								    result.css('width', '200px');
+								    result.css('font-size', '14px');
+
+								    for(i = 0; i < lstCats.length; i++) {
+								        if (lstCats[i] != except)
+								            $('<option />', {value: lstCats[i], text: '- ' + lstCats[i]}).appendTo(result);
+								    }
+
+								    return result;
+								}
+
+								function InitTopSelectCategoryDropDown(selectVal)
+								{
+								    $('#selectListCategories option').remove();
+								    var element = $('#selectListCategories');
+
+								    $('<option />', {value: strAll, text: strAll}).appendTo(element);
+								    for(i = 0; i < lstCats.length; i++) {
+								        $('<option />', {value: lstCats[i], text: lstCats[i]}).appendTo(element);
+								    }
+
+								    if (selectVal != '')
+								    {
+								        element.val(selectVal);
+								        ChangeCategory(selectVal);
+								    }
+								    else
+								        ChangeCategory(strAll);
+								}
+								var param = document.URL.split('?name=')[1];
+								if (typeof param === 'undefined')
+								    InitTopSelectCategoryDropDown('');
+								else
+								    InitTopSelectCategoryDropDown(decodeURIComponent(param));
+
+								function RemoveStringInArray(array, search_term)
+								{
+								    for (var i=array.length-1; i>=0; i--) {
+								        if (array[i] === search_term) {
+								            array.splice(i, 1);
+								        }
+								    }
+								}
+
+								function SetCategory(categoryName, aCategoryElement)
+								{
+								    if (categoryName == strUncate)
+								        categoryName = "";
+								    $('#divLoadingOver').show();
+								    $.ajax(
+								        {
+								            type: "POST",
+								            url: "/ChangeBookmarkCategory",
+								            data: "bdid=" + aCategoryElement.attr('bdid') + "&category=" + categoryName,
+								            success: function (message) {
+								                if (message != "!error!") {
+								                    $('#divLoadingOver').hide();
+								                    var selectedVal = $('#selectListCategories').val();
+
+								                    aCategoryElement.attr('catName', message);
+								                    aCategoryElement.parents('tr').attr('catName', message);
+
+								                    if (message != '')
+								                    {
+								                        if ($.inArray(message, lstCats) == -1) // not found
+								                        {
+								                            lstCats.push(message);
+								                            lstCats.sort();
+
+								                            InitTopSelectCategoryDropDown(selectedVal);
+								                        }
+								                    }
+
+
+								                    if (selectedVal != strAll)
+								                    {
+								                        aCategoryElement.parents('tr').toggle('normal');
+								                    }
+								                    else
+								                    {
+								                        $('.selectCats').remove();
+								                    }
+
+								//                        if ($("tr.trManga:visible").length == 0 && selectedVal != strUncate)
+								//                        {
+								//                            RemoveStringInArray(lstCats, selectedVal);
+								//                        }
+								                }
+								                else {
+								                    element.parent().html("Error!");
+								                }
+								            }
+								        });
+								}
+
+								function ChangeCategory(categoryName)
+								{
+								    if (categoryName != strUncate && categoryName != strAll)
+								        $('#btnRename').show();
+								    else
+								        $('#btnRename').hide();
+
+								    if (categoryName == strUncate)
+								        categoryName = '';
+
+								    var odd = true;
+
+								    $("tr.trManga").removeClass('odd');
+								    $(".aCategory").show();
+								    $('.selectCats').remove();
+
+								    if (categoryName == strAll)
+								    {
+								        $("tr.trManga").show();
+								        $(".aCategory[catname!='']").hide();
+								            $("tr.trManga").each(function(){
+								                if (odd)
+								                {
+								                    odd = false;
+								                    $(this).addClass('odd');
+								                }
+								                else
+								                {
+								                    odd = true;
+								                }
+								            });
+								    }
+								    else
+								    {
+								        $("tr.trManga").hide();
+								        $("tr.trManga[catName='" + categoryName + "']").show();
+
+								            $("tr.trManga[catName='" + categoryName + "']").each(function(){
+								                if (odd)
+								                {
+								                    odd = false;
+								                    $(this).addClass('odd');
+								                }
+								                else
+								                {
+								                    odd = true;
+								                }
+								            });
+								    }
+
+								}
+
+								$('body').on('change', '#selectListCategories', function() {
+								    var element = $(this);
+								    ChangeCategory(element.val());
+								    if (element.val() == GetCookie("defaultBookmarkFolder"))
+								    {
+								        $('#btnSetAsDefault').hide();
+								    }
+								    else
+								    {
+								        $('#btnSetAsDefault').show();
+								    }
+								});
+
+								$('body').on('change', '.selectCats', function() {
+								    var element = $(this);
+								    if (element.val() != '0')
+								    {
+								        var aCategoryEle = element.siblings('.aCategory');
+								        if (element.val() == '1') // create new
+								        {
+								            var newCat = prompt("Please enter folder name (only alphanumeric characters)", "");
+								            if (newCat != null && newCat.length < 100) {
+								                SetCategory(newCat, aCategoryEle);
+								            }
+								            else
+								            {
+								                ChangeCategory($('#selectListCategories').val());
+								                if (newCat.length >= 100)
+								                    alert('Folder name is too long');
+								            }
+								        }
+								        else // change to another
+								        {
+								            SetCategory(element.val(), aCategoryEle);
+								        }
+								    }
+								});
+
+								$('.aCategory').click(function () {
+								    ChangeCategory($('#selectListCategories').val());
+
+								    var element = $(this);
+								    element.hide();
+
+								    var eleDropDownCats = CreateCategoriesDropDown(element.attr('catName'));
+								    element.after(eleDropDownCats);
+								});
+
+								$('#btnRename').click(function(){
+								    var selectedName = $('#selectListCategories').val();
+								    var newName = prompt("Please enter new folder name (only alphanumeric characters)", selectedName);
+								    if (newName != null && newName.length < 100 && selectedName != newName) {
+								        $.ajax(
+								        {
+								            type: "POST",
+								            url: "/ChangeBookmarkCategoryName",
+								            data: "oldName=" + selectedName + "&newName=" + newName,
+								            success: function (message) {
+								                if (message != "!error!") {
+								                    $('#divLoadingOver').hide();
+
+								                    location.href = '/BookmarkList?name=' + message;
+								                }
+								                else {
+								                    element.parent().html("Error!");
+								                }
+								            }
+								        });
+								    }
+								    else
+								    {
+								        ChangeCategory(selectedName);
+								        if (newCat.length >= 100)
+								            alert('Folder name is too long');
+								    }
+								});
+
+								// end categories section
+
+
+								$('.aRemove').click(function () {
+								    var element = $(this);
+
+								    var isSure = confirm("Do you want to remove manga \"" + element.attr('mname') + "\" from bookmark list?");
+								    if (isSure) {
+								        element.css("display", "none");
+								        $('#divLoadingOver').show();
+								        $.ajax(
+								        {
+								            type: "POST",
+								            url: "/Bookmark/" + element.attr('mid') + "/remove",
+								            success: function (message) {
+								                if (message != "") {
+								                    $('#divLoadingOver').hide();
+								                    element.parents('tr').hide('normal', function(){ element.parents('tr').remove(); });
+								                }
+								                else {
+								                    element.parent().html("Error!");
+								                }
+								            }
+								        });
+								    }
+								});
+
+								$('.aRead').click(function () {
+								    var element = $(this);
+								    element.css("display", "none");
+								    $('#divLoadingOver').show();
+								    $.ajax(
+								        {
+								            type: "POST",
+								            url: "/MarkBookmarkDetail",
+								            data: "bdid=" + element.attr('bdid') + "&strAlreadyRead=0",
+								            success: function (message) {
+								                if (message != "") {
+								                    element.siblings('.aUnRead').css("display", "inline");
+								                    $('#divLoadingOver').hide();
+								                }
+								                else {
+								                    element.parent().html("Error!");
+								                }
+								            }
+								        });
+								    });
+
+								    $('.aUnRead').click(function () {
+								        var element = $(this);
+								        element.css("display", "none");
+								        $('#divLoadingOver').show();
+								        $.ajax(
+								        {
+								            type: "POST",
+								            url: "/MarkBookmarkDetail",
+								            data: "bdid=" + element.attr('bdid') + "&strAlreadyRead=1",
+								            success: function (message) {
+								                if (message != "") {
+								                    element.siblings('.aRead').css("display", "inline");
+								                    $('#divLoadingOver').hide();
+								                }
+								                else {
+								                    element.parent().html("Error!");
+								                }
+								            }
+								        });
+								    });
+
+								    // default folder
+								    function GetCookie(name) {
+								        var value = "; " + document.cookie;
+								        var parts = value.split("; " + name + "=");
+								        if (parts.length == 2) return parts.pop().split(";").shift();
+								    }
+
+								    $('#btnSetAsDefault').click(function(){
+								        document.cookie = 'defaultBookmarkFolder=' + $('#selectListCategories').val() + '; expires=Thu, 01 Jan 2030 00:00:01 GMT;path=/';
+								        $('#btnSetAsDefault').hide();
+								        alert('Done!');
+								    });
+
+								    if (GetCookie("defaultBookmarkFolder"))
+								    {
+								        var valueDefaultFolder = GetCookie("defaultBookmarkFolder");
+								        $('#selectListCategories').val(valueDefaultFolder).change();
+								    }
+
+								    // ----
+							</script>
+						</div>
+					</div>
+				</div>
+				<div style="height:80px">&nbsp;</div>
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<script type="text/javascript" src="//ads.2mdnsys.com/qcad.php?did=545&unit=5b965d958a6b9&tm=1536581013&sid=20&zid=1035&k=5b965d958a700"></script>
+			<script type="text/javascript">
+				function AddHideButtonToDynamic()
+				{
+						var elemDyna = $('div[style*="width:100%;height:768px;"]')[0];
+						if (elemDyna == null)
+						{
+							elemDyna = $('div[style*="width: 100%; height: 768px;"]')[0];
+						}
+						var elemDyna2 = $('div[style*="width:100%;height:768px;"]')[1];
+						if (elemDyna2 == null)
+						{
+							elemDyna2 = $('div[style*="width: 100%; height: 768px;"]')[1];
+						}
+				    	if ($(elemDyna).offset() != null) {
+				            var topDyna = 220;
+				            var leftDyna = ($(window).width() - 1000) / 2 - 45;
+				            $(elemDyna).after('<div class="divCloseBut" style="z-index:1000;visibility:visible;position:absolute; right:' + leftDyna + 'px; top: ' + topDyna + 'px"><a href="#" onclick="$(\'#' + $(elemDyna).attr('id') + '\').remove();$(\'#' + $(elemDyna2).attr('id') + '\').remove();$(this).remove(); InitCloseButton(); return false;"><b>[Hide]</b></a></div>');
+				        }
+				}
+				window.setTimeout(AddHideButtonToDynamic, 5000);
+			</script>
+		</div>
+		<script type="text/javascript" src="//koindut.com/apu.php?zoneid=1616193"></script>
+		<div id="footer">
+			<div id="footcontainer" style="position: relative">
+				<p>
+					<a href="http://kissmanga.com">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
+					&nbsp;&nbsp;
+				</p>
+				<div style="position: absolute; left: 200px; top: 20px"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
+		</script>
+	</body>
+</html>

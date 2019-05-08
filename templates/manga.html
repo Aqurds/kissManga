@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head id="ctl00_Head1">
+		<title>
+			Arigatights!
+			manga | Read
+			Arigatights!
+			manga online in high quality
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta property="fb:admins" content="683024937" />
+		<meta property="fb:app_id" content="111670815619329" />
+		<script src="https://kissmanga.com/Scripts/jquery17.min.js" type="text/javascript"></script>
+		<link href="https://kissmanga.com/Content/css/tpl_style.css?v=2" rel="stylesheet" type="text/css" />
+		<link href="https://kissmanga.com/Content/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="https://kissmanga.com/Content/images/favicon.ico" type="image/x-icon" />
+		<!--[if IE 6]>
+		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<meta name="description" content="Read Arigatights! manga online free and high quality. Fast loading speed, unique reading type: All pages - just need to scroll to read next page" />
+		<meta name="keywords" content="Read Arigatights! manga online, Arigatights!, read Arigatights! online, Arigatights! manga" />
+		<link rel="image_src" href="https://kissmanga.com/Uploads/Etc/11-16-2018/671382231818.jpg" />
+		<link rel="alternate" type="application/rss+xml" title="Arigatights! manga" href="https://kissmanga.com/RSS/Manga/Arigatights" />
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+
+			gtag('config', 'UA-1712467-38');
+		</script>
+		<link rel="manifest" href="/manifest.json" />
+	</head>
+	<body>
+		<div id="containerRoot">
+			<div id="head">
+				<h3>
+					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
+						<div id="topHolderBox" style="width: 230px; height: 27px;">
+							<img src="https://kissmanga.com/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+							<a href="https://kissmanga.com/Login">Login</a> or <a href="https://kissmanga.com/Register">
+							Register</a>
+						</div>
+					</div>
+					<div id="search" style="position: relative">
+						<form id="formSearch" method="post">
+							<p>
+								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
+								<select id="selectSearch">
+									<option value="Manga">Series Name</option>
+									<option value="AuthorArtist">Author/Artist</option>
+								</select>
+								<input id="imgSearch" type="image" src="https://kissmanga.com/Content/images/search.png" class="button" onclick="return false;" />
+							</p>
+							<div id="result_box" style="display: none; margin-top: -3px; max-height: 300px; overflow-y: auto; overflow-x: hidden;"></div>
+							<div style="float: left; width: 250px; text-align: left; margin-left: 2px">
+								<div style="float: left; width: 90px">
+									<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FKissManga&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font&amp;height=21&amp;appId=111670815619329" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;
+										height: 21px;" allowtransparency="true"></iframe>
+								</div>
+								<div style="float: left; width: 85px">
+									<div class="g-plusone" data-size="medium" data-href="http://kissmanga.com"></div>
+									<script type="text/javascript">
+										(function () {
+										    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+										    po.src = 'https://apis.google.com/js/plusone.js';
+										    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+										})();
+									</script>
+								</div>
+							</div>
+							<div style="margin: 10px 48px 10px 0">
+								<a href="https://kissmanga.com/AdvanceSearch">
+								<img src="https://kissmanga.com/Content/images/read.png" width="16px" border="0" style="vertical-align: middle" />&nbsp;&nbsp;Advanced
+								Search</a>
+							</div>
+						</form>
+					</div>
+					<script type="text/javascript">
+						$('#imgSearch').click(function () {
+						    Submit();
+						});
+
+						var delay = (function () {
+						    var timer = 0;
+						    return function (callback, ms) {
+						        clearTimeout(timer);
+						        timer = setTimeout(callback, ms);
+						    };
+						})();
+
+						$('#keyword').keyup(function () {
+						    delay(function () {
+						        Suggest();
+						    }, 500);
+						});
+
+						$('#selectSearch').change(function () {
+						    Suggest();
+						});
+
+						$("#selectSearch option").each(function () {
+						    var url = location.href;
+						    if (url.indexOf($(this).attr('value')) != -1)
+						        $(this).attr("selected", "selected");
+						});
+
+						function Submit() {
+						    if ($.trim($('#keyword').val()).length < 2) {
+						        $('#keyword').blur();
+						        alert('Keyword must be more than one character!');
+						    }
+						    else {
+						        $("#formSearch").attr('action', "https://kissmanga.com/Search/" + $('#selectSearch').val());
+						        $("#formSearch").submit();
+						    }
+						}
+
+						function Suggest() {
+						    var keyword = $.trim($('#keyword').val());
+						    if (keyword != "" && $.trim($('#keyword').val()).length > 2) {
+						        $('#result_box').html("<span id='loader'></span>");
+						        $('#result_box').css('display', 'block');
+						        $.ajax(
+						        {
+						            type: "POST",
+						            url: "/Search/SearchSuggest",
+						            data: "type=" + $('#selectSearch').val() + '&keyword=' + keyword,
+						            success: function (message) {
+						                if (message != "") {
+						                    message += '<a href="#" onclick="return false;">---------------</a>';
+						                    message += '<a href="#" onclick="return false;">PRESS ENTER TO SEARCH MORE...</a>';
+
+						                    $('#result_box').html(message);
+						                }
+						                else {
+						                    $('#result_box').html('<a href="#" onclick="return false;">Press Enter to search...</a>');
+						                }
+						            }
+						        });
+						    }
+						    else {
+						        $('#result_box').html('');
+						        $('#result_box').css('display', 'none');
+						    }
+						}
+					</script>
+				</h3>
+				<h1>
+					<a href="https://kissmanga.com" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+				</h1>
+			</div>
+			<div class="clear"></div>
+			<div id="headnav">
+				<div id="navbar">
+					<div id="navcontainer">
+						<ul>
+							<li id="liHome"><a href="https://kissmanga.com">Home</a></li>
+							<li id="liDS"><a href="https://kissmanga.com/MangaList">Manga
+								List</a>
+							</li>
+							<li id="liComic"><a target="_blank" href="http://readcomiconline.to/">Comic
+								List</a>
+							</li>
+							<li id="liReport"><a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+								Report/Request</a>
+							</li>
+							<li id="liCommunity"><a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+								Forum</a>
+							</li>
+							<li id="liAnimeOnline"><a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+								Watch anime</a>
+							</li>
+							<li id="liGame"><a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
+						</ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+					var path = 'Manga';
+					var action = 'Details';
+					if (path == 'Home')
+					    $('#liHome a').attr('id', 'currentTab');
+					else if (path == 'Manga' || path == 'Genre' || path == 'Group' || path == 'AuthorArtist')
+					    $('#liDS a').attr('id', 'currentTab');
+					else if (action == 'Report')
+					    $('#liReport a').attr('id', 'currentTab');
+					else if (action == 'RequestManga')
+					    $('#liRequest a').attr('id', 'currentTab');
+					else if (action == 'Guide')
+					    $('#liGuide a').attr('id', 'currentTab')
+					else
+					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
+				</script>
+				<div id="navsubbar">
+					<p>
+						<a href="/MangaList">Sort by alphabet</a>| <a href="/MangaList/MostPopular">Sort by
+						popularity</a> | <a href="/MangaList/Newest">New manga</a>
+					</p>
+				</div>
+			</div>
+			<div id="fb-root"></div>
+			<script>        (function (d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+				fjs.parentNode.insertBefore(js, fjs);
+				} (document, 'script', 'facebook-jssdk'));
+			</script>
+			<div id="container">
+				<div id="leftside">
+					<div class="bigBarContainer">
+						<div class="barTitle">
+							Arigatights!
+							information
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div>
+								<a Class="bigChar" href="/Manga/Arigatights">Arigatights!</a>
+								<p>
+									<span class="info">Other name:</span>&nbsp;<a href="/Manga/Arigatights" title="Thanktights manga online">Thanktights</a>; <a href="/Manga/Arigatights" title="ありがタイツ！ manga online">ありがタイツ！</a>; <a href="/Manga/Arigatights" title="고맙타이츠! manga online">고맙타이츠!</a>
+								</p>
+								<p>
+									<span class="info">Genres:</span>&nbsp;<a href="/Genre/Comedy" class="dotUnder" title="A dramatic work that is light and often humorous or satirical in tone  and that usually contains a happy resolution of the thematic conflict.">Comedy</a><span class="info">,</span> <a href="/Genre/Ecchi" class="dotUnder" title="Possibly the line between hentai and non-hentai, ecchi usually refers to  fanservice put in to attract a certain group of fans.">Ecchi</a><span class="info">,</span> <a href="/Genre/Romance" class="dotUnder" title="Any love related story.  We will define love as between man and woman in  this case. Other than that, it is up to your own imagination of what  love is.">Romance</a><span class="info">,</span> <a href="/Genre/School-Life" class="dotUnder" title="Having a major setting of the story deal with some type of school.">School Life</a><span class="info">,</span> <a href="/Genre/Slice-of-Life" class="dotUnder" title="
+										As the name suggests, this genre represents day-to-day tribulations of one/many character(s). These challenges/events could technically happen in real life and are often -if not all the time- set in the present timeline in a world that mirrors our own.
+										">Slice of Life</a>
+								</p>
+								<p>
+									<span class="info">Author:</span>&nbsp;<a href="/AuthorArtist/gggrande" class="dotUnder" title="">gggrande</a>
+								</p>
+								<p>
+									<span class="info">Status:</span>&nbsp;Ongoing
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="info">Views:</span>&nbsp;135,475&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span id="spanBookmark">
+									<img src="/Content/images/plus.png" style="vertical-align: middle; margin-bottom: 5px">
+									<a id="btnRegOrLogin" onclick="return false;" href="#">Bookmark</a>
+									</span>
+									<script type="text/javascript">
+										$('#btnRegOrLogin').click(function () {
+										    $('#spanBookmark').html('<img src="/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px"> Please <a href="/Login">Login</a> or <a href="/Register">Register</a>');
+										});
+									</script>
+								</p>
+								<p>
+									<span class="info">Summary:</span>
+								<p>Tights... are to be worshipped! Tights... are the universe! Tights have infinite possibilities!</p>
+								<p>High schooler first year at the height of his youth &middot; Kamiya Oya &middot; was suffering.</p>
+								<p>"I'm not distracted by my thoughts, but by that girl's tights! I don't want people know how bad it is."</p>
+								<p>Girls wearing tights are too cute! The inevitable comedy begins!</p>
+								</p>
+							</div>
+						</div>
+					</div>
+					<center>
+						<div id="divAds" style="text-align: center; overflow: hidden; width: 728px">
+							<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect728.aspx" width="728px" height="90px">
+							</iframe>
+						</div>
+						<script type="text/javascript">
+							var myTimeout;
+							$('#divAds').mouseenter(function () {
+							    myTimeout = setTimeout(function () {
+							        $("#divAds").css("overflow", "visible");
+							    }, 500);
+							}).mouseleave(function () {
+							    $("#divAds").css("overflow", "hidden");
+							    clearTimeout(myTimeout);
+							});
+						</script>
+					</center>
+					<br>
+					<div class="bigBarContainer">
+						<div class="barTitle">
+							Chapters
+						</div>
+						<div class="barContent chapterList">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div>
+								<div style="float: left; padding-right: 10px">
+									<a target="_blank" href="https://kissmanga.com/RSS/Manga/Arigatights">
+									<img border="0" title="RSS Latest chapter of series" src="../../Content/images/icon_rss.png" /></a>
+								</div>
+								&nbsp;
+								<div style="float: left;">
+									<div style="display:inline-table">
+										<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fb6029949d99e27" async="async"></script>
+										<div class="addthis_native_toolbox"></div>
+									</div>
+								</div>
+								<div class="clear">
+									&nbsp;
+								</div>
+								<div style="text-align: center; padding: 10px 0px 10px 0px;">
+									<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect300.aspx" width="300px" height="250px">
+									</iframe>
+								</div>
+								<div class="clear">
+									&nbsp;
+								</div>
+								<table class="listing">
+									<tr>
+										<th width="85%">
+											Chapter Name
+										</th>
+										<th width="15%">
+											Day Added
+										</th>
+									</tr>
+									<tr style="height: 10px"></tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Vol--002-Ch-018-005---Extra-Chapter?id=519348" title="Read Arigatights! Vol. 002 Ch.018.005 - Extra Chapter online">
+											Arigatights! Vol. 002 Ch.018.005 - Extra Chapter</a>
+										</td>
+										<td>
+											4/29/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Vol--002-Ch-018---Colored-Tights-And-The-Outdoor-School-002?id=517571" title="Read Arigatights! Vol. 002 Ch.018 - Colored Tights And The Outdoor School 002 online">
+											Arigatights! Vol. 002 Ch.018 - Colored Tights And The Outdoor School 002</a>
+										</td>
+										<td>
+											4/22/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-017---Colored-Tights-And-The-Outdoor-School?id=515973" title="Read Arigatights! Ch.017 - Colored Tights And The Outdoor School online">
+											Arigatights! Ch.017 - Colored Tights And The Outdoor School</a>
+										</td>
+										<td>
+											4/15/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-016---Summer-Cold-and-Tights-002?id=513764" title="Read Arigatights! Ch.016 - Summer Cold and Tights 002 online">
+											Arigatights! Ch.016 - Summer Cold and Tights 002</a>
+										</td>
+										<td>
+											4/8/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-015---Summer-Cold-and-Tights?id=511450" title="Read Arigatights! Ch.015 - Summer Cold and Tights online">
+											Arigatights! Ch.015 - Summer Cold and Tights</a>
+										</td>
+										<td>
+											4/1/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-014---Tights-Over-Fireworks?id=509888" title="Read Arigatights! Ch.014 - Tights Over Fireworks online">
+											Arigatights! Ch.014 - Tights Over Fireworks</a>
+										</td>
+										<td>
+											3/25/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-013---Yukata-and-Tights?id=501327" title="Read Arigatights! Ch.013 - Yukata and Tights online">
+											Arigatights! Ch.013 - Yukata and Tights</a>
+										</td>
+										<td>
+											3/11/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-012---Summer-Tights-Challenge?id=500109" title="Read Arigatights! Ch.012 - Summer Tights Challenge online">
+											Arigatights! Ch.012 - Summer Tights Challenge</a>
+										</td>
+										<td>
+											3/5/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-011---School-Swimsuit-Tights?id=496050" title="Read Arigatights! Ch.011 - School Swimsuit Tights online">
+											Arigatights! Ch.011 - School Swimsuit Tights</a>
+										</td>
+										<td>
+											2/18/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-010---Wet-Tights?id=492280" title="Read Arigatights! Ch.010 - Wet Tights online">
+											Arigatights! Ch.010 - Wet Tights</a>
+										</td>
+										<td>
+											2/11/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-009---Tights-Video?id=484994" title="Read Arigatights! Ch.009 - Tights Video online">
+											Arigatights! Ch.009 - Tights Video</a>
+										</td>
+										<td>
+											2/4/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-008---The-Definition-of-Tights?id=476660" title="Read Arigatights! Ch.008 - The Definition of Tights online">
+											Arigatights! Ch.008 - The Definition of Tights</a>
+										</td>
+										<td>
+											1/16/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-007---Tights-Maid-Cafe?id=473088" title="Read Arigatights! Ch.007 - Tights Maid Cafe online">
+											Arigatights! Ch.007 - Tights Maid Cafe</a>
+										</td>
+										<td>
+											1/7/2019
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-006---Tights-and-Underwear?id=471015" title="Read Arigatights! Ch.006 - Tights and Underwear online">
+											Arigatights! Ch.006 - Tights and Underwear</a>
+										</td>
+										<td>
+											12/29/2018
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-005----Magazines-and-Tights?id=468230" title="Read Arigatights! Ch.005  - Magazines and Tights online">
+											Arigatights! Ch.005 - Magazines and Tights</a>
+										</td>
+										<td>
+											12/21/2018
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-004----House-X-Tights?id=467701" title="Read Arigatights! Ch.004  - House X Tights online">
+											Arigatights! Ch.004 - House X Tights</a>
+										</td>
+										<td>
+											12/19/2018
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-003?id=466972" title="Read Arigatights! Ch.003 online">
+											Arigatights! Ch.003</a>
+										</td>
+										<td>
+											12/15/2018
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-002----Forest-of-Tights?id=458184" title="Read Arigatights! Ch.002  - Forest of Tights online">
+											Arigatights! Ch.002 - Forest of Tights</a>
+										</td>
+										<td>
+											11/16/2018
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="/Manga/Arigatights/Ch-001?id=457997" title="Read Arigatights! Ch.001 online">
+											Arigatights! Ch.001</a>
+										</td>
+										<td>
+											11/16/2018
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="clear2">
+						&nbsp;
+					</div>
+					<div class="clear2">
+						&nbsp;
+					</div>
+					<div class="bigBarContainer">
+						<div class="barTitle">
+							Comments
+						</div>
+						<div class="barContent episodeList">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div>
+								<div style="color:#44B9FA">
+									- Don't link to other manga/anime sites/any kind of ads.<br />
+									- Don't spoil content of next chapters.<br />
+									- <a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">Click here >> to report broken chapter(s)</a>
+								</div>
+								<div class="clear2"></div>
+								<div id="disqus_thread"></div>
+								<script type="text/javascript">
+									/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+									var disqus_shortname = 'kissmanga'; // required: replace example with your forum shortname
+
+									/* * * DON'T EDIT BELOW THIS LINE * * */
+									(function () {
+									    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+									    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+									    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									})();
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="rightside">
+					<div class="rightBox">
+						<div class="barTitle">
+							Image
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div style="text-align: center">
+								<img width="190px" height="250px" src="https://kissmanga.com/Uploads/Etc/11-16-2018/671382231818.jpg" />
+							</div>
+						</div>
+					</div>
+					<div class="clear2"></div>
+					<div class="rightBox">
+						<div class="barTitle">
+							Related Links
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div>
+								<div class="clear2"></div>
+								<center>
+									<div style="text-align: center">
+										<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect160-3.aspx" width="160px" height="600px">
+										</iframe>
+									</div>
+								</center>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<script type="text/javascript" src="//ads.2mdnsys.com/qcad.php?did=545&unit=5b965d958a6b9&tm=1536581013&sid=20&zid=1035&k=5b965d958a700"></script>
+			<script type="text/javascript">
+				function AddHideButtonToDynamic()
+				{
+						var elemDyna = $('div[style*="width:100%;height:768px;"]')[0];
+						if (elemDyna == null)
+						{
+							elemDyna = $('div[style*="width: 100%; height: 768px;"]')[0];
+						}
+						var elemDyna2 = $('div[style*="width:100%;height:768px;"]')[1];
+						if (elemDyna2 == null)
+						{
+							elemDyna2 = $('div[style*="width: 100%; height: 768px;"]')[1];
+						}
+				    	if ($(elemDyna).offset() != null) {
+				            var topDyna = 220;
+				            var leftDyna = ($(window).width() - 1000) / 2 - 45;
+				            $(elemDyna).after('<div class="divCloseBut" style="z-index:1000;visibility:visible;position:absolute; right:' + leftDyna + 'px; top: ' + topDyna + 'px"><a href="#" onclick="$(\'#' + $(elemDyna).attr('id') + '\').remove();$(\'#' + $(elemDyna2).attr('id') + '\').remove();$(this).remove(); InitCloseButton(); return false;"><b>[Hide]</b></a></div>');
+				        }
+				}
+				window.setTimeout(AddHideButtonToDynamic, 5000);
+			</script>
+		</div>
+		<script type="text/javascript" src="//koindut.com/apu.php?zoneid=1616193"></script>
+		<div id="footer">
+			<div id="footcontainer" style="position: relative">
+				<p>
+					<a href="http://kissmanga.com">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
+					&nbsp;&nbsp;
+				</p>
+				<div style="position: absolute; left: 200px; top: 20px"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
+		</script>
+	</body>
+</html>
