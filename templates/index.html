@@ -29,12 +29,7 @@
 		<link rel="stylesheet" href="../static/css/jquery.ui.slider.css">
 		<link rel="stylesheet" href="../static/css/jquery.ui.theme.css">
 		<style media="screen">
-			#menu_box{
-				display:none;
-			}
-			.boxDropDown:hover #menu_box{
-				display:block !important;
-			}
+
 		</style>
 	</head>
 
@@ -64,7 +59,7 @@
 										</small>
 									</span>
 								</a>
-								<div id="menu_box">
+								<div id="menu_box" style="display:none;">
 									<a href="#">
 										&nbsp;&nbsp;
 										<img src="../static/images/bookmark1.png" />
@@ -95,6 +90,22 @@
 						</div>
 					</div>
 					<!-- Login/Register button top section end here -->
+					<script type="text/javascript">
+					$("#aDropDown")
+					.mouseover(function() {
+						$("#menu_box").show();
+					})
+					.mouseout(function() {
+						$("#menu_box").hide();
+					});
+					$("#menu_box")
+					.mouseover(function() {
+						$(this).show();
+					})
+					.mouseout(function() {
+						$(this).hide();
+					});
+					</script>
 
 					<!-- Search form -->
 					<div id="search" style="position: relative">
