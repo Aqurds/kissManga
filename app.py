@@ -70,6 +70,54 @@ def home():
 
 
 
+# Register route
+@app.route('/register/', methods=['POST', 'GET'])
+def register():
+    if session:
+        return redirect(url_for('home'))
+    if request.method == 'POST':
+        users = mongo.db.users
+        current_user = users.find_one({'name' : request.form['username']})
+
+        if current_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['username'], 'password' : hashpass, 'displayname' : request.form['displayname'], 'email' : request.form['email']})
+            session['username'] = request.form['username']
+            return redirect(url_for('home'))
+        error_message = 'Username already exist, please choose different one!'
+        return render_template('register.html', error_message = error_message)
+    return render_template('register.html')
+
+
+
+
+
+
+
+# Login route
+@app.route('/login/', methods=['POST', 'GET'])
+def login():
+    if session:
+        return redirect(url_for('home'))
+    if request.method == 'POST':
+        users = mongo.db.users
+        login_user = users.find_one({'name' : request.form['username']})
+
+        if login_user:
+            if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password']) == login_user['password']:
+            # if  bcrypt.check_password_hash(login_user['password'], request.form['password']):
+                session['username'] = request.form['username']
+                return redirect(url_for('home'))
+            error_message = 'Invalid username or password, Please try again!'
+            return render_template('login.html', error_message = error_message)
+
+    return render_template('login.html')
+
+
+
+
+
+
 
 
 
