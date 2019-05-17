@@ -675,6 +675,66 @@ def manga_author_search():
 
 
 
+
+@app.route('/manga-id-chapter/<string:manga_id>/<string:chapter_id>')
+def manga_id_chapter(manga_id, chapter_id):
+    manga_id =manga_id
+    chapter_id = chapter_id
+    url = request.url
+    manga_details = mongo.db.all_manga_details.find_one({'id':manga_id})
+    manga_chapter_list = mongo.db.manga_chapter_list.find_one({'manga_id':manga_id})
+    chapter_list = list(mongo.db.manga_each_chapter_image_list_with_manga_id.find({'manga_id':manga_id}))
+
+    index = manga_chapter_list['chapter_id'].index(chapter_id)
+    image_list = chapter_list[index]['manga_each_chapter_image_list_with_manga_id']
+    current_chapter_text = manga_chapter_list['chapter_link_text'][index]
+
+    current_chapter_id = chapter_id
+    if index == len(manga_chapter_list['chapter_id'])-1:
+        prev_chapter_id = manga_chapter_list['chapter_id'][1 + 1]
+    else:
+        prev_chapter_id = manga_chapter_list['chapter_id'][index + 1]
+    next_chapter_id = manga_chapter_list['chapter_id'][index - 1]
+    next_chapter_identifier = True
+    prev_chapter_id_identifier = True
+
+    if current_chapter_id == manga_chapter_list['chapter_id'][0]:
+        next_chapter_identifier = False
+
+    if current_chapter_id == manga_chapter_list['chapter_id'][-1]:
+        prev_chapter_id_identifier = False
+
+    iteration_number = len(manga_chapter_list['chapter_id'])
+    chapter_option_list = []
+    for y in range(iteration_number):
+        chapter_option_list.append([manga_chapter_list['chapter_id'][y]])
+    for y in range(iteration_number):
+        chapter_option_list[y].append(manga_chapter_list['chapter_link_text'][y])
+
+    related_manga = mongo.db.all_manga_details.find().sort('last_updated', pymongo.ASCENDING).limit(12)
+
+
+    total_bookmark = 0
+    if session:
+        user_name = session['username']
+        users = mongo.db.users
+        bookmark_id = users.find_one({'name':user_name})
+
+        if 'bookmark' in bookmark_id:
+            total_bookmark = len(bookmark_id['bookmark']) - 1
+
+    return render_template('manga-id-chapter.html', manga_details = manga_details, manga_chapter_list = manga_chapter_list, image_list = image_list, url = url, current_chapter_id = current_chapter_text, prev_chapter_id = prev_chapter_id, next_chapter_id = next_chapter_id, next_chapter_identifier=next_chapter_identifier, prev_chapter_id_identifier=prev_chapter_id_identifier, chapter_option_list=chapter_option_list, related_manga=related_manga, total_bookmark=total_bookmark)
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/manga-id/<string:manga_id>')
 def manga_id(manga_id):
     # manga_id = request.url.split('/')[-1]

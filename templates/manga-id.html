@@ -279,7 +279,7 @@
 									{% for item in chapter_list %}
 										<tr>
 											<td>
-												<a href="#" title="{{manga_details['title']}}">
+												<a href="{{url_for('manga_id_chapter', manga_id = manga_id_here, chapter_id = item[0])}}" title="{{manga_details['title']}}">
 													{{item[2]}}
 												</a>
 											</td>
