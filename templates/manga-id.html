@@ -218,7 +218,9 @@
 								<p>
 									<span class="info">Author:</span>
 									&nbsp;
-									<a href="#" class="dotUnder" title="">gggrande</a>
+									{% for author in manga_details['author'] %}
+										<a href="#" class="dotUnder" title="">{{author}}</a>
+									{% endfor %}
 								</p>
 								<p>
 									<span class="info">Status:</span>&nbsp;{{manga_details['status']}}
