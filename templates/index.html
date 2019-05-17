@@ -210,7 +210,7 @@
 								<img width="150px" height="195px" src="{{most_popular_manga[0]['image']}}" />
 							</a>
 							<div style="float: left; width: 530px">
-								<a Class="bigChar" href="#">{{most_popular_manga[0]['title']}}</a>
+								<a Class="bigChar" href="{{url_for('manga_id', manga_id = most_popular_manga[0]['id'])}}">{{most_popular_manga[0]['title']}}</a>
 								<p>
 									<span class="info">Genres:</span>
 									&nbsp;
@@ -253,7 +253,7 @@
 
 									<div>
 										{% for x in range (0,6) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -264,7 +264,7 @@
 
 									<div>
 										{% for x in range (6,11) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -275,7 +275,7 @@
 
 									<div>
 										{% for x in range (11,16) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -286,7 +286,7 @@
 
 									<div>
 										{% for x in range (16,21) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -297,7 +297,7 @@
 
 									<div>
 										{% for x in range (21,26) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -308,7 +308,7 @@
 
 									<div>
 										{% for x in range (26,31) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -319,7 +319,7 @@
 
 									<div>
 										{% for x in range (31,36) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -330,7 +330,7 @@
 
 									<div>
 										{% for x in range (36,41) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -341,7 +341,7 @@
 
 									<div>
 										{% for x in range (41,46) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
@@ -352,7 +352,7 @@
 
 									<div>
 										{% for x in range (46,51) %}
-											<a href="#" title="{{latest_mange_releases[x]['title']}}">
+											<a href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}" title="{{latest_mange_releases[x]['title']}}">
 												<img width='130px' height='150px' src="{{latest_mange_releases[x]['image']}}" />
 												<br />{{latest_mange_releases[x]['title']}}<br />
 												<!-- <span class='textDark'>Last chapter link will go here</span> -->
