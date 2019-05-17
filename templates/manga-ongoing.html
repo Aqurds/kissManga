@@ -338,14 +338,14 @@
 							<div class="pagination pagination-left">
 								<ul class="pager" style="padding: 10px 11px 10px 0px">
 									<li>
-										<a href="{{url_for('manga', page = 1)}}">
+										<a href="{{url_for('manga_ongoing', page = 1)}}">
 								      First(1)
 								    </a>
 									</li>
 
 									{% if first_prev_page != 0 %}
 									<li>
-								      <a href="{{url_for('manga', page=first_prev_page)}}">
+								      <a href="{{url_for('manga_ongoing', page=first_prev_page)}}">
 								        {{first_prev_page}}
 								      </a>
 									</li>
@@ -353,7 +353,7 @@
 
 									{% if second_prev_page != 0 %}
 									<li>
-								      <a href="{{url_for('manga', page=second_prev_page)}}">
+								      <a href="{{url_for('manga_ongoing', page=second_prev_page)}}">
 								        {{second_prev_page}}
 								      </a>
 									</li>
@@ -365,7 +365,7 @@
 
 									{% if first_next_page != 0 %}
 									<li>
-								      <a href="{{url_for('manga', page=first_next_page)}}">
+								      <a href="{{url_for('manga_ongoing', page=first_next_page)}}">
 								        {{first_next_page}}
 								      </a>
 									</li>
@@ -373,14 +373,14 @@
 
 									{% if second_next_page != 0 %}
 									<li>
-								      <a href="{{url_for('manga', page=second_next_page)}}">
+								      <a href="{{url_for('manga_ongoing', page=second_next_page)}}">
 								        {{second_next_page}}
 								      </a>
 									</li>
 									{% endif %}
 
 									<li>
-										<a href="{{url_for('manga', page=total_page_number)}}" class="page page-blue">
+										<a href="{{url_for('manga_ongoing', page=total_page_number)}}" class="page page-blue">
 								      Last({{total_page_number}})
 								    </a>
 									</li>
