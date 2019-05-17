@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
+	<head id="ctl00_Head1">
+		<title>
+			KissManga - Read manga online in high quality
+		</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta property="fb:admins" content="683024937" />
+		<meta property="fb:app_id" content="111670815619329" />
+		<script src="../static/js/jquery17.min.js" type="text/javascript"></script>
+		<link href="../static/css/tpl_style.css?" rel="stylesheet" type="text/css" />
+		<link href="../static/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
+		<!--[if IE 6]>
+		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
+		<![endif]-->
+		<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
+		<![endif]-->
+		<meta name="description" content="Read manga online in high quality for free, fast update, daily update. Unique reading type: All pages - just need to scroll to read next page, and many more..." />
+		<meta name="keywords" content="manga,read manga,manga online,manga scans,manga volume,manga chapter,online manga,read free manga,free manga,read free manga online,manga viewer,manga download,manga downloads,japanese comic, manhwa online" />
+		<link rel="stylesheet" href="../static/css/jquery.ui.core.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.slider.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.theme.css">
+		<style media="screen">
+
+		</style>
+	</head>
+
+
+
+
+	<body>
+		<div id="containerRoot">
+			<div id="head">
+				<h3>
+
+
+					<!-- Login/Register button top section -->
+					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
+						<div id="topHolderBox" style="width: 230px; height: 27px;">
+							{% if session %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<span style="color: #888">
+									Hi
+								</span>
+								&nbsp;&nbsp;
+								<a id="aDropDown" class="boxDropDown" style="margin-top: -7px; cursor: pointer; width:75px;">
+									<span>
+										{{session.username}}
+										<span class="clsHadUnread">
+										</span>
+										<small style="color: #8D65A0">
+											▼
+										</small>
+									</span>
+								</a>
+								<div id="menu_box" style="display:none;">
+									<a href="#">
+										&nbsp;&nbsp;
+										<img src="../static/images/bookmark1.png" />
+											&nbsp;Bookmark list
+											<span class="clsHadUnread">...</span>
+										</a>
+										<a href="#">
+											&nbsp;&nbsp;
+											<img src="../static/images/change.png" />
+											&nbsp;Profile
+										</a>
+										<a href="{{ url_for('logout') }}">
+											&nbsp;&nbsp;
+											<img src="../static/images/logout.png" />
+											&nbsp;Logout
+										</a>
+								</div>
+							{% else %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<a href="{{ url_for('login') }}">
+									Login
+								</a>
+								or
+								<a href="{{ url_for('register') }}">
+									Register
+								</a>
+							{% endif %}
+						</div>
+					</div>
+					<!-- Login/Register button top section end here -->
+					<script type="text/javascript">
+					$("#aDropDown")
+					.mouseover(function() {
+						$("#menu_box").show();
+					})
+					.mouseout(function() {
+						$("#menu_box").hide();
+					});
+					$("#menu_box")
+					.mouseover(function() {
+						$(this).show();
+					})
+					.mouseout(function() {
+						$(this).hide();
+					});
+					</script>
+
+
+					<div id="search" style="position: relative">
+						<form id="formSearch" method="post">
+							<p>
+								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
+								<select id="selectSearch">
+									<option value="Manga">Series Name</option>
+									<option value="AuthorArtist">Author/Artist</option>
+								</select>
+								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
+							</p>
+						</form>
+					</div>
+				</h3>
+				<h1>
+					<a href="{{  url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+				</h1>
+			</div>
+			<div class="clear"></div>
+
+
+
+
+			<div id="headnav">
+
+
+				<div id="navbar">
+					<div id="navcontainer">
+						<ul>
+							<li id="liHome"><a href="{{ url_for('home') }}">Home</a></li>
+							<li id="liDS"><a href="{{ url_for('manga', page=1) }}">Manga
+								List</a>
+							</li>
+							<li id="liComic">
+								<a target="_blank" href="http://readcomiconline.to/">Comic
+								List</a>
+							</li>
+							<li id="liReport">
+								<a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+								Report/Request</a>
+							</li>
+							<li id="liCommunity">
+								<a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+								Forum</a>
+							</li>
+							<li id="liAnimeOnline">
+								<a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+								Watch anime</a>
+							</li>
+							<li id="liGame">
+								<a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
+						</ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+					var path = 'Manga';
+					var action = 'Index';
+					if (path == 'Home')
+					    $('#liHome a').attr('id', 'currentTab');
+					else if (path == 'Manga' || path == 'Genre' || path == 'Group' || path == 'AuthorArtist')
+					    $('#liDS a').attr('id', 'currentTab');
+					else if (action == 'Report')
+					    $('#liReport a').attr('id', 'currentTab');
+					else if (action == 'RequestManga')
+					    $('#liRequest a').attr('id', 'currentTab');
+					else if (action == 'Guide')
+					    $('#liGuide a').attr('id', 'currentTab')
+					else
+					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
+				</script>
+
+
+				<div id="navsubbar">
+					<p>
+						<a href="/MangaList/LatestUpdate">
+							Latest update
+						</a>
+						|
+						<a href="/MangaList/Newest">
+							New manga
+						</a>
+					</p>
+				</div>
+
+
+			</div>
+
+
+
+
+
+
+			<div id="container">
+				<div id="rightside">
+					<div class="rightBox">
+						<div class="barTitle">
+							Search by status
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div>
+								<a href="{{ url_for('manga_ongoing', page=1) }}" title="The series are ongoing">Ongoing</a><br />
+								<a href="{{ url_for('manga_completed', page=1) }}" title="The series are completed">Completed</a>
+							</div>
+						</div>
+					</div>
+					<div class="clear">
+						&nbsp;
+					</div>
+
+
+
+					<div class="rightBox">
+						<div class="barTitle">
+							Search by genres
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+
+
+							<div>
+								{% for genre in genres %}
+								<a href="#" title="">
+									{{ genre }}
+								</a>
+								<br />
+								{% endfor %}
+							</div>
+
+						</div>
+					</div>
+
+
+
+					<div class="clear2">
+						&nbsp;
+					</div>
+
+				</div>
+				<div id="leftside">
+					<div class="bigBarContainer">
+						<div class="barTitle">
+							List manga
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+
+							<div class="clear" style="height: 15px">
+							</div>
+
+
+								<div class="clear">
+								</div>
+
+								<!-- all manga list code starts here -->
+								{% for manga in all_manga %}
+								<div>
+
+									<div style="display: inline-block; width: 190px">
+										<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
+											<img width="190px" height="250px" src="{{ manga['image'] }}">
+										</a>
+									</div>
+
+									<div style="display: inline-block; width: 500px; vertical-align: top; padding-left: 10px">
+										<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
+											<span class="title">
+												{{ manga['title'] }}
+											</span>
+										</a>
+
+										<p>
+											<span class="info">Genres:</span>
+											&nbsp;
+											{% for genre in manga['genres'] %}
+											<a href="#" class="dotUnder" title="">
+												{{ genre }}
+											</a>
+											<span class="info">,</span>
+											{% endfor %}
+										</p>
+
+										<!-- <p>
+											<span class="info">Latest chapter:</span>&nbsp;<a href="#">Vol.002 Ch.009</a>
+										</p> -->
+										<p>
+											<span class="info">Summary:</span>&nbsp;
+										<p>&nbsp;</p>
+										<div>
+											<div>{{ manga['summary'] }}</div>
+										</div>
+										<div></div>
+										<p>
+											<span style="font-family: 'Times New Roman'; font-size: medium;">
+												<div style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: #ffffff; background-position: initial initial; background-repeat: initial initial; margin: 8px;">
+												</div>
+											</span>
+									</p>
+										<p>&nbsp;</p>
+										</p>
+									</div>
+
+								</div>
+
+
+								<div class="clear2"></div>
+								<hr />
+								<div class="clear2"></div>
+								<div class="clear2"></div>
+								<!-- all manga list code ends here -->
+								{% endfor %}
+
+
+							</div>
+
+
+
+
+							<!-- pagination starts -->
+							<div class="pagination pagination-left">
+								<ul class="pager" style="padding: 10px 11px 10px 0px">
+									<li>
+										<a href="{{url_for('manga_new', page = 1)}}">
+								      First(1)
+								    </a>
+									</li>
+
+									{% if first_prev_page != 0 %}
+									<li>
+								      <a href="{{url_for('manga_new', page=first_prev_page)}}">
+								        {{first_prev_page}}
+								      </a>
+									</li>
+									{% endif %}
+
+									{% if second_prev_page != 0 %}
+									<li>
+								      <a href="{{url_for('manga_new', page=second_prev_page)}}">
+								        {{second_prev_page}}
+								      </a>
+									</li>
+									{% endif %}
+
+									<li class="current">
+								      {{current_page}}
+									</li>
+
+									{% if first_next_page != 0 %}
+									<li>
+								      <a href="{{url_for('manga_new', page=first_next_page)}}">
+								        {{first_next_page}}
+								      </a>
+									</li>
+									{% endif %}
+
+									{% if second_next_page != 0 %}
+									<li>
+								      <a href="{{url_for('manga_new', page=second_next_page)}}">
+								        {{second_next_page}}
+								      </a>
+									</li>
+									{% endif %}
+
+									<li>
+										<a href="{{url_for('manga_new', page=total_page_number)}}" class="page page-blue">
+								      Last({{total_page_number}})
+								    </a>
+									</li>
+									<!-- <li class="current">1</li>
+									<li><a href="/MangaList?page=2" page="2">2</a></li>
+									<li><a href="/MangaList?page=3" page="3">3</a></li>
+									<li><a href="/MangaList?page=2" page=2>&rsaquo; Next </a></li>
+									<li><a href="/MangaList?page=324" page="324">&raquo; Last </a></li> -->
+								</ul>
+							</div>
+
+
+							<!-- pagination code ends here -->
+
+
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<div id="footer" style="top:20px;">
+			<div id="footcontainer" style="position: relative">
+				<p>
+					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+					<a href="#">Privacy Policy</a>
+					&nbsp;&nbsp;
+				</p>
+				<div style="position: absolute; left: 200px; top: 20px"></div>
+			</div>
+		</div>
+		<!-- <script type="text/javascript">
+			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
+		</script> -->
+	</body>
+</html>
