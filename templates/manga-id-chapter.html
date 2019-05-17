@@ -46,7 +46,7 @@
 					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
 						<div id="topHolderBox" style="width: 230px; height: 27px;">
 							{% if session %}
-								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<img src="{{ url_for('static', filename='images/user-small.png') }}" style="vertical-align: middle; margin-bottom: 5px">
 								<span style="color: #888">
 									Hi
 								</span>
@@ -64,23 +64,23 @@
 								<div id="menu_box" style="display:none;">
 									<a href="#">
 										&nbsp;&nbsp;
-										<img src="../static/images/bookmark1.png" />
+										<img src="{{ url_for('static', filename='images/bookmark1.png') }}" />
 											&nbsp;Bookmark list
 											<span class="clsHadUnread">...</span>
 										</a>
 										<a href="#">
 											&nbsp;&nbsp;
-											<img src="../static/images/change.png" />
+											<img src="{{ url_for('static', filename='images/change.png') }}" />
 											&nbsp;Profile
 										</a>
 										<a href="{{ url_for('logout') }}">
 											&nbsp;&nbsp;
-											<img src="../static/images/logout.png" />
+											<img src="{{ url_for('static', filename='images/logout.png') }}" />
 											&nbsp;Logout
 										</a>
 								</div>
 							{% else %}
-								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<img src="{{ url_for('static', filename='images/user-small.png') }}" style="vertical-align: middle; margin-bottom: 5px">
 								<a href="{{ url_for('login') }}">
 									Login
 								</a>
@@ -118,7 +118,7 @@
 									<option value="Manga">Series Name</option>
 									<option value="AuthorArtist">Author/Artist</option>
 								</select>
-								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
+								<input id="imgSearch" type="image" src="{{ url_for('static', filename='images/search.png') }}" class="button" onclick="return false;" />
 							</p>
 						</form>
 					</div>
@@ -240,7 +240,7 @@
 						</p>
 					</div>
 					<div style="float: right; width: 110px">
-						<img src="../static/images/error.png" style="border: 0px" />
+						<img src="{{ url_for('static', filename='images/error.png') }}" style="border: 0px" />
 					</div>
 				</div>
 				<div class="clear2">
@@ -279,7 +279,7 @@
 				</div>
 				<div>
 					<a href="#">
-						<img border="0" style="vertical-align: middle" src="../static/images/upload-icon.png">
+						<img border="0" style="vertical-align: middle" src="{{ url_for('static', filename='images/upload-icon.png') }}">
 						&nbsp;
 						[Back to top ]
 					</a>
@@ -287,7 +287,7 @@
 					<!-- <a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">[ Report broken chapter ]</a> -->
 					<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
 						&nbsp;&nbsp;
-						<img src="../static/images/user-small.png" style="vertical-align: middle;
+						<img src="{{ url_for('static', filename='images/user-small.png') }}" style="vertical-align: middle;
 							margin-bottom: 5px">
 						Please <a href="{{ url_for('login') }}">
 						Login</a> or <a href="{{ url_for('register') }}">Register</a> to use <b>Bookmark</b> feature
@@ -306,7 +306,7 @@
 					&nbsp;
 				</div>
 			</div>
-			<script type="text/javascript">
+			<!-- <script type="text/javascript">
 				$('#divImage').hide();
 
 				        var lstImages = new Array();
@@ -445,7 +445,7 @@
 				//                    }
 				//                }
 				        }
-			</script>
+			</script> -->
 			<script type="text/javascript">
 				$('#divImage').show();
 
