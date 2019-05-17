@@ -240,7 +240,7 @@
 
 							<div>
 								{% for genre in genres %}
-								<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" title="">
+								<a href="#" title="">
 									{{ genre }}
 								</a>
 								<br />
@@ -295,7 +295,7 @@
 											<span class="info">Genres:</span>
 											&nbsp;
 											{% for genre in manga['genres'] %}
-											<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" class="dotUnder" title="">
+											<a href="#" class="dotUnder" title="">
 												{{ genre }}
 											</a>
 											<span class="info">,</span>

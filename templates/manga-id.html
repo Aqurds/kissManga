@@ -211,7 +211,7 @@
 									<span class="info">Genres:</span>
 									&nbsp;
 									{% for genre in manga_details['genres'] %}
-										<a href="#" class="dotUnder" title="">{{genre}}</a>
+										<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" class="dotUnder" title="">{{genre}}</a>
 										<span class="info">,</span>
 									{% endfor %}
 								</p>

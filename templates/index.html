@@ -215,7 +215,7 @@
 									<span class="info">Genres:</span>
 									&nbsp;
 									{% for item in most_popular_manga[0]['genres'] %}
-										<a href="#" class="dotUnder" title="">{{ item }}</a>
+										<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 										<span class="info">,</span>
 									{% endfor %}
 								</p>
@@ -502,7 +502,7 @@
 												<span class="info">Genres:</span>
 												&nbsp;
 												{% for item in new_manga[x]['genres'] %}
-													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 													<span class="info">,</span>
 												{% endfor %}
 											</p>
@@ -525,7 +525,7 @@
 												<span class="info">Genres:</span>
 												&nbsp;
 												{% for item in new_manga[x]['genres'] %}
-													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 													<span class="info">,</span>
 												{% endfor %}
 											</p>
@@ -559,7 +559,7 @@
 												<span class="info">Genres:</span>
 												&nbsp;
 												{% for item in popular_manga_list[x]['genres'] %}
-													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 													<span class="info">,</span>
 												{% endfor %}
 											</p>
@@ -582,7 +582,7 @@
 												<span class="info">Genres:</span>
 												&nbsp;
 												{% for item in popular_manga_list[x]['genres'] %}
-													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 													<span class="info">,</span>
 												{% endfor %}
 											</p>
@@ -613,7 +613,7 @@
 												<span class="info">Genres:</span>
 												&nbsp;
 												{% for item in most_popular_manga[x]['genres'] %}
-													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 													<span class="info">,</span>
 												{% endfor %}
 											</p>
@@ -636,7 +636,7 @@
 												<span class="info">Genres:</span>
 												&nbsp;
 												{% for item in most_popular_manga[x]['genres'] %}
-													<a href="#" class="dotUnder" title="">{{ item }}</a>
+													<a href="{{url_for('manga_genre_search', page = 1, genre=item)}}" class="dotUnder" title="">{{ item }}</a>
 													<span class="info">,</span>
 												{% endfor %}
 											</p>
@@ -747,27 +747,6 @@
 			<div class="clear">
 				&nbsp;
 			</div>
-			<script type="text/javascript">
-				function AddHideButtonToDynamic()
-				{
-						var elemDyna = $('div[style*="width:100%;height:768px;"]')[0];
-						if (elemDyna == null)
-						{
-							elemDyna = $('div[style*="width: 100%; height: 768px;"]')[0];
-						}
-						var elemDyna2 = $('div[style*="width:100%;height:768px;"]')[1];
-						if (elemDyna2 == null)
-						{
-							elemDyna2 = $('div[style*="width: 100%; height: 768px;"]')[1];
-						}
-				    	if ($(elemDyna).offset() != null) {
-				            var topDyna = 220;
-				            var leftDyna = ($(window).width() - 1000) / 2 - 45;
-				            $(elemDyna).after('<div class="divCloseBut" style="z-index:1000;visibility:visible;position:absolute; right:' + leftDyna + 'px; top: ' + topDyna + 'px"><a href="#" onclick="$(\'#' + $(elemDyna).attr('id') + '\').remove();$(\'#' + $(elemDyna2).attr('id') + '\').remove();$(this).remove(); InitCloseButton(); return false;"><b>[Hide]</b></a></div>');
-				        }
-				}
-				window.setTimeout(AddHideButtonToDynamic, 5000);
-			</script>
 		</div>
 
 
@@ -776,7 +755,7 @@
 			<div id="footcontainer" style="position: relative">
 				<p>
 					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
-					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
+					<a href="#">Privacy Policy</a>
 					&nbsp;&nbsp;
 				</p>
 				<div style="position: absolute; left: 200px; top: 20px"></div>
