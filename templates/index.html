@@ -539,7 +539,7 @@
 									{% endif %}
 								{% endfor %}
 								<div style="text-align: right; font-size: 16px">
-									<a href="/MangaList/Newest">More...</a>
+									<a href="{{ url_for('manga', page=1) }}">More...</a>
 								</div>
 							</div>
 							<!-- Newest manga list tab end here -->
@@ -713,7 +713,7 @@
 								{% endfor %}
 
 								<div style="text-align: right; font-size: 14px; padding-top: 5px">
-									<a href="#">More...</a>
+									<a href="{{ url_for('manga', page=1) }}">More...</a>
 								</div>
 							</div>
 						</div>
