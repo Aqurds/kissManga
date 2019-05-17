@@ -494,10 +494,10 @@
 								{% for x in range (0,10) %}
 									{% if x%2 == 0 %}
 										<div style='position:relative'>
-											<a href="#">
+											<a href="{{url_for('manga_id', manga_id = new_manga[x]['id'])}}">
 												<img width="80px" height="100px" src="{{new_manga[x]['image']}}" />
 											</a>
-											<a href="#"><span class="title">{{new_manga[x]['title']}}</span></a>
+											<a href="{{url_for('manga_id', manga_id = new_manga[x]['id'])}}"><span class="title">{{new_manga[x]['title']}}</span></a>
 											<p>
 												<span class="info">Genres:</span>
 												&nbsp;
@@ -517,10 +517,10 @@
 
 									{% if x%2 != 0 %}
 										<div style='position:relative' class='blue'>
-											<a href="#">
+											<a href="{{url_for('manga_id', manga_id = new_manga[x]['id'])}}">
 												<img width="80px" height="100px" src="{{new_manga[x]['image']}}" />
 											</a>
-											<a href="#"><span class="title">{{new_manga[x]['title']}}</span></a>
+											<a href="{{url_for('manga_id', manga_id = new_manga[x]['id'])}}"><span class="title">{{new_manga[x]['title']}}</span></a>
 											<p>
 												<span class="info">Genres:</span>
 												&nbsp;
@@ -551,10 +551,10 @@
 								{% for x in range (0,10) %}
 									{% if x%2 == 0 %}
 										<div style='position:relative'>
-											<a href="#">
+											<a href="{{url_for('manga_id', manga_id = popular_manga_list[x]['id'])}}">
 												<img width="80px" height="100px" src="{{popular_manga_list[x]['image']}}" />
 											</a>
-											<a href="#"><span class="title">{{popular_manga_list[x]['title']}}</span></a>
+											<a href="{{url_for('manga_id', manga_id = popular_manga_list[x]['id'])}}"><span class="title">{{popular_manga_list[x]['title']}}</span></a>
 											<p>
 												<span class="info">Genres:</span>
 												&nbsp;
@@ -574,10 +574,10 @@
 
 									{% if x%2 != 0 %}
 										<div style='position:relative' class='blue'>
-											<a href="#">
+											<a href="{{url_for('manga_id', manga_id = popular_manga_list[x]['id'])}}">
 												<img width="80px" height="100px" src="{{popular_manga_list[x]['image']}}" />
 											</a>
-											<a href="#"><span class="title">{{popular_manga_list[x]['title']}}</span></a>
+											<a href="{{url_for('manga_id', manga_id = popular_manga_list[x]['id'])}}"><span class="title">{{popular_manga_list[x]['title']}}</span></a>
 											<p>
 												<span class="info">Genres:</span>
 												&nbsp;
@@ -605,10 +605,10 @@
 								{% for x in range (0,10) %}
 									{% if x%2 == 0 %}
 										<div style='position:relative'>
-											<a href="#">
+											<a href="{{url_for('manga_id', manga_id = most_popular_manga[x]['id'])}}">
 												<img width="80px" height="100px" src="{{most_popular_manga[x]['image']}}" />
 											</a>
-											<a href="#"><span class="title">{{most_popular_manga[x]['title']}}</span></a>
+											<a href="{{url_for('manga_id', manga_id = most_popular_manga[x]['id'])}}"><span class="title">{{most_popular_manga[x]['title']}}</span></a>
 											<p>
 												<span class="info">Genres:</span>
 												&nbsp;
@@ -628,10 +628,10 @@
 
 									{% if x%2 != 0 %}
 										<div style='position:relative' class='blue'>
-											<a href="#">
+											<a href="{{url_for('manga_id', manga_id = most_popular_manga[x]['id'])}}">
 												<img width="80px" height="100px" src="{{most_popular_manga[x]['image']}}" />
 											</a>
-											<a href="#"><span class="title">{{most_popular_manga[x]['title']}}</span></a>
+											<a href="{{url_for('manga_id', manga_id = most_popular_manga[x]['id'])}}"><span class="title">{{most_popular_manga[x]['title']}}</span></a>
 											<p>
 												<span class="info">Genres:</span>
 												&nbsp;
