@@ -1,20 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
 	<head id="ctl00_Head1">
 		<title>
-			Arigatights!
-			manga | Read
-			Arigatights!
-			manga online in high quality
+			KissManga - Read manga online in high quality
 		</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta property="fb:admins" content="683024937" />
 		<meta property="fb:app_id" content="111670815619329" />
-		<script src="https://kissmanga.com/Scripts/jquery17.min.js" type="text/javascript"></script>
-		<link href="https://kissmanga.com/Content/css/tpl_style.css?v=2" rel="stylesheet" type="text/css" />
-		<link href="https://kissmanga.com/Content/css/upload-progress.css" rel="stylesheet" type="text/css">
-		<link rel="shortcut icon" href="https://kissmanga.com/Content/images/favicon.ico" type="image/x-icon" />
+		<script src="../static/js/jquery17.min.js" type="text/javascript"></script>
+		<link href="../static/css/tpl_style.css?" rel="stylesheet" type="text/css" />
+		<link href="../static/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
 		<!--[if IE 6]>
 		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
 		<![endif]-->
@@ -24,30 +24,95 @@
 		<!--[if IE 8]>
 		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
 		<![endif]-->
-		<meta name="description" content="Read Arigatights! manga online free and high quality. Fast loading speed, unique reading type: All pages - just need to scroll to read next page" />
-		<meta name="keywords" content="Read Arigatights! manga online, Arigatights!, read Arigatights! online, Arigatights! manga" />
-		<link rel="image_src" href="https://kissmanga.com/Uploads/Etc/11-16-2018/671382231818.jpg" />
-		<link rel="alternate" type="application/rss+xml" title="Arigatights! manga" href="https://kissmanga.com/RSS/Manga/Arigatights" />
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() { dataLayer.push(arguments); }
-			gtag('js', new Date());
+		<meta name="description" content="Read manga online in high quality for free, fast update, daily update. Unique reading type: All pages - just need to scroll to read next page, and many more..." />
+		<meta name="keywords" content="manga,read manga,manga online,manga scans,manga volume,manga chapter,online manga,read free manga,free manga,read free manga online,manga viewer,manga download,manga downloads,japanese comic, manhwa online" />
+		<link rel="stylesheet" href="../static/css/jquery.ui.core.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.slider.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.theme.css">
+		<style media="screen">
 
-			gtag('config', 'UA-1712467-38');
-		</script>
-		<link rel="manifest" href="/manifest.json" />
+		</style>
 	</head>
+
+
+
+
+
 	<body>
 		<div id="containerRoot">
 			<div id="head">
 				<h3>
+
+
+					<!-- Login/Register button top section -->
 					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
 						<div id="topHolderBox" style="width: 230px; height: 27px;">
-							<img src="https://kissmanga.com/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
-							<a href="https://kissmanga.com/Login">Login</a> or <a href="https://kissmanga.com/Register">
-							Register</a>
+							{% if session %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<span style="color: #888">
+									Hi
+								</span>
+								&nbsp;&nbsp;
+								<a id="aDropDown" class="boxDropDown" style="margin-top: -7px; cursor: pointer; width:75px;">
+									<span>
+										{{session.username}}
+										<span class="clsHadUnread">
+										</span>
+										<small style="color: #8D65A0">
+											▼
+										</small>
+									</span>
+								</a>
+								<div id="menu_box" style="display:none;">
+									<a href="#">
+										&nbsp;&nbsp;
+										<img src="../static/images/bookmark1.png" />
+											&nbsp;Bookmark list
+											<span class="clsHadUnread">...</span>
+										</a>
+										<a href="#">
+											&nbsp;&nbsp;
+											<img src="../static/images/change.png" />
+											&nbsp;Profile
+										</a>
+										<a href="{{ url_for('logout') }}">
+											&nbsp;&nbsp;
+											<img src="../static/images/logout.png" />
+											&nbsp;Logout
+										</a>
+								</div>
+							{% else %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<a href="{{ url_for('login') }}">
+									Login
+								</a>
+								or
+								<a href="{{ url_for('register') }}">
+									Register
+								</a>
+							{% endif %}
 						</div>
 					</div>
+					<!-- Login/Register button top section end here -->
+					<script type="text/javascript">
+					$("#aDropDown")
+					.mouseover(function() {
+						$("#menu_box").show();
+					})
+					.mouseout(function() {
+						$("#menu_box").hide();
+					});
+					$("#menu_box")
+					.mouseover(function() {
+						$(this).show();
+					})
+					.mouseout(function() {
+						$(this).hide();
+					});
+					</script>
+
+
+
 					<div id="search" style="position: relative">
 						<form id="formSearch" method="post">
 							<p>
@@ -56,104 +121,14 @@
 									<option value="Manga">Series Name</option>
 									<option value="AuthorArtist">Author/Artist</option>
 								</select>
-								<input id="imgSearch" type="image" src="https://kissmanga.com/Content/images/search.png" class="button" onclick="return false;" />
+								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
 							</p>
 							<div id="result_box" style="display: none; margin-top: -3px; max-height: 300px; overflow-y: auto; overflow-x: hidden;"></div>
-							<div style="float: left; width: 250px; text-align: left; margin-left: 2px">
-								<div style="float: left; width: 90px">
-									<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FKissManga&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font&amp;height=21&amp;appId=111670815619329" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;
-										height: 21px;" allowtransparency="true"></iframe>
-								</div>
-								<div style="float: left; width: 85px">
-									<div class="g-plusone" data-size="medium" data-href="http://kissmanga.com"></div>
-									<script type="text/javascript">
-										(function () {
-										    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-										    po.src = 'https://apis.google.com/js/plusone.js';
-										    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-										})();
-									</script>
-								</div>
-							</div>
-							<div style="margin: 10px 48px 10px 0">
-								<a href="https://kissmanga.com/AdvanceSearch">
-								<img src="https://kissmanga.com/Content/images/read.png" width="16px" border="0" style="vertical-align: middle" />&nbsp;&nbsp;Advanced
-								Search</a>
-							</div>
 						</form>
 					</div>
-					<script type="text/javascript">
-						$('#imgSearch').click(function () {
-						    Submit();
-						});
-
-						var delay = (function () {
-						    var timer = 0;
-						    return function (callback, ms) {
-						        clearTimeout(timer);
-						        timer = setTimeout(callback, ms);
-						    };
-						})();
-
-						$('#keyword').keyup(function () {
-						    delay(function () {
-						        Suggest();
-						    }, 500);
-						});
-
-						$('#selectSearch').change(function () {
-						    Suggest();
-						});
-
-						$("#selectSearch option").each(function () {
-						    var url = location.href;
-						    if (url.indexOf($(this).attr('value')) != -1)
-						        $(this).attr("selected", "selected");
-						});
-
-						function Submit() {
-						    if ($.trim($('#keyword').val()).length < 2) {
-						        $('#keyword').blur();
-						        alert('Keyword must be more than one character!');
-						    }
-						    else {
-						        $("#formSearch").attr('action', "https://kissmanga.com/Search/" + $('#selectSearch').val());
-						        $("#formSearch").submit();
-						    }
-						}
-
-						function Suggest() {
-						    var keyword = $.trim($('#keyword').val());
-						    if (keyword != "" && $.trim($('#keyword').val()).length > 2) {
-						        $('#result_box').html("<span id='loader'></span>");
-						        $('#result_box').css('display', 'block');
-						        $.ajax(
-						        {
-						            type: "POST",
-						            url: "/Search/SearchSuggest",
-						            data: "type=" + $('#selectSearch').val() + '&keyword=' + keyword,
-						            success: function (message) {
-						                if (message != "") {
-						                    message += '<a href="#" onclick="return false;">---------------</a>';
-						                    message += '<a href="#" onclick="return false;">PRESS ENTER TO SEARCH MORE...</a>';
-
-						                    $('#result_box').html(message);
-						                }
-						                else {
-						                    $('#result_box').html('<a href="#" onclick="return false;">Press Enter to search...</a>');
-						                }
-						            }
-						        });
-						    }
-						    else {
-						        $('#result_box').html('');
-						        $('#result_box').css('display', 'none');
-						    }
-						}
-					</script>
 				</h3>
 				<h1>
-					<a href="https://kissmanga.com" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+					<a href="{{ url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
 				</h1>
 			</div>
 			<div class="clear"></div>
@@ -161,23 +136,28 @@
 				<div id="navbar">
 					<div id="navcontainer">
 						<ul>
-							<li id="liHome"><a href="https://kissmanga.com">Home</a></li>
-							<li id="liDS"><a href="https://kissmanga.com/MangaList">Manga
+							<li id="liHome"><a href="{{ url_for('home') }}">Home</a></li>
+							<li id="liDS"><a href="{{ url_for('manga', page=1) }}">Manga
 								List</a>
 							</li>
-							<li id="liComic"><a target="_blank" href="http://readcomiconline.to/">Comic
+							<li id="liComic">
+								<a target="_blank" href="http://readcomiconline.to/">Comic
 								List</a>
 							</li>
-							<li id="liReport"><a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+							<li id="liReport">
+								<a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
 								Report/Request</a>
 							</li>
-							<li id="liCommunity"><a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+							<li id="liCommunity">
+								<a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
 								Forum</a>
 							</li>
-							<li id="liAnimeOnline"><a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+							<li id="liAnimeOnline">
+								<a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
 								Watch anime</a>
 							</li>
-							<li id="liGame"><a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
+							<li id="liGame">
+								<a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
 						</ul>
 					</div>
 				</div>
@@ -197,22 +177,21 @@
 					else
 					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
 				</script>
+
+
 				<div id="navsubbar">
 					<p>
-						<a href="/MangaList">Sort by alphabet</a>| <a href="/MangaList/MostPopular">Sort by
-						popularity</a> | <a href="/MangaList/Newest">New manga</a>
+						<a href="/MangaList/MostPopular">
+							Sort by popularity
+						</a>
+						|
+						<a href="/MangaList/Newest">
+							New manga
+						</a>
 					</p>
 				</div>
 			</div>
 			<div id="fb-root"></div>
-			<script>        (function (d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-				fjs.parentNode.insertBefore(js, fjs);
-				} (document, 'script', 'facebook-jssdk'));
-			</script>
 			<div id="container">
 				<div id="leftside">
 					<div class="bigBarContainer">
@@ -230,25 +209,20 @@
 									<span class="info">Other name:</span>&nbsp;<a href="/Manga/Arigatights" title="Thanktights manga online">Thanktights</a>; <a href="/Manga/Arigatights" title="ありがタイツ！ manga online">ありがタイツ！</a>; <a href="/Manga/Arigatights" title="고맙타이츠! manga online">고맙타이츠!</a>
 								</p>
 								<p>
-									<span class="info">Genres:</span>&nbsp;<a href="/Genre/Comedy" class="dotUnder" title="A dramatic work that is light and often humorous or satirical in tone  and that usually contains a happy resolution of the thematic conflict.">Comedy</a><span class="info">,</span> <a href="/Genre/Ecchi" class="dotUnder" title="Possibly the line between hentai and non-hentai, ecchi usually refers to  fanservice put in to attract a certain group of fans.">Ecchi</a><span class="info">,</span> <a href="/Genre/Romance" class="dotUnder" title="Any love related story.  We will define love as between man and woman in  this case. Other than that, it is up to your own imagination of what  love is.">Romance</a><span class="info">,</span> <a href="/Genre/School-Life" class="dotUnder" title="Having a major setting of the story deal with some type of school.">School Life</a><span class="info">,</span> <a href="/Genre/Slice-of-Life" class="dotUnder" title="
-										As the name suggests, this genre represents day-to-day tribulations of one/many character(s). These challenges/events could technically happen in real life and are often -if not all the time- set in the present timeline in a world that mirrors our own.
-										">Slice of Life</a>
+									<span class="info">Genres:</span>&nbsp;<a href="/Genre/Comedy" class="dotUnder" title="A dramatic work that is light and often humorous or satirical in tone  and that usually contains a happy resolution of the thematic conflict.">Comedy</a><span class="info">,</span>
 								</p>
 								<p>
 									<span class="info">Author:</span>&nbsp;<a href="/AuthorArtist/gggrande" class="dotUnder" title="">gggrande</a>
 								</p>
 								<p>
 									<span class="info">Status:</span>&nbsp;Ongoing
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="info">Views:</span>&nbsp;135,475&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span class="info">Views:</span>
+									&nbsp;135,475&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<span id="spanBookmark">
 									<img src="/Content/images/plus.png" style="vertical-align: middle; margin-bottom: 5px">
 									<a id="btnRegOrLogin" onclick="return false;" href="#">Bookmark</a>
 									</span>
-									<script type="text/javascript">
-										$('#btnRegOrLogin').click(function () {
-										    $('#spanBookmark').html('<img src="/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px"> Please <a href="/Login">Login</a> or <a href="/Register">Register</a>');
-										});
-									</script>
 								</p>
 								<p>
 									<span class="info">Summary:</span>
@@ -261,21 +235,7 @@
 						</div>
 					</div>
 					<center>
-						<div id="divAds" style="text-align: center; overflow: hidden; width: 728px">
-							<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect728.aspx" width="728px" height="90px">
-							</iframe>
-						</div>
-						<script type="text/javascript">
-							var myTimeout;
-							$('#divAds').mouseenter(function () {
-							    myTimeout = setTimeout(function () {
-							        $("#divAds").css("overflow", "visible");
-							    }, 500);
-							}).mouseleave(function () {
-							    $("#divAds").css("overflow", "hidden");
-							    clearTimeout(myTimeout);
-							});
-						</script>
+
 					</center>
 					<br>
 					<div class="bigBarContainer">
@@ -301,10 +261,7 @@
 								<div class="clear">
 									&nbsp;
 								</div>
-								<div style="text-align: center; padding: 10px 0px 10px 0px;">
-									<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect300.aspx" width="300px" height="250px">
-									</iframe>
-								</div>
+
 								<div class="clear">
 									&nbsp;
 								</div>
@@ -514,18 +471,7 @@
 									- <a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">Click here >> to report broken chapter(s)</a>
 								</div>
 								<div class="clear2"></div>
-								<div id="disqus_thread"></div>
-								<script type="text/javascript">
-									/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-									var disqus_shortname = 'kissmanga'; // required: replace example with your forum shortname
 
-									/* * * DON'T EDIT BELOW THIS LINE * * */
-									(function () {
-									    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-									    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-									    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-									})();
-								</script>
 							</div>
 						</div>
 					</div>
@@ -575,30 +521,7 @@
 			<div class="clear">
 				&nbsp;
 			</div>
-			<script type="text/javascript" src="//ads.2mdnsys.com/qcad.php?did=545&unit=5b965d958a6b9&tm=1536581013&sid=20&zid=1035&k=5b965d958a700"></script>
-			<script type="text/javascript">
-				function AddHideButtonToDynamic()
-				{
-						var elemDyna = $('div[style*="width:100%;height:768px;"]')[0];
-						if (elemDyna == null)
-						{
-							elemDyna = $('div[style*="width: 100%; height: 768px;"]')[0];
-						}
-						var elemDyna2 = $('div[style*="width:100%;height:768px;"]')[1];
-						if (elemDyna2 == null)
-						{
-							elemDyna2 = $('div[style*="width: 100%; height: 768px;"]')[1];
-						}
-				    	if ($(elemDyna).offset() != null) {
-				            var topDyna = 220;
-				            var leftDyna = ($(window).width() - 1000) / 2 - 45;
-				            $(elemDyna).after('<div class="divCloseBut" style="z-index:1000;visibility:visible;position:absolute; right:' + leftDyna + 'px; top: ' + topDyna + 'px"><a href="#" onclick="$(\'#' + $(elemDyna).attr('id') + '\').remove();$(\'#' + $(elemDyna2).attr('id') + '\').remove();$(this).remove(); InitCloseButton(); return false;"><b>[Hide]</b></a></div>');
-				        }
-				}
-				window.setTimeout(AddHideButtonToDynamic, 5000);
-			</script>
 		</div>
-		<script type="text/javascript" src="//koindut.com/apu.php?zoneid=1616193"></script>
 		<div id="footer">
 			<div id="footcontainer" style="position: relative">
 				<p>
