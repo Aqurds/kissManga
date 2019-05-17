@@ -624,6 +624,57 @@ def manga_genre_search():
 
 
 
+@app.route('/manga-author-search/')
+def manga_author_search():
+    items = mongo.db.all_manga_details
+    author_id = request.args['author']
+
+    author_manga_list = []
+
+    for item in list(items.find()):
+        if author_id in item['author']:
+            author_manga_list.append(item)
+
+    all_manga = author_manga_list
+
+
+    manga_chapter_list_from_paginated_manga = []
+    for item in all_manga:
+        manga_chapter_list_from_paginated_manga.append(mongo.db.manga_chapter_list.find_one({'manga_id':item['id']}))
+
+
+    #popular manga view
+    front_page_manga = list(mongo.db.update_spider.find())
+    popular_manga_list = []
+
+    for item in front_page_manga[0]['popular_manga']:
+        # popular_manga_list.append(list(mongo.db.all_manga_details.find_one({'id':item})))
+        popular_manga_list.append(mongo.db.all_manga_details.find_one({'id':item}))
+
+
+
+    genres_categories = list(mongo.db.genres_categories.find())
+    genres = genres_categories[0]['genres']
+    categories = genres_categories[0]['categories']
+
+    total_bookmark = 0
+    if session:
+        user_name = session['username']
+        users = mongo.db.users
+        bookmark_id = users.find_one({'name':user_name})
+
+        if 'bookmark' in bookmark_id:
+            total_bookmark = len(bookmark_id['bookmark']) - 1
+
+    return render_template('manga-author-search.html', all_manga=all_manga, popular_manga_list=popular_manga_list, genres=genres, categories=categories, total_bookmark=total_bookmark, manga_chapter_list_from_paginated_manga=manga_chapter_list_from_paginated_manga)
+
+
+
+
+
+
+
+
 @app.route('/manga-id/<string:manga_id>')
 def manga_id(manga_id):
     # manga_id = request.url.split('/')[-1]

@@ -37,7 +37,6 @@
 
 
 
-
 	<body>
 		<div id="containerRoot">
 			<div id="head">
@@ -112,7 +111,6 @@
 					</script>
 
 
-
 					<div id="search" style="position: relative">
 						<form id="formSearch" method="post">
 							<p>
@@ -123,16 +121,21 @@
 								</select>
 								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
 							</p>
-							<div id="result_box" style="display: none; margin-top: -3px; max-height: 300px; overflow-y: auto; overflow-x: hidden;"></div>
 						</form>
 					</div>
 				</h3>
 				<h1>
-					<a href="{{ url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+					<a href="{{  url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
 				</h1>
 			</div>
 			<div class="clear"></div>
+
+
+
+
 			<div id="headnav">
+
+
 				<div id="navbar">
 					<div id="navcontainer">
 						<ul>
@@ -163,7 +166,7 @@
 				</div>
 				<script type="text/javascript">
 					var path = 'Manga';
-					var action = 'Details';
+					var action = 'Index';
 					if (path == 'Home')
 					    $('#liHome a').attr('id', 'currentTab');
 					else if (path == 'Manga' || path == 'Genre' || path == 'Group' || path == 'AuthorArtist')
@@ -194,190 +197,174 @@
 						</a>
 					</p>
 				</div>
+
+
 			</div>
-			<div id="fb-root"></div>
+
+
+
+
+
+
 			<div id="container">
-				<div id="leftside">
-					<div class="bigBarContainer">
-						<div class="barTitle">
-							{{manga_details['title']}} information
-						</div>
-						<div class="barContent">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
-							<div>
-								<a Class="bigChar" href="#">{{manga_details['title']}}</a>
-								<!-- <p>
-									<span class="info">Other name:</span>&nbsp;<a href="/Manga/Arigatights" title="Thanktights manga online">Thanktights</a>; <a href="/Manga/Arigatights" title="ありがタイツ！ manga online">ありがタイツ！</a>; <a href="/Manga/Arigatights" title="고맙타이츠! manga online">고맙타이츠!</a>
-								</p> -->
-								<p>
-									<span class="info">Genres:</span>
-									&nbsp;
-									{% for genre in manga_details['genres'] %}
-										<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" class="dotUnder" title="">{{genre}}</a>
-										<span class="info">,</span>
-									{% endfor %}
-								</p>
-								<p>
-									<span class="info">Author:</span>
-									&nbsp;
-									{% for author in manga_details['author'] %}
-										<a href="{{url_for('manga_author_search', author=author)}}" class="dotUnder" title="">{{author}}</a>
-									{% endfor %}
-								</p>
-								<p>
-									<span class="info">Status:</span>&nbsp;{{manga_details['status']}}
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<!-- <span class="info">Views:</span>
-									&nbsp;135,475&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-									<span id="spanBookmark">
-									<img src="../static/images/plus.png" style="vertical-align: middle; margin-bottom: 5px">
-									<a id="btnRegOrLogin" href="#">Bookmark</a>
-									</span>
-								</p>
-								<p>
-									<span class="info">Summary:</span>
-									<p>{{manga_details['summary']}}</p>
-								</p>
-							</div>
-						</div>
-					</div>
-					<center>
-
-					</center>
-					<br>
-					<div class="bigBarContainer">
-						<div class="barTitle">
-							Chapters
-						</div>
-						<div class="barContent chapterList">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
-							<div>
-
-								<div class="clear">
-									&nbsp;
-								</div>
-
-								<div class="clear">
-									&nbsp;
-								</div>
-								<table class="listing">
-									<tr>
-										<th width="85%">
-											Chapter Name
-										</th>
-										<th width="15%">
-											Day Added
-										</th>
-									</tr>
-									<tr style="height: 10px"></tr>
-
-									<!-- chapter list code starts here -->
-									{% for item in chapter_list %}
-										<tr>
-											<td>
-												<a href="#" title="{{manga_details['title']}}">
-													{{item[2]}}
-												</a>
-											</td>
-											<td>
-												{{item[3]}}
-											</td>
-										</tr>
-									{% endfor %}
-									<!-- chapter list code ends here -->
-
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="clear2">
-						&nbsp;
-					</div>
-					<div class="clear2">
-						&nbsp;
-					</div>
-					<div class="bigBarContainer">
-						<div class="barTitle">
-							Comments
-						</div>
-						<div class="barContent episodeList">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
-							<div>
-								<div style="color:#44B9FA">
-									- Don't link to other manga/anime sites/any kind of ads.<br />
-									- Don't spoil content of next chapters.<br />
-									- <a target="_blank" rel="nofollow" href="#">Click here >> to report broken chapter(s)</a>
-								</div>
-								<div class="clear2"></div>
-
-							</div>
-						</div>
-					</div>
-				</div>
 				<div id="rightside">
 					<div class="rightBox">
 						<div class="barTitle">
-							Image
-						</div>
-						<div class="barContent">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
-							<div style="text-align: center">
-								<img width="190px" height="250px" src="{{manga_details['image']}}" />
-							</div>
-						</div>
-					</div>
-					<div class="clear2"></div>
-					<div class="rightBox">
-						<div class="barTitle">
-							Related Links
+							Search by status
 						</div>
 						<div class="barContent">
 							<div class="arrow-general">
 								&nbsp;
 							</div>
 							<div>
-								<div class="clear2"></div>
-								<center>
-
-								</center>
+								<a href="{{ url_for('manga_ongoing', page=1) }}" title="The series are ongoing">Ongoing</a><br />
+								<a href="{{ url_for('manga_completed', page=1) }}" title="The series are completed">Completed</a>
 							</div>
 						</div>
+					</div>
+					<div class="clear">
+						&nbsp;
+					</div>
+
+
+
+					<div class="rightBox">
+						<div class="barTitle">
+							Search by genres
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+
+
+							<div>
+								{% for genre in genres %}
+								<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" title="">
+									{{ genre }}
+								</a>
+								<br />
+								{% endfor %}
+							</div>
+
+						</div>
+					</div>
+
+
+
+					<div class="clear2">
+						&nbsp;
+					</div>
+
+				</div>
+				<div id="leftside">
+					<div class="bigBarContainer">
+						<div class="barTitle">
+							List manga
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+
+							<div class="clear" style="height: 15px">
+							</div>
+
+
+								<div class="clear">
+								</div>
+
+								<!-- all manga list code starts here -->
+								{% for manga in all_manga %}
+								<div>
+
+									<div style="display: inline-block; width: 190px">
+										<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
+											<img width="190px" height="250px" src="{{ manga['image'] }}">
+										</a>
+									</div>
+
+									<div style="display: inline-block; width: 500px; vertical-align: top; padding-left: 10px">
+										<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
+											<span class="title">
+												{{ manga['title'] }}
+											</span>
+										</a>
+
+										<p>
+											<span class="info">Genres:</span>
+											&nbsp;
+											{% for genre in manga['genres'] %}
+											<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" class="dotUnder" title="">
+												{{ genre }}
+											</a>
+											<span class="info">,</span>
+											{% endfor %}
+										</p>
+
+										<!-- <p>
+											<span class="info">Latest chapter:</span>&nbsp;<a href="#">Vol.002 Ch.009</a>
+										</p> -->
+										<p>
+											<span class="info">Summary:</span>&nbsp;
+										<p>&nbsp;</p>
+										<div>
+											<div>{{ manga['summary'] }}</div>
+										</div>
+										<div></div>
+										<p>
+											<span style="font-family: 'Times New Roman'; font-size: medium;">
+												<div style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: #ffffff; background-position: initial initial; background-repeat: initial initial; margin: 8px;">
+												</div>
+											</span>
+									</p>
+										<p>&nbsp;</p>
+										</p>
+									</div>
+
+								</div>
+
+
+								<div class="clear2"></div>
+								<hr />
+								<div class="clear2"></div>
+								<div class="clear2"></div>
+								<!-- all manga list code ends here -->
+								{% endfor %}
+
+
+							</div>
+
+
+						</div>
+
+
 					</div>
 				</div>
 			</div>
 			<div class="clear">
-				&nbsp;
-			</div>
-			<div class="clear">
-				&nbsp;
-			</div>
-			<div class="clear">
-				&nbsp;
 			</div>
 		</div>
 
 
 
-		<div id="footer">
+
+
+
+
+
+		<div id="footer" style="top:20px;">
 			<div id="footcontainer" style="position: relative">
 				<p>
 					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
-					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
+					<a href="#">Privacy Policy</a>
 					&nbsp;&nbsp;
 				</p>
 				<div style="position: absolute; left: 200px; top: 20px"></div>
 			</div>
 		</div>
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
-		</script>
+		</script> -->
 	</body>
 </html>
