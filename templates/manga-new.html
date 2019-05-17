@@ -184,12 +184,16 @@
 
 				<div id="navsubbar">
 					<p>
-						<a href="/MangaList/LatestUpdate">
+						<a href="{{ url_for('manga', page=1) }}">
 							Latest update
 						</a>
 						|
-						<a href="/MangaList/Newest">
+						<a href="{{ url_for('manga_new', page=1) }}">
 							New manga
+						</a>
+						|
+						<a href="{{ url_for('manga_hot', page=1) }}">
+							Popular manga
 						</a>
 					</p>
 				</div>
