@@ -650,7 +650,7 @@
 									{% endif %}
 								{% endfor %}
 								<div style="text-align: right; font-size: 16px">
-									<a href="#">More...</a>
+									<a href="{{ url_for('manga', page=1) }}">More...</a>
 								</div>
 							</div>
 							<!-- Most polular manga list tab end here -->
@@ -703,7 +703,7 @@
 								{% for x in range (0,21) %}
 									<img src="../static/images/bullet.png" />
 									&nbsp;
-									<a title="{{latest_mange_releases[x]['title']}}" href="#">
+									<a title="{{latest_mange_releases[x]['title']}}" href="{{url_for('manga_id', manga_id = latest_mange_releases[x]['id'])}}">
 										{{latest_mange_releases[x]['title']}}
 									</a>
 									<!-- <a class="textDark" title="Read online How to be God Ch.005 - Match made in heaven" href="/Manga/How-to-be-God/Ch-005---Match-made-in-heaven?id=519350">
