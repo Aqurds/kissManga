@@ -118,6 +118,15 @@ def login():
 
 
 
+# Logout route
+@app.route('/logout/')
+def logout():
+    if session:
+        session.clear()
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('home'))
+
 
 
 

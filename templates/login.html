@@ -154,7 +154,7 @@
 							</div>
 							<div>
 								<div style="padding-bottom: 10px"></div>
-								<form action="/Login" id="formLogin" method="post">
+								<form action="{{ url_for('login') }}" id="formLogin" method="post">
 									<div>
 										<label class="lblSignUp">
 										Username:
@@ -168,9 +168,10 @@
 										<input type="password" name="password" id="password" class="txtSignUp" />
 									</div>
 									<div style="display: inline-block; padding-left: 190px">
-										<a href="/ForgotPassword">Forgot password?</a>
+										<a href="#">Forgot password?</a>
 									</div>
-									<div style="padding-top: 20px; padding-left: 190px;">
+									<div style="padding-top: 20px; padding-left: 190px; position:relative;">
+										<input name="submit_login" type="submit" id="submit_login" value="" class="submit" style="position:absolute; top: 31px; left: 191px;width: 87px;height: 29px;border-radius: 3px;border: 0px; opacity:0; cursor:pointer;">
 										<input id='btnSubmit' type="image" src="../static/images/signin.png" class="button" onclick="return false;" style="cursor: pointer" />
 									</div>
 									<input type="hidden" name="redirect" value="" />
