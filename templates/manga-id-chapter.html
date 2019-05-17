@@ -1,20 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+
+
 	<head id="ctl00_Head1">
 		<title>
-			Read manga
-			Arigatights!
-			Vol. 002 Ch.018.005 - Extra Chapter
-			online in high quality
+			KissManga - Read manga online in high quality
 		</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta property="fb:admins" content="683024937" />
 		<meta property="fb:app_id" content="111670815619329" />
-		<script src="https://kissmanga.com/Scripts/jquery17.min.js" type="text/javascript"></script>
-		<link href="https://kissmanga.com/Content/css/tpl_style.css?v=2" rel="stylesheet" type="text/css" />
-		<link href="https://kissmanga.com/Content/css/upload-progress.css" rel="stylesheet" type="text/css">
-		<link rel="shortcut icon" href="https://kissmanga.com/Content/images/favicon.ico" type="image/x-icon" />
+		<script src="../static/js/jquery17.min.js" type="text/javascript"></script>
+		<link href="../static/css/tpl_style.css?" rel="stylesheet" type="text/css" />
+		<link href="../static/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
 		<!--[if IE 6]>
 		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
 		<![endif]-->
@@ -24,33 +24,92 @@
 		<!--[if IE 8]>
 		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
 		<![endif]-->
-		<meta name="description" content="Read Arigatights! Chapter Vol. 002 Ch.018.005 - Extra Chapter Online - Arigatights! Vol. 002 Ch.018.005 - Extra Chapter free and high quality. Unique reading type: All pages - just need to scroll to read next page." />
-		<meta name="keywords" content="Read Arigatights! Chapter Vol. 002 Ch.018.005 - Extra Chapter Online, download Arigatights! Chapter Vol. 002 Ch.018.005 - Extra Chapter , Arigatights! Vol. 002 Ch.018.005 - Extra Chapter" />
-		<meta name="referrer" content="no-referrer" />
-		<link rel="image_src" href="https://kissmanga.com/Uploads/Etc/11-16-2018/671382231818.jpg" />
-		<script type="text/javascript" src="/Scripts/ca.js"></script>
-		<script type="text/javascript" src="/Scripts/lo.js"></script>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1712467-38"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() { dataLayer.push(arguments); }
-			gtag('js', new Date());
+		<meta name="description" content="Read manga online in high quality for free, fast update, daily update. Unique reading type: All pages - just need to scroll to read next page, and many more..." />
+		<meta name="keywords" content="manga,read manga,manga online,manga scans,manga volume,manga chapter,online manga,read free manga,free manga,read free manga online,manga viewer,manga download,manga downloads,japanese comic, manhwa online" />
+		<link rel="stylesheet" href="../static/css/jquery.ui.core.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.slider.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.theme.css">
+		<style media="screen">
 
-			gtag('config', 'UA-1712467-38');
-		</script>
-		<link rel="manifest" href="/manifest.json" />
+		</style>
 	</head>
+
+
+
+
 	<body>
 		<div id="containerRoot">
 			<div id="head">
 				<h3>
+
+					<!-- Login/Register button top section -->
 					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
 						<div id="topHolderBox" style="width: 230px; height: 27px;">
-							<img src="https://kissmanga.com/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
-							<a href="https://kissmanga.com/Login">Login</a> or <a href="https://kissmanga.com/Register">
-							Register</a>
+							{% if session %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<span style="color: #888">
+									Hi
+								</span>
+								&nbsp;&nbsp;
+								<a id="aDropDown" class="boxDropDown" style="margin-top: -7px; cursor: pointer; width:75px;">
+									<span>
+										{{session.username}}
+										<span class="clsHadUnread">
+										</span>
+										<small style="color: #8D65A0">
+											▼
+										</small>
+									</span>
+								</a>
+								<div id="menu_box" style="display:none;">
+									<a href="#">
+										&nbsp;&nbsp;
+										<img src="../static/images/bookmark1.png" />
+											&nbsp;Bookmark list
+											<span class="clsHadUnread">...</span>
+										</a>
+										<a href="#">
+											&nbsp;&nbsp;
+											<img src="../static/images/change.png" />
+											&nbsp;Profile
+										</a>
+										<a href="{{ url_for('logout') }}">
+											&nbsp;&nbsp;
+											<img src="../static/images/logout.png" />
+											&nbsp;Logout
+										</a>
+								</div>
+							{% else %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<a href="{{ url_for('login') }}">
+									Login
+								</a>
+								or
+								<a href="{{ url_for('register') }}">
+									Register
+								</a>
+							{% endif %}
 						</div>
 					</div>
+					<!-- Login/Register button top section end here -->
+					<script type="text/javascript">
+					$("#aDropDown")
+					.mouseover(function() {
+						$("#menu_box").show();
+					})
+					.mouseout(function() {
+						$("#menu_box").hide();
+					});
+					$("#menu_box")
+					.mouseover(function() {
+						$(this).show();
+					})
+					.mouseout(function() {
+						$(this).hide();
+					});
+					</script>
+
+
 					<div id="search" style="position: relative">
 						<form id="formSearch" method="post">
 							<p>
@@ -61,102 +120,11 @@
 								</select>
 								<input id="imgSearch" type="image" src="https://kissmanga.com/Content/images/search.png" class="button" onclick="return false;" />
 							</p>
-							<div id="result_box" style="display: none; margin-top: -3px; max-height: 300px; overflow-y: auto; overflow-x: hidden;"></div>
-							<div style="float: left; width: 250px; text-align: left; margin-left: 2px">
-								<div style="float: left; width: 90px">
-									<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FKissManga&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font&amp;height=21&amp;appId=111670815619329" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;
-										height: 21px;" allowtransparency="true"></iframe>
-								</div>
-								<div style="float: left; width: 85px">
-									<div class="g-plusone" data-size="medium" data-href="http://kissmanga.com"></div>
-									<script type="text/javascript">
-										(function () {
-										    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-										    po.src = 'https://apis.google.com/js/plusone.js';
-										    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-										})();
-									</script>
-								</div>
-							</div>
-							<div style="margin: 10px 48px 10px 0">
-								<a href="https://kissmanga.com/AdvanceSearch">
-								<img src="https://kissmanga.com/Content/images/read.png" width="16px" border="0" style="vertical-align: middle" />&nbsp;&nbsp;Advanced
-								Search</a>
-							</div>
 						</form>
 					</div>
-					<script type="text/javascript">
-						$('#imgSearch').click(function () {
-						    Submit();
-						});
-
-						var delay = (function () {
-						    var timer = 0;
-						    return function (callback, ms) {
-						        clearTimeout(timer);
-						        timer = setTimeout(callback, ms);
-						    };
-						})();
-
-						$('#keyword').keyup(function () {
-						    delay(function () {
-						        Suggest();
-						    }, 500);
-						});
-
-						$('#selectSearch').change(function () {
-						    Suggest();
-						});
-
-						$("#selectSearch option").each(function () {
-						    var url = location.href;
-						    if (url.indexOf($(this).attr('value')) != -1)
-						        $(this).attr("selected", "selected");
-						});
-
-						function Submit() {
-						    if ($.trim($('#keyword').val()).length < 2) {
-						        $('#keyword').blur();
-						        alert('Keyword must be more than one character!');
-						    }
-						    else {
-						        $("#formSearch").attr('action', "https://kissmanga.com/Search/" + $('#selectSearch').val());
-						        $("#formSearch").submit();
-						    }
-						}
-
-						function Suggest() {
-						    var keyword = $.trim($('#keyword').val());
-						    if (keyword != "" && $.trim($('#keyword').val()).length > 2) {
-						        $('#result_box').html("<span id='loader'></span>");
-						        $('#result_box').css('display', 'block');
-						        $.ajax(
-						        {
-						            type: "POST",
-						            url: "/Search/SearchSuggest",
-						            data: "type=" + $('#selectSearch').val() + '&keyword=' + keyword,
-						            success: function (message) {
-						                if (message != "") {
-						                    message += '<a href="#" onclick="return false;">---------------</a>';
-						                    message += '<a href="#" onclick="return false;">PRESS ENTER TO SEARCH MORE...</a>';
-
-						                    $('#result_box').html(message);
-						                }
-						                else {
-						                    $('#result_box').html('<a href="#" onclick="return false;">Press Enter to search...</a>');
-						                }
-						            }
-						        });
-						    }
-						    else {
-						        $('#result_box').html('');
-						        $('#result_box').css('display', 'none');
-						    }
-						}
-					</script>
 				</h3>
 				<h1>
-					<a href="https://kissmanga.com" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+					<a href="{{ url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
 				</h1>
 			</div>
 			<div class="clear"></div>
@@ -164,23 +132,28 @@
 				<div id="navbar">
 					<div id="navcontainer">
 						<ul>
-							<li id="liHome"><a href="https://kissmanga.com">Home</a></li>
-							<li id="liDS"><a href="https://kissmanga.com/MangaList">Manga
+							<li id="liHome"><a href="{{ url_for('home') }}">Home</a></li>
+							<li id="liDS"><a href="{{ url_for('manga', page=1) }}">Manga
 								List</a>
 							</li>
-							<li id="liComic"><a target="_blank" href="http://readcomiconline.to/">Comic
+							<li id="liComic">
+								<a target="_blank" href="http://readcomiconline.to/">Comic
 								List</a>
 							</li>
-							<li id="liReport"><a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+							<li id="liReport">
+								<a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
 								Report/Request</a>
 							</li>
-							<li id="liCommunity"><a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+							<li id="liCommunity">
+								<a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
 								Forum</a>
 							</li>
-							<li id="liAnimeOnline"><a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+							<li id="liAnimeOnline">
+								<a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
 								Watch anime</a>
 							</li>
-							<li id="liGame"><a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
+							<li id="liGame">
+								<a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
 						</ul>
 					</div>
 				</div>
@@ -202,9 +175,9 @@
 				</script>
 				<div id="navsubbar">
 					<p>
-						<a href="https://kissmanga.com/Manga/Arigatights">
+						<a href="{{url_for('manga_id', manga_id = manga_details['id'])}}">
 						Manga
-						Arigatights!
+						{{manga_details['title']}}
 						information</a>
 					</p>
 				</div>
@@ -212,78 +185,22 @@
 			<div style="width: 95%; text-align: center; margin: auto">
 				<div style="margin: auto; width: 780px; padding-top: 10px">
 					<div style="float: left">
-						<label class="lbl">
-						Reading type</label>
-						<select id="selectReadType" style="width: 110px">
-							<option value="0">One page</option>
-							<option value="1" selected>All pages</option>
-						</select>
+
 						<label class="lbl">
 						Chapter</label>
+
 						<select class="selectChapter" style="width: 380px">
 							<option value="Ch-001?id=457997">
 								Ch.001
 							</option>
-							<option value="Ch-002----Forest-of-Tights?id=458184">
-								Ch.002 - Forest of Tights
-							</option>
-							<option value="Ch-003?id=466972">
-								Ch.003
-							</option>
-							<option value="Ch-004----House-X-Tights?id=467701">
-								Ch.004 - House X Tights
-							</option>
-							<option value="Ch-005----Magazines-and-Tights?id=468230">
-								Ch.005 - Magazines and Tights
-							</option>
-							<option value="Ch-006---Tights-and-Underwear?id=471015">
-								Ch.006 - Tights and Underwear
-							</option>
-							<option value="Ch-007---Tights-Maid-Cafe?id=473088">
-								Ch.007 - Tights Maid Cafe
-							</option>
-							<option value="Ch-008---The-Definition-of-Tights?id=476660">
-								Ch.008 - The Definition of Tights
-							</option>
-							<option value="Ch-009---Tights-Video?id=484994">
-								Ch.009 - Tights Video
-							</option>
-							<option value="Ch-010---Wet-Tights?id=492280">
-								Ch.010 - Wet Tights
-							</option>
-							<option value="Ch-011---School-Swimsuit-Tights?id=496050">
-								Ch.011 - School Swimsuit Tights
-							</option>
-							<option value="Ch-012---Summer-Tights-Challenge?id=500109">
-								Ch.012 - Summer Tights Challenge
-							</option>
-							<option value="Ch-013---Yukata-and-Tights?id=501327">
-								Ch.013 - Yukata and Tights
-							</option>
-							<option value="Ch-014---Tights-Over-Fireworks?id=509888">
-								Ch.014 - Tights Over Fireworks
-							</option>
-							<option value="Ch-015---Summer-Cold-and-Tights?id=511450">
-								Ch.015 - Summer Cold and Tights
-							</option>
-							<option value="Ch-016---Summer-Cold-and-Tights-002?id=513764">
-								Ch.016 - Summer Cold and Tights 002
-							</option>
-							<option value="Ch-017---Colored-Tights-And-The-Outdoor-School?id=515973">
-								Ch.017 - Colored Tights And The Outdoor School
-							</option>
-							<option value="Vol--002-Ch-018---Colored-Tights-And-The-Outdoor-School-002?id=517571">
-								Vol. 002 Ch.018 - Colored Tights And The Outdoor School 002
-							</option>
-							<option value="Vol--002-Ch-018-005---Extra-Chapter?id=519348" selected>
-								Vol. 002 Ch.018.005 - Extra Chapter
-							</option>
 						</select>
+
+
 					</div>
-					<div style="float: left; padding-left: 20px">
+					<!-- <div style="float: left; padding-left: 20px">
 						<a href="https://kissmanga.com/Manga/Arigatights/Vol--002-Ch-018---Colored-Tights-And-The-Outdoor-School-002?id=517571">
 						<img class='btnPrevious' src="https://kissmanga.com/Content/images/previous.png" title="Prev chapter" border="0" /></a>&nbsp;&nbsp;
-					</div>
+					</div> -->
 				</div>
 				<script type="text/javascript">
 					var _0x7909 = ["\x30\x33\x34\x6E\x73\x64\x66\x6E\x73\x37\x32\x6E\x61\x73\x64\x61\x73\x64"]; chko = _0x7909[0]; key = CryptoJS.SHA256(chko)
@@ -295,39 +212,22 @@
 				<div class="clear2">&nbsp;</div>
 				<div class="clear2">&nbsp;</div>
 				<div class="clear2">&nbsp;</div>
-				<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" id="adsIfrme3" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect300-3.aspx" width="300px" height="250px">
-				</iframe>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" id="adsIfrme2" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect300-4.aspx" width="300px" height="250px">
-				</iframe>
+
 				<div class="clear2">&nbsp;</div>
 				<div class="clear2">&nbsp;</div>
 				<div id="divImage" style="padding-top: 10px">
-					<p>
+
+					{% if image_list %}
+					  {% for image in image_list %}
+						<p>
+							<img src="{{ image }}" alt="{{manga_details['title']}}" title="{{manga_details['title']}}" />
+						</p>
+					  {% endfor %}
+				  {% endif %}
+					<!-- <p>
 						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
-					<p>
-						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
-					<p>
-						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
-					<div>
-						<div id="mdns_54517923"></div>
-						<script type="text/javascript" src="//ads.2mdnsys.com/qcas.php?sid=17&unit=5c42a28908bd7&did=545&zid=923&tm=1547870857&k=5c42a28908c1d" async=""></script>
-					</div>
-					<p>
-						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
-					<p>
-						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
-					<p>
-						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
-					<p>
-						<img onerror="onErrorImg(this)" onload="onLoadImg(this);" src="" />
-					</p>
+					</p> -->
+
 				</div>
 				<div class="clear2">
 					&nbsp;
@@ -340,7 +240,7 @@
 						</p>
 					</div>
 					<div style="float: right; width: 110px">
-						<img src="https://kissmanga.com/Content/images/error.png" style="border: 0px" />
+						<img src="../static/images/error.png" style="border: 0px" />
 					</div>
 				</div>
 				<div class="clear2">
@@ -348,99 +248,49 @@
 				</div>
 				<div class="clear2">&nbsp;</div>
 				<div>
-					<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" id="adsIfrme7" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect300.aspx" width="300px" height="250px">
-					</iframe>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" id="adsIfrme8" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect300-2.aspx" width="300px" height="250px">
-					</iframe>
+
 				</div>
 				<div class="clear2">&nbsp;</div>
-				<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect728.aspx" width="728px" height="90px">
-				</iframe>
+
 				<div class="clear">
 					&nbsp;
 				</div>
 				<div style="margin: auto; width: 600px; padding-top: 10px">
 					<div style="float: left">
+
+
 						<label class="lbl">
 						Chapter</label>
 						<select class="selectChapter" style="width: 380px">
 							<option value="Ch-001?id=457997">
 								Ch.001
 							</option>
-							<option value="Ch-002----Forest-of-Tights?id=458184">
-								Ch.002 - Forest of Tights
-							</option>
-							<option value="Ch-003?id=466972">
-								Ch.003
-							</option>
-							<option value="Ch-004----House-X-Tights?id=467701">
-								Ch.004 - House X Tights
-							</option>
-							<option value="Ch-005----Magazines-and-Tights?id=468230">
-								Ch.005 - Magazines and Tights
-							</option>
-							<option value="Ch-006---Tights-and-Underwear?id=471015">
-								Ch.006 - Tights and Underwear
-							</option>
-							<option value="Ch-007---Tights-Maid-Cafe?id=473088">
-								Ch.007 - Tights Maid Cafe
-							</option>
-							<option value="Ch-008---The-Definition-of-Tights?id=476660">
-								Ch.008 - The Definition of Tights
-							</option>
-							<option value="Ch-009---Tights-Video?id=484994">
-								Ch.009 - Tights Video
-							</option>
-							<option value="Ch-010---Wet-Tights?id=492280">
-								Ch.010 - Wet Tights
-							</option>
-							<option value="Ch-011---School-Swimsuit-Tights?id=496050">
-								Ch.011 - School Swimsuit Tights
-							</option>
-							<option value="Ch-012---Summer-Tights-Challenge?id=500109">
-								Ch.012 - Summer Tights Challenge
-							</option>
-							<option value="Ch-013---Yukata-and-Tights?id=501327">
-								Ch.013 - Yukata and Tights
-							</option>
-							<option value="Ch-014---Tights-Over-Fireworks?id=509888">
-								Ch.014 - Tights Over Fireworks
-							</option>
-							<option value="Ch-015---Summer-Cold-and-Tights?id=511450">
-								Ch.015 - Summer Cold and Tights
-							</option>
-							<option value="Ch-016---Summer-Cold-and-Tights-002?id=513764">
-								Ch.016 - Summer Cold and Tights 002
-							</option>
-							<option value="Ch-017---Colored-Tights-And-The-Outdoor-School?id=515973">
-								Ch.017 - Colored Tights And The Outdoor School
-							</option>
-							<option value="Vol--002-Ch-018---Colored-Tights-And-The-Outdoor-School-002?id=517571">
-								Vol. 002 Ch.018 - Colored Tights And The Outdoor School 002
-							</option>
-							<option value="Vol--002-Ch-018-005---Extra-Chapter?id=519348" selected>
-								Vol. 002 Ch.018.005 - Extra Chapter
-							</option>
 						</select>
+
+
 					</div>
-					<div style="float: left; padding-left: 20px">
+					<!-- <div style="float: left; padding-left: 20px">
 						<a href="https://kissmanga.com/Manga/Arigatights/Vol--002-Ch-018---Colored-Tights-And-The-Outdoor-School-002?id=517571">
 						<img class='btnPrevious' src="https://kissmanga.com/Content/images/previous.png" title="Prev chapter" border="0" /></a>&nbsp;&nbsp;
-					</div>
+					</div> -->
 				</div>
 				<div class="clear2">
 					&nbsp;
 				</div>
 				<div>
 					<a href="#">
-					<img border="0" style="vertical-align: middle" src="/Content/Images/upload-icon.png">&nbsp;[
-					Back to top ]</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">[ Report broken chapter ]</a>
+						<img border="0" style="vertical-align: middle" src="../static/images/upload-icon.png">
+						&nbsp;
+						[Back to top ]
+					</a>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+					<!-- <a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">[ Report broken chapter ]</a> -->
 					<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
-						&nbsp;&nbsp;<img src="/Content/images/user-small.png" style="vertical-align: middle;
+						&nbsp;&nbsp;
+						<img src="../static/images/user-small.png" style="vertical-align: middle;
 							margin-bottom: 5px">
-						Please <a href="/Login?redirect=%2fManga%2fArigatights%2fVol--002-Ch-018-005---Extra-Chapter%3fid%3d519348">
-						Login</a> or <a href="/Register">Register</a> to use <b>Bookmark</b> feature
+						Please <a href="{{ url_for('login') }}">
+						Login</a> or <a href="{{ url_for('register') }}">Register</a> to use <b>Bookmark</b> feature
 					</div>
 				</div>
 				<div class="clear">
@@ -705,9 +555,11 @@
 				}
 
 			</script>
+
+
+
 			<div style="text-align: center;">
 				<div style="display: inline-table;">
-					<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4fb6029949d99e27" async="async"></script>
 					<div class="addthis_native_toolbox"></div>
 				</div>
 				<div class="clear2">
@@ -770,11 +622,11 @@
 				top: 1px;
 				}
 			</style>
-			<div style="text-align: center; height: 100px; padding-top: 10px">
+			<!-- <div style="text-align: center; height: 100px; padding-top: 10px">
 				<a href="#" class="specialButton" onclick="return false;" id="btnShowComments" style="display: none">
 				Show Comments Box</a>
-			</div>
-			<div style="width: 820px; text-align: center; margin: auto; background-color: #1f1f1f;
+			</div> -->
+			<!-- <div style="width: 820px; text-align: center; margin: auto; background-color: #1f1f1f;
 				display: none" id="divComments">
 				<div style="width: 780px; display: inline-block">
 					<div class="clear2"></div>
@@ -809,7 +661,7 @@
 					    })();
 					});
 				</script>
-			</div>
+			</div> -->
 			<div class="clear2">
 				&nbsp;
 			</div>
@@ -826,11 +678,10 @@
 				&nbsp;
 			</div>
 		</div>
-		<script type="text/javascript" src="//koindut.com/apu.php?zoneid=1616193"></script>
 		<div id="footer">
 			<div id="footcontainer" style="position: relative">
 				<p>
-					<a href="http://kissmanga.com">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
 					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
 					&nbsp;&nbsp;
 				</p>
