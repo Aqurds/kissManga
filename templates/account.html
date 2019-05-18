@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 	<head id="ctl00_Head1">
 		<title>
 			Your KissManga profile
@@ -8,10 +9,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta property="fb:admins" content="683024937" />
 		<meta property="fb:app_id" content="111670815619329" />
-		<script src="https://kissmanga.com/Scripts/jquery17.min.js" type="text/javascript"></script>
-		<link href="https://kissmanga.com/Content/css/tpl_style.css?v=2" rel="stylesheet" type="text/css" />
-		<link href="https://kissmanga.com/Content/css/upload-progress.css" rel="stylesheet" type="text/css">
-		<link rel="shortcut icon" href="https://kissmanga.com/Content/images/favicon.ico" type="image/x-icon" />
+		<script src="../static/js/jquery17.min.js" type="text/javascript"></script>
+		<link href="../static/css/tpl_style.css?" rel="stylesheet" type="text/css" />
+		<link href="../static/css/upload-progress.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
 		<!--[if IE 6]>
 		<link href="/Content/css/tpl_ie_6.css"  rel="stylesheet" type="text/css" media="screen" />
 		<![endif]-->
@@ -21,87 +22,95 @@
 		<!--[if IE 8]>
 		<link rel="stylesheet" type="text/css" href="/Content/css/tpl_ie_7.css" />
 		<![endif]-->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-1712467-38"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() { dataLayer.push(arguments); }
-			gtag('js', new Date());
+		<meta name="description" content="Read manga online in high quality for free, fast update, daily update. Unique reading type: All pages - just need to scroll to read next page, and many more..." />
+		<meta name="keywords" content="manga,read manga,manga online,manga scans,manga volume,manga chapter,online manga,read free manga,free manga,read free manga online,manga viewer,manga download,manga downloads,japanese comic, manhwa online" />
+		<link rel="stylesheet" href="../static/css/jquery.ui.core.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.slider.css">
+		<link rel="stylesheet" href="../static/css/jquery.ui.theme.css">
+		<style media="screen">
 
-			gtag('config', 'UA-1712467-38');
-		</script>
-		<link rel="manifest" href="/manifest.json" />
+		</style>
 	</head>
+
+
 	<body>
 		<div id="containerRoot">
 			<div id="head">
 				<h3>
+
+
+
+					<!-- Login/Register button top section -->
 					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
-						<div id="topHolderBox" style="width: 140px; height: 27px;">
-							<img src="https://kissmanga.com/Content/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
-							<span style="color: #888">Hi</span>&nbsp;&nbsp;<a id="aDropDown" class="boxDropDown" style="margin-top: -7px; cursor: pointer"><span>
-							getty <span class="clsHadUnread"></span>
-							<small style="color: #8D65A0">▼</small></span></a>
-							<div id="menu_box" style="display: none">
-								<a href="https://kissmanga.com/BookmarkList">&nbsp;&nbsp;<img src="https://kissmanga.com/Content/images/bookmark1.png" />&nbsp;Bookmark list
-								<span class="clsHadUnread">...</span></a> <a href="https://kissmanga.com/Profile">
-								&nbsp;&nbsp;<img src="https://kissmanga.com/Content/images/change.png" />&nbsp;Profile</a> <a href="https://kissmanga.com/Logout">
-								&nbsp;&nbsp;<img src="https://kissmanga.com/Content/images/logout.png" />&nbsp;Logout</a>
-							</div>
+						<div id="topHolderBox" style="width: 230px; height: 27px;">
+							{% if session %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<span style="color: #888">
+									Hi
+								</span>
+								&nbsp;&nbsp;
+								<a id="aDropDown" class="boxDropDown" style="margin-top: -7px; cursor: pointer; width:75px;">
+									<span>
+										{{session.username}}
+										<span class="clsHadUnread">
+										</span>
+										<small style="color: #8D65A0">
+											▼
+										</small>
+									</span>
+								</a>
+								<div id="menu_box" style="display:none;">
+									<a href="{{ url_for('bookmark') }}">
+										&nbsp;&nbsp;
+										<img src="../static/images/bookmark1.png" />
+											&nbsp;Bookmark list
+											<span class="clsHadUnread">...</span>
+										</a>
+										<a href="{{ url_for('account') }}">
+											&nbsp;&nbsp;
+											<img src="../static/images/change.png" />
+											&nbsp;Profile
+										</a>
+										<a href="{{ url_for('logout') }}">
+											&nbsp;&nbsp;
+											<img src="../static/images/logout.png" />
+											&nbsp;Logout
+										</a>
+								</div>
+							{% else %}
+								<img src="../static/images/user-small.png" style="vertical-align: middle; margin-bottom: 5px">
+								<a href="{{ url_for('login') }}">
+									Login
+								</a>
+								or
+								<a href="{{ url_for('register') }}">
+									Register
+								</a>
+							{% endif %}
 						</div>
-						<script type="text/javascript">
-							var hasUnRead = false;
-
-							function NotifyUnReadUser() {
-							    if (hasUnRead == true)
-							        $('.clsHadUnread').html('(!)');
-							}
-
-						</script>
-						<script type="text/javascript">
-							var isChecking = false;
-							$('#topHolderBox').mouseover(function () {
-							    if (!isChecking) {
-							        isChecking = true;
-							        $.ajax(
-							        {
-							            type: "POST",
-							            url: "/CheckHasUnread",
-							            success: function (message) {
-							                if (message != "") {
-							                    if (message == 'true') {
-							                        hasUnRead = true;
-							                        NotifyUnReadUser();
-							                    }
-							                }
-							            }
-							        });
-							    }
-							});
-						</script>
-						<script type="text/javascript">
-							// re-position
-							var userBarWidth = $('#aDropDown').width();
-							$('#aDropDown').width(userBarWidth + 30);
-							$('#topHolderBox').width($('#topHolderBox').width() + userBarWidth);
-							$('#menu_box').css('left', 389 - $('#menu_box').width());
-
-							function HideBox() {
-							    $('#menu_box').css('display', 'none');
-							}
-
-							function UnhideBox() {
-							    $('#menu_box').css('display', 'block');
-							}
-
-							$('.boxDropDown').mouseover(function () {
-							    UnhideBox();
-							});
-
-							$('#menu_box').mouseleave(function () {
-							    HideBox();
-							});
-						</script>
 					</div>
+					<!-- Login/Register button top section end here -->
+					<script type="text/javascript">
+					$("#aDropDown")
+					.mouseover(function() {
+						$("#menu_box").show();
+					})
+					.mouseout(function() {
+						$("#menu_box").hide();
+					});
+					$("#menu_box")
+					.mouseover(function() {
+						$(this).show();
+					})
+					.mouseout(function() {
+						$(this).hide();
+					});
+					</script>
+
+
+
+
+
 					<div id="search" style="position: relative">
 						<form action="{{url_for('menu_search')}}" id="formSearch" method="post" style="position:relative;">
 							<p>
@@ -117,7 +126,7 @@
 					</div>
 				</h3>
 				<h1>
-					<a href="https://kissmanga.com" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+					<a href="{{ url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
 				</h1>
 			</div>
 			<div class="clear"></div>
@@ -125,23 +134,28 @@
 				<div id="navbar">
 					<div id="navcontainer">
 						<ul>
-							<li id="liHome"><a href="https://kissmanga.com">Home</a></li>
-							<li id="liDS"><a href="https://kissmanga.com/MangaList">Manga
+							<li id="liHome"><a href="{{ url_for('home') }}">Home</a></li>
+							<li id="liDS"><a href="{{ url_for('manga', page=1) }}">Manga
 								List</a>
 							</li>
-							<li id="liComic"><a target="_blank" href="http://readcomiconline.to/">Comic
+							<li id="liComic">
+								<a target="_blank" href="http://readcomiconline.to/">Comic
 								List</a>
 							</li>
-							<li id="liReport"><a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
+							<li id="liReport">
+								<a rel="nofollow" target="_blank" href="https://www.reddit.com/r/KissCommunitySupport/submit">
 								Report/Request</a>
 							</li>
-							<li id="liCommunity"><a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
+							<li id="liCommunity">
+								<a rel="nofollow" target="_blank" href="https://discord.gg/eCzUxNB">
 								Forum</a>
 							</li>
-							<li id="liAnimeOnline"><a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
+							<li id="liAnimeOnline">
+								<a target="_blank" title="High quality anime online" href="http://kissanime.ru/">
 								Watch anime</a>
 							</li>
-							<li id="liGame"><a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
+							<li id="liGame">
+								<a target="_blank" href="http://novelplanet.com">Read Novel</a></li>
 						</ul>
 					</div>
 				</div>
@@ -178,15 +192,21 @@
 								<div class="clear2" style="height: 20px"></div>
 								<div>
 									<div>
+										Display name: {{session.username}}
+									</div>
+									<div class="clear" style="height: 5px"></div>
+								</div>
+								<!-- <div>
+									<div>
 										Current password (input this if you want to change your email & password)
 									</div>
 									<div class="clear" style="height: 5px"></div>
 									<div>
 										<input type="password" maxlength="50" name="password" id="password" class="txtSignUp" />
 									</div>
-								</div>
-								<div class="clear2"></div>
-								<div>
+								</div> -->
+								<!-- <div class="clear2"></div> -->
+								<!-- <div>
 									<div>
 										Email
 									</div>
@@ -194,8 +214,8 @@
 									<div>
 										<input maxlength="50" name="email" id="email" class="txtSignUp" value="getty@gmail.com" />
 									</div>
-								</div>
-								<div class="clear2"></div>
+								</div> -->
+								<!-- <div class="clear2"></div>
 								<div>
 									<div>
 										New password
@@ -204,9 +224,9 @@
 									<div>
 										<input type="password" maxlength="50" name="newPassword" id="newPassword" class="txtSignUp" />
 									</div>
-								</div>
-								<div class="clear2"></div>
-								<div>
+								</div> -->
+								<!-- <div class="clear2"></div> -->
+								<!-- <div>
 									<div>
 										Type new password again
 									</div>
@@ -214,20 +234,20 @@
 									<div>
 										<input type="password" maxlength="50" name="newPasswordType" id="newPasswordType" class="txtSignUp" />
 									</div>
-								</div>
-								<div class="clear2" style="height: 30px"></div>
-								<div>
+								</div> -->
+								<!-- <div class="clear2" style="height: 30px"></div> -->
+								<!-- <div>
 									<img src="/Content/images/change.png" />&nbsp;<span style="font-size: 15px; font-weight: bold">Options</span>
-								</div>
-								<div class="clear2" style="height: 20px"></div>
-								<div>
+								</div> -->
+								<!-- <div class="clear2" style="height: 20px"></div> -->
+								<!-- <div>
 									<input type="checkbox" id="useAllPages" name="useAllPages" />
 									Use "One Page" mode by default
-								</div>
-								<div class="clear2" style="height: 30px"></div>
-								<div class="aButton" id="btnSubmit" style="font-weight: bold; width: 90px" onclick="document.getElementById('formProfile').submit();">
+								</div> -->
+								<!-- <div class="clear2" style="height: 30px"></div> -->
+								<!-- <div class="aButton" id="btnSubmit" style="font-weight: bold; width: 90px" onclick="document.getElementById('formProfile').submit();">
 									Save
-								</div>
+								</div> -->
 								<div class="clear2" style="height: 50px"></div>
 							</div>
 						</form>
@@ -243,7 +263,7 @@
 								&nbsp;
 							</div>
 							<div>
-								You only need to input your current password if you want to change your email &
+								Showing your current display name, email &
 								password.<br />
 								<br />
 							</div>

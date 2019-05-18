@@ -672,6 +672,21 @@ def manga_author_search():
 
 
 
+@app.route('/account/')
+def account():
+    if session:
+
+        user_name = session['username']
+        users = mongo.db.users
+        bookmark_id = users.find_one({'name':user_name})
+
+        total_bookmark = 0
+        if 'bookmark' in bookmark_id:
+            total_bookmark = len(bookmark_id['bookmark']) - 1
+        return render_template('account.html', total_bookmark=total_bookmark)
+    else:
+        return redirect(url_for('login'))
+
 
 
 
