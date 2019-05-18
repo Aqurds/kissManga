@@ -261,7 +261,7 @@
 					&nbsp;
 				</div>
 				<div style="margin: auto; width: 600px; padding-top: 10px">
-					<div style="float: left">
+					<div style="">
 
 
 						<label class="lbl">
@@ -294,13 +294,20 @@
 					</a>
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<!-- <a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">[ Report broken chapter ]</a> -->
-					<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
-						&nbsp;&nbsp;
-						<img src="{{ url_for('static', filename='images/user-small.png') }}" style="vertical-align: middle;
-							margin-bottom: 5px">
-						Please <a href="{{ url_for('login') }}">
-						Login</a> or <a href="{{ url_for('register') }}">Register</a> to use <b>Bookmark</b> feature
-					</div>
+					{% if session %}
+						<span id="spanBookmark">
+						<img src="../static/images/plus.png" style="vertical-align: middle; margin-bottom: 5px">
+						<a id="btnRegOrLogin" href="#">Bookmark</a>
+						</span>
+					{% else %}
+						<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
+							&nbsp;&nbsp;
+							<img src="{{ url_for('static', filename='images/user-small.png') }}" style="vertical-align: middle;
+								margin-bottom: 5px">
+							Please <a href="{{ url_for('login') }}">
+							Login</a> or <a href="{{ url_for('register') }}">Register</a> to use <b>Bookmark</b> feature
+						</div>
+					{% endif %}
 				</div>
 				<div class="clear">
 					&nbsp;
@@ -315,146 +322,6 @@
 					&nbsp;
 				</div>
 			</div>
-			<!-- <script type="text/javascript">
-				$('#divImage').hide();
-
-				        var lstImages = new Array();
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7In5nsQTH0dGpJ8JsE+nsR2CVPEc54nwPtISakuPUGC5D/HWK+axZStAaupLSk529ujPNJGLasyvIgYlQ5kMDOKIlxUl076xn43Loc64u5h2Ah20hMmUX50yZh8LDfiGMaR21nZw0iAIET/1DRMmSKsNxzOjNZkt1TaFObCRujxH/3WkdERPlHVvkHKnydgSCZZkl4jFSr3D1EKZ3ufc1pDUD55gBMwpLk5g8lGrDBAiR7eMcB6y9eIIiSf9KlMSNw=="));
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7Bxx9vedWabbmkNUq9DNCkNlOPEAicVy5vMgQf5xALbJSGOBKb4JV4r3vAqTr094Ukz9MjJLT0jwuqx+slCpUD5ln+o1xqz76iN+ocz/9z94LO9hv5yQG/TIoWfYjzQc2iwThKEckkfETV11Q03i0RbewcATB2Ct/cRvBDzF1FdD83iRfTBqgDB+w1bxsT3mUN9EH5ni0X2Ci/n/gFYtVRbLVqxC0KqXfYl1nATaPuLwnD76tOjfXxt5aaOnBJzHPg=="));
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7M8msBzIwf33NHzaXcJ7F5+s7B0Ty3CF3ooAFgrqnbbgImVCefKYLtLgjqOFR8662MmsUUabbgrR6NKVtHLwGHgFfx5OzLCI1ElzBZ1slClVeh/gmfRyV5rrleQVlQD9BwSxZNyjisDadvYD3tq/yHHgFyDgWICGawjxSCA1J0AHxTZfYrp58SzOm8yD23w0xTTzJPAKV6xbKc0iIfx1d+KdODbA+crV7d8BFIrB34MD3zuj5csYAq5BOq90UtgRcg=="));
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7IUxq8JPqyw0EO3W3vBadmTKBI/dteYvwrsds6e6+aoFEPkboLEpRfn646ODJWSfx04rL+ojIXUdVxfj5eTgh7I1nBG8CCfM2TJbPQKoRlZWF4c3/42KItyoltco3ZX5+BRUCGQErRutVdg5cLkA20GXftcvFe3TQZP9eJ+/bfV0GwDCsOO29Y9RD/tQcEGXculAzHAOVJwY8c9XUFNaX3XJhcmsSKdUf2KibKCuMXC70ANf7ivI09I8O+UKOzpHWw=="));
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7PbZtSsO1wr1MKFiuTU4j3L+egXr5iiYx7hyL3CshLd9px/38ypDkjt8uANIqdtKvXxSZcKg6nk6j4/cn/y8uaX1O5PbvTsizwOnbf4+lvQkZprbjqqNMvYuL34+oDxQ+wUks1/u9Rd5bt0QzZegYgJp2AkIP/cz9O2K1wfhMILGsw2A0lYlFXnWJdhxBOYF1GMzh3aCTsb1iWiM85VFgT+CwDH0NYCTbEZY4y5A+gdydwTjEXJ0Ps8hVeBj+85dQg=="));
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7NicFZYYuyPyKVp9uoYGW8RL/VTHnwbzCRMKr2/w+u3lUgX3+VOpZ3aPvSq7hLsPFdrfvFw2rHVHC8g7rRlBHFIZjTrEDUSbibcuU5JzjFY1+OEae/7y80DXyPAcA6w3YUuOEHk8oWKuXeps2PYUa8SXr9fbfHCUNDBztN9Y9CVpzT98MSDWKTI93DPQ/SwWhkyec99/MbuC52+3ChS/HI7x1luYS1TPP0yRxfUPJzYkrUHmY2ceqdRzQceLPMqizA=="));
-
-				            lstImages.push(wrapKA("09vK62N21C/agO16baGH7NSm7/9+o3lsqLPBBxCzso+2jkfr48/L/uaZhaPOcaXrlsZPeS06xCV6v2++2aYTlVzlSPzJZeuXhWufsvgYljpXstKWA49inDuQF8ZIKbS0y7zCe27HxATvXGl5lNLB945A7tyeEX8mf5gokAkDeLu4sbBFzkraxUt64QMTNOW2dYo4rsOP+QnHiNR4GJ7c41+d2SuV763Pmel/ezr/adzKBw9/KEd48hK4Eo9eHIL5u0B/G/RrlCsaBlMLOHkbYQ=="));
-
-
-
-				//            var lstImagesLoaded = new Array();
-				//            $("#divImage img").load(function() {
-				//                var srcImage = $(this).attr('src');
-				//                if (jQuery.inArray(srcImage, lstImagesLoaded) < 0)
-				//                {
-				//                    lstImagesLoaded.push(srcImage);
-				//                    if (currImage < lstImages.length)
-				//                    {
-				//                        $('#divImage img[src=""]:first').attr('src', lstImages[currImage]);
-				//                        currImage++;
-				//                    }
-				//                    else
-				//                        $('#imgLoader').hide();
-				//                }
-				//            }).each(function() {
-				//                  if(this.complete) $(this).load();
-				//                    });
-
-				//            var currImage = 0;
-				//            $('#divImage img[src=""]:first').attr('src', lstImages[currImage]);
-				//            currImage++;
-				//            $('#divImage img[src=""]:first').attr('src', lstImages[currImage]);
-				//            currImage++;
-				        var currImage = 0;
-				        var countTimeOut = 0;
-				        $("#divImage img").each(function() {
-				//                setTimeout(LoadImageSequence, countTimeOut * 1000);
-				//                countTimeOut++;
-				            if (currImage < lstImages.length)
-				            {
-				                $('#divImage img[src=""]:first').attr('src', lstImages[currImage]);
-				                currImage++;
-				            }
-				        });
-
-				        function LoadImageSequence()
-				        {
-				            if (currImage < lstImages.length)
-				            {
-				                $('#divImage img[src=""]:first').attr('src', lstImages[currImage]);
-				                currImage++;
-				            }
-				        }
-
-
-				        $('#selectReadType').change(function () {
-				            document.cookie = "vns_readType1=" + $(this).val() + ";path=/";// + "; expires=Thu, 2 Aug 2020 20:47:11 UTC;path=/";
-				            window.location.reload();
-				        });
-
-				        $('.selectChapter').change(function () {
-				            location.href = 'https://kissmanga.com/Manga/Arigatights/' + $(this).val();
-				        });
-
-				        $('.selectGroup').change(function () {
-				            location.href = 'https://kissmanga.com/Manga/' + $(this).val();
-				        });
-
-				        function NextChap() {
-				            $('#divImage').empty();
-				            $('#divMsg').css('display', 'block');
-				        }
-
-				        var requestFix = false;
-				        function onLoadImg(ele) {
-				            if (!requestFix) {
-				                var srcImage = $(ele).attr('src');
-				                if (
-				                        ($(ele).width() == 200 && $(ele).height() == 200)
-				                        ||
-				                        (srcImage.indexOf("imgur.com") > 0 && $(ele).width() == 161 && $(ele).height() == 81)
-				                        ) {
-				                    requestFix = true;
-				                    $.ajax({
-				                        type: "POST",
-				                        url: "/External/RPB",
-				                        data: "rawUrl=" + encodeURIComponent(window.location.href),
-				                        success: function(message) {
-
-				                        }
-				                    });
-				                }
-				            }
-
-				            // resize
-				            if ($(ele).width() > 2800) {
-				                $(ele).css("width", "100%");
-				            }
-				        }
-
-				        function onErrorImg(ele){
-				            var srcImage = $(ele).attr('src');
-				            if (srcImage.indexOf("focus-opensocial.googleusercontent.com") > 0 || srcImage.indexOf(".blogspot.com/") > 0)
-				            {
-				                var retry = 10;
-				                while (retry > 0)
-				                {
-				                    retry--;
-				                    var randomParamRetry = Math.floor(Math.random() * 100000);
-				                    $(ele).attr("src", srcImage + "&ver=" + randomParamRetry);
-				                }
-				            }
-				//                if (!requestFix) {
-				//                    if (
-				//                            (srcImage.indexOf("funmanga.com") > 0 || srcImage.indexOf("mpcdn.net%") > 0)
-				//                            ) {
-				//                        requestFix = true;
-				//                        $.ajax({
-				//                            type: "POST",
-				//                            url: "/External/RPB",
-				//                            data: "rawUrl=" + encodeURIComponent(window.location.href),
-				//                            success: function(message) {
-				//
-				//                            }
-				//                        });
-				//                    }
-				//                }
-				        }
-			</script> -->
 			<script type="text/javascript">
 				$('#divImage').show();
 

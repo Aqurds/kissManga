@@ -822,6 +822,64 @@ def menu_search():
 
 
 
+@app.route('/bookmark/')
+def bookmark():
+
+    if session:
+        #popular manga view
+        front_page_manga = list(mongo.db.update_spider.find())
+        popular_manga_list = []
+
+        for item in front_page_manga[0]['popular_manga']:
+            # popular_manga_list.append(list(mongo.db.all_manga_details.find_one({'id':item})))
+            popular_manga_list.append(mongo.db.all_manga_details.find_one({'id':item}))
+
+
+        #most popular manga view
+        most_popular_front_page_manga = list(mongo.db.update_spider.find())
+        most_popular_manga = []
+
+        for item in most_popular_front_page_manga[0]['most_popular_manga']:
+            most_popular_manga.append(mongo.db.all_manga_details.find_one({'id':item}))
+
+        genres_categories = list(mongo.db.genres_categories.find())
+        genres = genres_categories[0]['genres']
+        categories = genres_categories[0]['categories']
+
+
+        user_name = session['username']
+        users = mongo.db.users
+        bookmark_id = users.find_one({'name':user_name})
+        # history = {'history':manga_id}
+        # users.update({ "name":username },{$set : {"history":manga_id}})
+        # users.insert_one(history)
+        bookmark_data = []
+        total_bookmark = 0
+        if 'bookmark' in bookmark_id:
+            total_bookmark = len(bookmark_id['bookmark']) - 1
+            for bookmark_manga in bookmark_id['bookmark']:
+                bookmark_data.append(mongo.db.all_manga_details.find_one({'id':bookmark_manga}))
+
+        if bookmark_data:
+            bookmark_data.pop(0)
+
+
+        return render_template('bookmark.html', popular_manga_list=popular_manga_list, most_popular_manga=most_popular_manga, genres=genres, categories=categories, bookmark_data=bookmark_data, total_bookmark=total_bookmark)
+    else:
+        return redirect(url_for('login'))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/manga-id/<string:manga_id>')
 def manga_id(manga_id):
