@@ -186,7 +186,7 @@
 							<div class="barContent">
 								<div class="clear2" style="height: 10px"></div>
 								<div>
-									<img src="/Content/images/change.png" />&nbsp;<span style="font-size: 15px; font-weight: bold">Email
+									<img src="../static/images/change.png" />&nbsp;<span style="font-size: 15px; font-weight: bold">Email
 									& Password</span>
 								</div>
 								<div class="clear2" style="height: 20px"></div>
@@ -263,8 +263,7 @@
 								&nbsp;
 							</div>
 							<div>
-								Showing your current display name, email &
-								password.<br />
+								Showing your current display name<br />
 								<br />
 							</div>
 						</div>
@@ -280,35 +279,12 @@
 			<div class="clear">
 				&nbsp;
 			</div>
-			<script type="text/javascript" src="//ads.2mdnsys.com/qcad.php?did=545&unit=5b965d958a6b9&tm=1536581013&sid=20&zid=1035&k=5b965d958a700"></script>
-			<script type="text/javascript">
-				function AddHideButtonToDynamic()
-				{
-						var elemDyna = $('div[style*="width:100%;height:768px;"]')[0];
-						if (elemDyna == null)
-						{
-							elemDyna = $('div[style*="width: 100%; height: 768px;"]')[0];
-						}
-						var elemDyna2 = $('div[style*="width:100%;height:768px;"]')[1];
-						if (elemDyna2 == null)
-						{
-							elemDyna2 = $('div[style*="width: 100%; height: 768px;"]')[1];
-						}
-				    	if ($(elemDyna).offset() != null) {
-				            var topDyna = 220;
-				            var leftDyna = ($(window).width() - 1000) / 2 - 45;
-				            $(elemDyna).after('<div class="divCloseBut" style="z-index:1000;visibility:visible;position:absolute; right:' + leftDyna + 'px; top: ' + topDyna + 'px"><a href="#" onclick="$(\'#' + $(elemDyna).attr('id') + '\').remove();$(\'#' + $(elemDyna2).attr('id') + '\').remove();$(this).remove(); InitCloseButton(); return false;"><b>[Hide]</b></a></div>');
-				        }
-				}
-				window.setTimeout(AddHideButtonToDynamic, 5000);
-			</script>
 		</div>
-		<script type="text/javascript" src="//koindut.com/apu.php?zoneid=1616193"></script>
 		<div id="footer">
 			<div id="footcontainer" style="position: relative">
 				<p>
-					<a href="http://kissmanga.com">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
-					<a href="/Message/PrivacyPolicy">Privacy Policy</a>
+					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
+					<a href="#">Privacy Policy</a>
 					&nbsp;&nbsp;
 				</p>
 				<div style="position: absolute; left: 200px; top: 20px"></div>
