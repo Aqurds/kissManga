@@ -734,6 +734,94 @@ def manga_id_chapter(manga_id, chapter_id):
 
 
 
+@app.route('/menu-search/', methods=['POST', 'GET'])
+def menu_search():
+    items = mongo.db.all_manga_details
+
+    manga_chapter_list_from_paginated_manga = []
+
+
+    search_manga_list = []
+    search_term = request.form['searchtext']
+
+    #manga search code
+    if request.form['search_select'] == "Manga Name":
+        #do text search
+        initial_query_text = request.form['searchtext'].split()
+
+        if len(initial_query_text) > 1:
+            #do search with multi words
+            search_text = request.form['searchtext'].title()
+
+            for item in list(items.find()):
+                if search_text in item['title'].title():
+                    search_manga_list.append(item)
+
+
+        if len(initial_query_text) == 1:
+            #do single word search
+            search_text = request.form['searchtext'].capitalize()
+
+            for item in list(items.find()):
+                title_name_list = item['title'].title().split()
+                if search_text in title_name_list:
+                    search_manga_list.append(item)
+
+
+        for item in search_manga_list:
+            manga_chapter_list_from_paginated_manga.append(mongo.db.manga_chapter_list.find_one({'manga_id':item['id']}))
+
+
+    #author search code
+    if request.form['search_select'] == "Authors":
+        #do author search
+        author_text = request.form['searchtext'].lower()
+
+        for item in list(items.find()):
+            for autnor_name in item['author']:
+                if author_text == autnor_name.lower():
+                    search_manga_list.append(item)
+
+        for item in search_manga_list:
+            manga_chapter_list_from_paginated_manga.append(mongo.db.manga_chapter_list.find_one({'manga_id':item['id']}))
+
+
+
+    #popular manga view
+    front_page_manga = list(mongo.db.update_spider.find())
+    popular_manga_list = []
+
+    for item in front_page_manga[0]['popular_manga']:
+        # popular_manga_list.append(list(mongo.db.all_manga_details.find_one({'id':item})))
+        popular_manga_list.append(mongo.db.all_manga_details.find_one({'id':item}))
+
+
+
+    genres_categories = list(mongo.db.genres_categories.find())
+    genres = genres_categories[0]['genres']
+    categories = genres_categories[0]['categories']
+
+    total_bookmark = 0
+    if session:
+        user_name = session['username']
+        users = mongo.db.users
+        bookmark_id = users.find_one({'name':user_name})
+
+        if 'bookmark' in bookmark_id:
+            total_bookmark = len(bookmark_id['bookmark']) - 1
+
+
+    return render_template('menu-search.html', popular_manga_list=popular_manga_list, genres=genres, categories=categories, total_bookmark=total_bookmark, search_manga_list=search_manga_list, manga_chapter_list_from_paginated_manga=manga_chapter_list_from_paginated_manga, search_term=search_term)
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/manga-id/<string:manga_id>')
 def manga_id(manga_id):
