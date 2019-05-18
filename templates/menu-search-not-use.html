@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 
-
 	<head id="ctl00_Head1">
 		<title>
 			KissManga - Read manga online in high quality
@@ -35,12 +34,11 @@
 	</head>
 
 
-
-
 	<body>
 		<div id="containerRoot">
 			<div id="head">
 				<h3>
+
 
 
 					<!-- Login/Register button top section -->
@@ -111,32 +109,26 @@
 					</script>
 
 
+
 					<div id="search" style="position: relative">
-						<form action="{{url_for('menu_search')}}" id="formSearch" method="post" style="position:relative;">
+						<form action="{{url_for('menu_search')}}" id="formSearch" method="post">
 							<p>
 								<input size="40" id="keyword" name="searchtext" value="" class="text"  placeholder="Search manga..."  autocomplete="off" />
 								<select id="selectSearch" name="search_select">
 									<option value="Manga Name">Series Name</option>
 									<option value="Authors">Author/Artist</option>
 								</select>
-								<input id="imgSearch" type="image" src="../static/images/search.png" class="button"/>
-								<input type="submit" value="" style="position: absolute;top: -2px;right: 43px;width: 86px;height: 29px;cursor: pointer;border: 0px;border-radius: 3px; opacity:0;">
+								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
 							</p>
 						</form>
 					</div>
 				</h3>
 				<h1>
-					<a href="{{  url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+					<a href="{{ url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
 				</h1>
 			</div>
 			<div class="clear"></div>
-
-
-
-
 			<div id="headnav">
-
-
 				<div id="navbar">
 					<div id="navcontainer">
 						<ul>
@@ -166,8 +158,8 @@
 					</div>
 				</div>
 				<script type="text/javascript">
-					var path = 'Manga';
-					var action = 'Index';
+					var path = 'Search';
+					var action = 'Manga';
 					if (path == 'Home')
 					    $('#liHome a').attr('id', 'currentTab');
 					else if (path == 'Manga' || path == 'Genre' || path == 'Group' || path == 'AuthorArtist')
@@ -181,54 +173,88 @@
 					else
 					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
 				</script>
-
-
-				<div id="navsubbar">
-					<p>
-						<a href="{{ url_for('manga', page=1) }}">
-							Latest update
-						</a>
-						|
-						<a href="{{ url_for('manga_new', page=1) }}">
-							New manga
-						</a>
-						|
-						<a href="{{ url_for('manga_hot', page=1) }}">
-							Popular manga
-						</a>
-					</p>
-				</div>
-
-
 			</div>
-
-
-
-
-
-
 			<div id="container">
-				<div id="rightside">
-					<div class="rightBox">
+				<div id="leftside">
+					<div class="bigBarContainer">
 						<div class="barTitle">
-							Search by status
+							Search by series name
 						</div>
 						<div class="barContent">
 							<div class="arrow-general">
 								&nbsp;
 							</div>
 							<div>
-								<a href="{{ url_for('manga_ongoing', page=1) }}" title="The series are ongoing">Ongoing</a><br />
-								<a href="{{ url_for('manga_completed', page=1) }}" title="The series are completed">Completed</a>
+
+
+								<div class="clear">
+									&nbsp;
+								</div>
+								<div style="text-align: center; padding: 10px 0px 10px 0px;">
+
+								</div>
+								<div class="clear">
+									&nbsp;
+								</div>
+
+								<table class="listing">
+									<tr class="head">
+										<th width="70%">
+											Series Name
+										</th>
+										<th width="30%">
+											Latest chapter
+										</th>
+									</tr>
+									<tr style="height: 10px"></tr>
+
+
+									<tr>
+										<td title='kjk'>
+											<img width="120" height="165" src="https://kissmanga.com/Uploads/Etc/9-21-2018/422482i278808.jpg" style="float: left; padding-right: 10px" />
+											<div style="float: left; width: 300px">
+											<a class="bigChar" href="/Manga/1000-Yen-Hero">1000 Yen Hero</a>
+											<p>
+											Kaijin are attacking! But luckily for the people of Japan, heroes are there to protect them, with powers that run on a rate of yen per second. For Hiasa Sen however, there are much more important things ...
+											</p>
+											</div>'>
+											<a href="/Manga/1000-Yen-Hero">
+											1000 Yen Hero</a>
+										</td>
+										<td>
+											<a href="/Manga/1000-Yen-Hero/Vol--001-Ch-006---010-Yen-and-Manly-Man?id=517201">Vol. 001 Ch.006 ...</a>
+										</td>
+									</tr>
+
+
+
+									<tr class="odd">
+										<td title='
+											<img width="120" height="165" src="https://kissmanga.com/Uploads/Etc/3-9-2018/2057552ee72c30ee2b4d295684e1bbc04744389bf45cde0_82419_728_1008.jpg" style="float: left; padding-right: 10px" />
+											<div style="float: left; width: 300px">
+											<a class="bigChar" href="/Manga/Akaten-Hero">Akaten Hero!</a>
+											<p>
+											From DrMaster:Yuji Midorikawa is your typical high school student whose has a secret identity: He is "Green" in the high school battalion unit, Gakusei 5 (G5 for short). G5 is the special unit trained ...
+											</p>
+											</div>'>
+											<a href="/Manga/Akaten-Hero">
+											Akaten Hero!</a>
+										</td>
+										<td>
+											Completed
+										</td>
+									</tr>
+
+
+								</table>
+								<script type="text/javascript">
+									$(".listing td[title]").tooltip({ offset: [10, 200], effect: 'slide', predelay: 300 }).dynamic({ bottom: { direction: 'down', bounce: true} });
+								</script>
 							</div>
 						</div>
 					</div>
-					<div class="clear">
-						&nbsp;
-					</div>
-
-
-
+				</div>
+				<div id="rightside">
 					<div class="rightBox">
 						<div class="barTitle">
 							Search by genres
@@ -237,197 +263,35 @@
 							<div class="arrow-general">
 								&nbsp;
 							</div>
-
-
 							<div>
-								{% for genre in genres %}
-								<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" title="">
-									{{ genre }}
-								</a>
-								<br />
-								{% endfor %}
-							</div>
+								<a href="/Genre/4-Koma" title="a&nbsp;comic-strip&nbsp;format, generally consists of&nbsp;gag comic strips&nbsp;within four&nbsp;panels&nbsp;of equal size ordered from top to bottom.">
+								4-Koma</a><br />
 
+							</div>
 						</div>
 					</div>
-
-
-
 					<div class="clear2">
 						&nbsp;
 					</div>
-
-				</div>
-				<div id="leftside">
-					<div class="bigBarContainer">
-						<div class="barTitle">
-							Search result for "{{search_term}}"
+					<div>
+						<div style="text-align: center">
+							<iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" src="/ads/adprotect160-3.aspx" width="160px" height="600px">
+							</iframe>
 						</div>
-						<div class="barContent">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
-
-							<div class="clear" style="height: 15px">
-							</div>
-
-
-								<div class="clear">
-								</div>
-
-								{% if search_manga_list %}
-
-											<!-- search manga list code starts here -->
-											{% for manga in search_manga_list %}
-											<div>
-
-												<div style="display: inline-block; width: 190px">
-													<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
-														<img width="190px" height="250px" src="{{ manga['image'] }}">
-													</a>
-												</div>
-
-												<div style="display: inline-block; width: 500px; vertical-align: top; padding-left: 10px">
-													<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
-														<span class="title">
-															{{ manga['title'] }}
-														</span>
-													</a>
-
-													<p>
-														<span class="info">Genres:</span>
-														&nbsp;
-														{% for genre in manga['genres'] %}
-														<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" class="dotUnder" title="">
-															{{ genre }}
-														</a>
-														<span class="info">,</span>
-														{% endfor %}
-													</p>
-
-													<!-- <p>
-														<span class="info">Latest chapter:</span>&nbsp;<a href="#">Vol.002 Ch.009</a>
-													</p> -->
-													<p>
-														<span class="info">Summary:</span>&nbsp;
-													<p>&nbsp;</p>
-													<div>
-														<div>{{ manga['summary'] }}</div>
-													</div>
-													<div></div>
-													<p>
-														<span style="font-family: 'Times New Roman'; font-size: medium;">
-															<div style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: #ffffff; background-position: initial initial; background-repeat: initial initial; margin: 8px;">
-															</div>
-														</span>
-												</p>
-													<p>&nbsp;</p>
-													</p>
-												</div>
-
-											</div>
-
-
-											<div class="clear2"></div>
-											<hr />
-											<div class="clear2"></div>
-											<div class="clear2"></div>
-											<!-- search manga list code ends here -->
-											{% endfor %}
-
-								{% else %}
-								      <p style="margin-bottom:15px; font-size:16px; color:#ff530d;">
-												No manga found with your search! Please search again!</p>
-								{% endif %}
-
-
-
-							</div>
-
-
-
-
-							<!-- pagination starts -->
-							<div class="pagination pagination-left">
-								<ul class="pager" style="padding: 10px 11px 10px 0px">
-									<li>
-										<a href="{{url_for('manga', page = 1)}}">
-								      First(1)
-								    </a>
-									</li>
-
-									{% if first_prev_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga', page=first_prev_page)}}">
-								        {{first_prev_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									{% if second_prev_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga', page=second_prev_page)}}">
-								        {{second_prev_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									<li class="current">
-								      {{current_page}}
-									</li>
-
-									{% if first_next_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga', page=first_next_page)}}">
-								        {{first_next_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									{% if second_next_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga', page=second_next_page)}}">
-								        {{second_next_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									<li>
-										<a href="{{url_for('manga', page=total_page_number)}}" class="page page-blue">
-								      Last({{total_page_number}})
-								    </a>
-									</li>
-									<!-- <li class="current">1</li>
-									<li><a href="/MangaList?page=2" page="2">2</a></li>
-									<li><a href="/MangaList?page=3" page="3">3</a></li>
-									<li><a href="/MangaList?page=2" page=2>&rsaquo; Next </a></li>
-									<li><a href="/MangaList?page=324" page="324">&raquo; Last </a></li> -->
-								</ul>
-							</div>
-
-
-							<!-- pagination code ends here -->
-
-
-
-						</div>
-
-
 					</div>
 				</div>
 			</div>
 			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
 			</div>
 		</div>
-
-
-
-
-
-
-
-
-		<div id="footer" style="top:20px;">
+		<div id="footer">
 			<div id="footcontainer" style="position: relative">
 				<p>
 					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
@@ -437,8 +301,8 @@
 				<div style="position: absolute; left: 200px; top: 20px"></div>
 			</div>
 		</div>
-		<!-- <script type="text/javascript">
+		<script type="text/javascript">
 			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
-		</script> -->
+		</script>
 	</body>
 </html>
