@@ -295,10 +295,13 @@
 					&nbsp;&nbsp;|&nbsp;&nbsp;
 					<!-- <a target="_blank" rel="nofollow" href="https://www.reddit.com/r/KissCommunitySupport/submit">[ Report broken chapter ]</a> -->
 					{% if session %}
-						<span id="spanBookmark">
-						<img src="../static/images/plus.png" style="vertical-align: middle; margin-bottom: 5px">
-						<a id="btnRegOrLogin" href="#">Bookmark</a>
-						</span>
+						<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
+							&nbsp;&nbsp;
+							<span id="spanBookmark">
+							<img src="{{ url_for('static', filename='images/plus.png') }}" style="vertical-align: middle; margin-bottom: 5px">
+							<a id="btnRegOrLogin" href="{{url_for('add_bookmark', manga_id = manga_details['id'])}}">Bookmark</a>
+							</span>
+						</div>
 					{% else %}
 						<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
 							&nbsp;&nbsp;
