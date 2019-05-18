@@ -105,37 +105,16 @@
 						</script>
 					</div>
 					<div id="search" style="position: relative">
-						<form id="formSearch" method="post">
+						<form action="{{url_for('menu_search')}}" id="formSearch" method="post" style="position:relative;">
 							<p>
-								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
-								<select id="selectSearch">
-									<option value="Manga">Series Name</option>
-									<option value="AuthorArtist">Author/Artist</option>
+								<input size="40" id="keyword" name="searchtext" value="" class="text"  placeholder="Search manga..."  autocomplete="off" />
+								<select id="selectSearch" name="search_select">
+									<option value="Manga Name">Series Name</option>
+									<option value="Authors">Author/Artist</option>
 								</select>
-								<input id="imgSearch" type="image" src="https://kissmanga.com/Content/images/search.png" class="button" onclick="return false;" />
+								<input id="imgSearch" type="image" src="../static/images/search.png" class="button"/>
+								<input type="submit" value="" style="position: absolute;top: -2px;right: 43px;width: 86px;height: 29px;cursor: pointer;border: 0px;border-radius: 3px; opacity:0;">
 							</p>
-							<div id="result_box" style="display: none; margin-top: -3px; max-height: 300px; overflow-y: auto; overflow-x: hidden;"></div>
-							<div style="float: left; width: 250px; text-align: left; margin-left: 2px">
-								<div style="float: left; width: 90px">
-									<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2FKissManga&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=dark&amp;font&amp;height=21&amp;appId=111670815619329" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px;
-										height: 21px;" allowtransparency="true"></iframe>
-								</div>
-								<div style="float: left; width: 85px">
-									<div class="g-plusone" data-size="medium" data-href="http://kissmanga.com"></div>
-									<script type="text/javascript">
-										(function () {
-										    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-										    po.src = 'https://apis.google.com/js/plusone.js';
-										    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-										})();
-									</script>
-								</div>
-							</div>
-							<div style="margin: 10px 48px 10px 0">
-								<a href="https://kissmanga.com/AdvanceSearch">
-								<img src="https://kissmanga.com/Content/images/read.png" width="16px" border="0" style="vertical-align: middle" />&nbsp;&nbsp;Advanced
-								Search</a>
-							</div>
 						</form>
 					</div>
 					<script type="text/javascript">

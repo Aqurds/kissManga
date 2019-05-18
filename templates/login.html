@@ -154,27 +154,16 @@
 							</div>
 							<div>
 								<div style="padding-bottom: 10px"></div>
-								<form action="{{ url_for('login') }}" id="formLogin" method="post">
-									<div>
-										<label class="lblSignUp">
-										Username:
-										</label>
-										<input maxlength="50" name="username" id="username" class="txtSignUp" value="" />
-									</div>
-									<div>
-										<label class="lblSignUp">
-										Password:
-										</label>
-										<input type="password" name="password" id="password" class="txtSignUp" />
-									</div>
-									<div style="display: inline-block; padding-left: 190px">
-										<a href="#">Forgot password?</a>
-									</div>
-									<div style="padding-top: 20px; padding-left: 190px; position:relative;">
-										<input name="submit_login" type="submit" id="submit_login" value="" class="submit" style="position:absolute; top: 31px; left: 191px;width: 87px;height: 29px;border-radius: 3px;border: 0px; opacity:0; cursor:pointer;">
-										<input id='btnSubmit' type="image" src="../static/images/signin.png" class="button" onclick="return false;" style="cursor: pointer" />
-									</div>
-									<input type="hidden" name="redirect" value="" />
+								<form action="{{url_for('menu_search')}}" id="formSearch" method="post" style="position:relative;">
+									<p>
+										<input size="40" id="keyword" name="searchtext" value="" class="text"  placeholder="Search manga..."  autocomplete="off" />
+										<select id="selectSearch" name="search_select">
+											<option value="Manga Name">Series Name</option>
+											<option value="Authors">Author/Artist</option>
+										</select>
+										<input id="imgSearch" type="image" src="../static/images/search.png" class="button"/>
+										<input type="submit" value="" style="position: absolute;top: -2px;right: 43px;width: 86px;height: 29px;cursor: pointer;border: 0px;border-radius: 3px; opacity:0;">
+									</p>
 								</form>
 							</div>
 						</div>
