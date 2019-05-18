@@ -232,16 +232,14 @@
 									<!-- <span class="info">Views:</span>
 									&nbsp;135,475&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 									{% if session %}
-										<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
-											&nbsp;&nbsp;
+										<div id="divBookmark" style="font-weight: bold;">
 											<span id="spanBookmark">
 											<img src="{{ url_for('static', filename='images/plus.png') }}" style="vertical-align: middle; margin-bottom: 5px">
 											<a id="btnRegOrLogin" href="{{url_for('add_bookmark', manga_id = manga_details['id'])}}">Bookmark</a>
 											</span>
 										</div>
 									{% else %}
-										<div id="divBookmark" style="font-weight: bold; padding-top: 20px">
-											&nbsp;&nbsp;
+										<div id="divBookmark" style="font-weight: bold;">
 											<img src="{{ url_for('static', filename='images/user-small.png') }}" style="vertical-align: middle;
 												margin-bottom: 5px">
 											Please <a href="{{ url_for('login') }}">
