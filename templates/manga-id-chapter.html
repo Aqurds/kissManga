@@ -189,9 +189,9 @@
 						<label class="lbl">
 						Chapter</label>
 
-						<select class="selectChapter" style="width: 380px">
+						<select class="selectChapter" onchange="location = this.value;" style="width: 380px">
 							{% for chapter_link in chapter_option_list %}
-							<option value="">
+							<option value="{{url_for('manga_id_chapter', manga_id = manga_details['id'], chapter_id = chapter_link[0])}}">
 								<a href="{{url_for('manga_id_chapter', manga_id = manga_details['id'], chapter_id = chapter_link[0])}}">
 									{{ chapter_link[1] }}
 								</a>
@@ -265,7 +265,7 @@
 
 						<label class="lbl">
 						Chapter</label>
-						<select class="selectChapter"  onchange="location = this.value;" style="width: 380px">
+						<select class="selectChapter" onchange="location = this.value;" style="width: 380px">
 							{% for chapter_link in chapter_option_list %}
 							<option value="{{url_for('manga_id_chapter', manga_id = manga_details['id'], chapter_id = chapter_link[0])}}">
 								<a href="{{url_for('manga_id_chapter', manga_id = manga_details['id'], chapter_id = chapter_link[0])}}">
