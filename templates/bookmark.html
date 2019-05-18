@@ -259,60 +259,54 @@
 							&nbsp;
 						</div>
 						<div style="position:relative">
-							<div style="font-size:11px;position:absolute; right:5px; top: 0px">
+							<!-- <div style="font-size:11px;position:absolute; right:5px; top: 0px">
 								TIPS:<br />
 								- Empty folder will be automatically removed.<br />
 								- When manga has new episode, its status will be changed to 'Unread'.
-							</div>
+							</div> -->
 							<div class="clear2" style="padding-top:50px"></div>
-							<div id="divListCategories" style="font-size: 14px"><span style="font-weight:bold">Folder:</span>&nbsp;&nbsp;<select id="selectListCategories" style="width: 200px"></select>
+							<!-- <div id="divListCategories" style="font-size: 14px"><span style="font-weight:bold">Folder:</span>&nbsp;&nbsp;<select id="selectListCategories" style="width: 200px"></select>
 								&nbsp;&nbsp;
 								<a href="#" onclick="return false;" id="btnSetAsDefault"><img src="/Content/images/subdub.png" style="vertical-align:middle" />&nbsp;Set as default</a>
 								&nbsp;&nbsp;<a href="#" onclick="return false;" id="btnRename" style="display:none"><img src="/Content/images/change.png" style="vertical-align:middle" />&nbsp;Rename</a>
-							</div>
+							</div> -->
 							<div class="clear2"></div>
 							<div class="clear2"></div>
 							<table class="listing">
+
+
 								<tr class="head">
 									<th width="37%">
 										Manga name
 									</th>
-									<th width="15%">
+									<!-- <th width="15%">
 										Latest
-									</th>
+									</th> -->
 									<th width="12%">
 										Status
 									</th>
 									<th width="10%"></th>
 									<th width="26%"></th>
 								</tr>
+
+
 								<tr style="height: 10px"></tr>
-								<tr class="trManga" catName="">
-									<td title='
-										<img width="120" height="150" src="http://kissmanga.com/Uploads/Etc/11-24-2011/857622SINS_Oneshot_000.jpg" style="float: left; padding-right: 10px" />
-										<div style="float: left; width: 300px">
-										<a class="bigChar" href="/Manga/Sins">- Sins -</a>
-										<p>
-										N/A
-										</p>
-										</div>'>
-										<a class="aManga" href="#">
-										- Sins -</a>
-									</td>
-									<td>
-										Completed
-									</td>
-									<!-- <td>
-										<a bdid="28794116" style="display: none" class="aRead" href="#" onclick="return false;" title="Click to mark as Unread. When manga has new episode, its status will be changed to 'Unread'."><img border="0" style="vertical-align:middle" src="/Content/Images/include.png" /> Read</a>
-										<a bdid="28794116" style="display: inline" class="aUnRead" href="#" onclick="return false;" title="Click to mark as Read"><img border="0" style="vertical-align:middle" src="/Content/Images/notread.png" /> Unread</a>
-									</td> -->
-									<!-- <td>
-										<a mid="3099" mname="- Sins -" class="aRemove" href="#" onclick="return false;" title="Remove from bookmark list"><img border="0" style="vertical-align:middle" src="/Content/Images/exclude.png" /> Remove</a>
-									</td> -->
-									<!-- <td>
-										<a bdid="28794116" catName="" class="aCategory" href="#" onclick="return false;" title="Move to other folder"><img border="0" style="vertical-align:middle" src="/Content/Images/folder.png" /> Folder</a>
-									</td> -->
-								</tr>
+
+
+								{% for item in bookmark_data %}
+									<tr class="trManga" catName="">
+										<td title=''>
+											<a class="aManga" href="{{url_for('manga_id', manga_id = item['id'])}}">
+											- {{item['title']}} -</a>
+										</td>
+										<td>
+											{{item['status']}}
+										</td>
+									</tr>
+								{% endfor %}
+
+
+
 							</table>
 							<script type="text/javascript">
 								$(".listing td[title]").tooltip({ offset: [10, 200], effect: 'slide', predelay: 300 }).dynamic({ bottom: { direction: 'down', bounce: true} });

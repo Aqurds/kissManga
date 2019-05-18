@@ -51,14 +51,15 @@
 						</div>
 					</div>
 					<div id="search" style="position: relative">
-						<form id="formSearch" method="post">
+						<form action="{{url_for('menu_search')}}" id="formSearch" method="post" style="position:relative;">
 							<p>
-								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
-								<select id="selectSearch">
-									<option value="Manga">Series Name</option>
-									<option value="AuthorArtist">Author/Artist</option>
+								<input size="40" id="keyword" name="searchtext" value="" class="text"  placeholder="Search manga..."  autocomplete="off" />
+								<select id="selectSearch" name="search_select">
+									<option value="Manga Name">Series Name</option>
+									<option value="Authors">Author/Artist</option>
 								</select>
-								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
+								<input id="imgSearch" type="image" src="../static/images/search.png" class="button"/>
+								<input type="submit" value="" style="position: absolute;top: -2px;right: 43px;width: 86px;height: 29px;cursor: pointer;border: 0px;border-radius: 3px; opacity:0;">
 							</p>
 						</form>
 					</div>
@@ -172,7 +173,7 @@
 									</div>
 									<div style="padding-top: 20px; padding-left: 190px; position:relative;">
 										<input id='btnSubmit' type="image" src="../static/images/signin.png" class="button" onclick="return false;" style="cursor: pointer" />
-										<input name="submit_login" type="submit" id="submit_login" value="" class="submit" style="position:absolute; top:0px; left:0px;">
+										<input name="submit_login" type="submit" id="submit_login" value="" class="submit" style="position: absolute;top: 21px;left: 191px;width: 86px;height: 29px;border-radius: 3px;border: 0px;opacity: 0;">
 									</div>
 									<input type="hidden" name="redirect" value="" />
 								</form>
