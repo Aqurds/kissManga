@@ -112,14 +112,14 @@
 
 
 					<div id="search" style="position: relative">
-						<form id="formSearch" method="post">
+						<form action="{{url_for('menu_search')}}" id="formSearch" method="post">
 							<p>
-								<input size="40" id="keyword" name="keyword" value="" class="text" autocomplete="off" />
-								<select id="selectSearch">
-									<option value="Manga">Series Name</option>
-									<option value="AuthorArtist">Author/Artist</option>
+								<input size="40" id="keyword" name="searchtext" value="" class="text"  placeholder="Search manga..."  autocomplete="off" />
+								<select id="selectSearch" name="search_select">
+									<option value="Manga Name">Series Name</option>
+									<option value="Authors">Author/Artist</option>
 								</select>
-								<input id="imgSearch" type="image" src="../static/images/search.png" class="button" onclick="return false;" />
+								<input id="imgSearch" type="image" src="./static/images/search.png" class="button" onclick="return false;" />
 							</p>
 						</form>
 					</div>
