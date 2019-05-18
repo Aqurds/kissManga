@@ -266,9 +266,13 @@
 						<label class="lbl">
 						Chapter</label>
 						<select class="selectChapter" style="width: 380px">
-							<option value="Ch-001?id=457997">
-								Ch.001
+							{% for chapter_link in chapter_option_list %}
+							<option value="">
+								<a href="{{url_for('manga_id_chapter', manga_id = manga_details['id'], chapter_id = chapter_link[0])}}">
+									{{ chapter_link[1] }}
+								</a>
 							</option>
+							{% endfor %}
 						</select>
 
 
