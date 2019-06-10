@@ -2,12 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 
-
 	<head id="ctl00_Head1">
 		<title>
 			KissManga - Read manga online in high quality
 		</title>
-		<meta name="robots" content="noindex,follow" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta property="fb:admins" content="683024937" />
@@ -37,12 +35,10 @@
 
 
 
-
 	<body>
 		<div id="containerRoot">
 			<div id="head">
 				<h3>
-
 
 					<!-- Login/Register button top section -->
 					<div style="position: relative; text-align: right; margin: -40px 46px 20px 0px; font: bold 13px Arial;">
@@ -111,7 +107,7 @@
 					});
 					</script>
 
-
+					<!-- Search form -->
 					<div id="search" style="position: relative">
 						<form action="{{url_for('menu_search')}}" id="formSearch" method="post" style="position:relative;">
 							<p>
@@ -125,19 +121,25 @@
 							</p>
 						</form>
 					</div>
+					<!-- Search form end here -->
+
 				</h3>
+
+				<!-- Logo -->
 				<h1>
-					<a href="{{  url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
+					<a href="{{ url_for('home') }}" title="Read manga online - kissmanga.com" class="logo">Read online manga - kissmanga.com</a>
 				</h1>
+				<!-- Logo end -->
+
 			</div>
 			<div class="clear"></div>
 
 
 
-
+			<!-- Navigation header -->
 			<div id="headnav">
 
-
+				<!-- Navigation bar -->
 				<div id="navbar">
 					<div id="navcontainer">
 						<ul>
@@ -145,12 +147,14 @@
 							<li id="liDS"><a href="{{ url_for('manga', page=1) }}">Manga
 								List</a>
 							</li>
-						
+							
 						</ul>
 					</div>
 				</div>
+				<!-- Navigation bar end -->
+
 				<script type="text/javascript">
-					var path = 'Manga';
+					var path = 'Home';
 					var action = 'Index';
 					if (path == 'Home')
 					    $('#liHome a').attr('id', 'currentTab');
@@ -166,244 +170,82 @@
 					    $('#navcontainer a[href*="' + path + '"]').attr('id', 'currentTab');
 				</script>
 
-
 				<div id="navsubbar">
 					<p>
-						<a href="{{ url_for('manga', page=1) }}">
-							Latest update
-						</a>
-						|
-						<a href="{{ url_for('manga_new', page=1) }}">
-							New manga
-						</a>
-						|
-						<a href="{{ url_for('manga_hot', page=1) }}">
-							Popular manga
-						</a>
+						<a href="{{ url_for('register') }}">Register</a>
 					</p>
 				</div>
-
-
 			</div>
 
 
 
 
+			<script src="../static/js/customjavascript.js" type="text/javascript"></script>
+			<script src="../static/js/jquery.tools.min.js" type="text/javascript"></script>
 
 
 			<div id="container">
+				<div id="leftside">
+					
+					<div class="rightBox">
+						<div class="barTitle">
+							Announcement
+						</div>
+						<div class="barContent">
+							<div class="arrow-general">
+								&nbsp;
+							</div>
+							<div style="margin-top: -5px; font-weight: bold;">
+								<p>
+									This site is not compatible with Adblock/uBlock. Please disable them before accessing the site.
+								</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+
+				<!-- Right side box start here -->
 				<div id="rightside">
 					<div class="rightBox">
 						<div class="barTitle">
-							Search by status
+							Announcement
 						</div>
 						<div class="barContent">
 							<div class="arrow-general">
 								&nbsp;
 							</div>
-							<div>
-								<a href="{{ url_for('manga_ongoing', page=1) }}" title="The series are ongoing">Ongoing</a><br />
-								<a href="{{ url_for('manga_completed', page=1) }}" title="The series are completed">Completed</a>
+							<div style="margin-top: -5px; font-weight: bold;">
+								<p>
+									This site is not compatible with Adblock/uBlock. Please disable them before accessing the site.
+								</p>
 							</div>
 						</div>
 					</div>
-					<div class="clear">
-						&nbsp;
-					</div>
-
-
-
-					<div class="rightBox">
-						<div class="barTitle">
-							Search by genres
-						</div>
-						<div class="barContent">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
-
-
-							<div>
-								{% for genre in genres %}
-								<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" title="">
-									{{ genre }}
-								</a>
-								<br />
-								{% endfor %}
-							</div>
-
-						</div>
-					</div>
-
-
-
-					<div class="clear2">
-						&nbsp;
-					</div>
-
+				
 				</div>
-				<div id="leftside">
-					<div class="bigBarContainer">
-						<div class="barTitle">
-							List manga
-						</div>
-						<div class="barContent">
-							<div class="arrow-general">
-								&nbsp;
-							</div>
+				<!-- Right side box end here -->
 
-							<div class="clear" style="height: 15px">
-							</div>
-
-
-								<div class="clear">
-								</div>
-
-								<!-- all manga list code starts here -->
-								{% for manga in all_manga %}
-								<div>
-
-									<div style="display: inline-block; width: 190px">
-										<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
-											<img width="190px" height="250px" src="{{ manga['image'] }}">
-										</a>
-									</div>
-
-									<div style="display: inline-block; width: 500px; vertical-align: top; padding-left: 10px">
-										<a href="{{url_for('manga_id', manga_id = manga['id'])}}">
-											<span class="title">
-												{{ manga['title'] }}
-											</span>
-										</a>
-
-										<p>
-											<span class="info">Genres:</span>
-											&nbsp;
-											{% for genre in manga['genres'] %}
-											<a href="{{url_for('manga_genre_search', page = 1, genre=genre)}}" class="dotUnder" title="">
-												{{ genre }}
-											</a>
-											<span class="info">,</span>
-											{% endfor %}
-										</p>
-
-										<!-- <p>
-											<span class="info">Latest chapter:</span>&nbsp;<a href="#">Vol.002 Ch.009</a>
-										</p> -->
-										<p>
-											<span class="info">Summary:</span>&nbsp;
-										<p>&nbsp;</p>
-										<div>
-											<div>{{ manga['summary'] }}</div>
-										</div>
-										<div></div>
-										<p>
-											<span style="font-family: 'Times New Roman'; font-size: medium;">
-												<div style="color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: #ffffff; background-position: initial initial; background-repeat: initial initial; margin: 8px;">
-												</div>
-											</span>
-									</p>
-										<p>&nbsp;</p>
-										</p>
-									</div>
-
-								</div>
-
-
-								<div class="clear2"></div>
-								<hr />
-								<div class="clear2"></div>
-								<div class="clear2"></div>
-								<!-- all manga list code ends here -->
-								{% endfor %}
-
-
-							</div>
+			</div>
 
 
 
 
-							<!-- pagination starts -->
-							<div class="pagination pagination-left">
-								<ul class="pager" style="padding: 10px 11px 10px 0px">
-									<li>
-										<a href="{{url_for('manga_hot', page = 1)}}">
-								      First(1)
-								    </a>
-									</li>
-
-									{% if first_prev_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga_hot', page=first_prev_page)}}">
-								        {{first_prev_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									{% if second_prev_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga_hot', page=second_prev_page)}}">
-								        {{second_prev_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									<li class="current">
-								      {{current_page}}
-									</li>
-
-									{% if first_next_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga_hot', page=first_next_page)}}">
-								        {{first_next_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									{% if second_next_page != 0 %}
-									<li>
-								      <a href="{{url_for('manga_hot', page=second_next_page)}}">
-								        {{second_next_page}}
-								      </a>
-									</li>
-									{% endif %}
-
-									<li>
-										<a href="{{url_for('manga_hot', page=total_page_number)}}" class="page page-blue">
-								      Last({{total_page_number}})
-								    </a>
-									</li>
-									<!-- <li class="current">1</li>
-									<li><a href="/MangaList?page=2" page="2">2</a></li>
-									<li><a href="/MangaList?page=3" page="3">3</a></li>
-									<li><a href="/MangaList?page=2" page=2>&rsaquo; Next </a></li>
-									<li><a href="/MangaList?page=324" page="324">&raquo; Last </a></li> -->
-								</ul>
-							</div>
-
-
-							<!-- pagination code ends here -->
-
-
-
-						</div>
-
-
-					</div>
-				</div>
+			<div class="clear">
+				&nbsp;
 			</div>
 			<div class="clear">
+				&nbsp;
+			</div>
+			<div class="clear">
+				&nbsp;
 			</div>
 		</div>
 
 
 
-
-
-
-
-
-		<div id="footer" style="top:20px;">
+		<div id="footer">
 			<div id="footcontainer" style="position: relative">
 				<p>
 					<a href="{{ url_for('home') }}">KissManga.com</a>. Copyrights and trademarks for the manga, and other promotional materials are held by their respective owners and their use is allowed under the fair use clause of the Copyright Law.
@@ -413,8 +255,14 @@
 				<div style="position: absolute; left: 200px; top: 20px"></div>
 			</div>
 		</div>
-		<!-- <script type="text/javascript">
+
+
+
+		<script type="text/javascript">
 			$('#footer').css('top', $(document).height() - $('#containerRoot').height());
-		</script> -->
+		</script>
+
+
+
 	</body>
 </html>

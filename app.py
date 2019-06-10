@@ -1173,6 +1173,15 @@ def logout():
 
 
 
+# Privacy route
+@app.route('/privacy/')
+def privacy():
+    return render_template('privacy.html')    
+
+
+
+
+
 # robots.txt route
 @app.route('/robots.txt')
 def static_from_root():
