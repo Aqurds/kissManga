@@ -738,7 +738,7 @@ def manga_id_chapter(manga_id, chapter_id):
         if 'bookmark' in bookmark_id:
             total_bookmark = len(bookmark_id['bookmark']) - 1
 
-    return render_template('manga-id-chapter.html', manga_details = manga_details, manga_chapter_list = manga_chapter_list, image_list = image_list, url = url, current_chapter_id = current_chapter_text, prev_chapter_id = prev_chapter_id, next_chapter_id = next_chapter_id, next_chapter_identifier=next_chapter_identifier, prev_chapter_id_identifier=prev_chapter_id_identifier, chapter_option_list=chapter_option_list, related_manga=related_manga, total_bookmark=total_bookmark)
+    return render_template('manga-id-chapter.html', manga_details = manga_details, manga_chapter_list = manga_chapter_list, image_list = image_list, url = url, current_chapter_id = current_chapter_text, prev_chapter_id = prev_chapter_id, next_chapter_id = next_chapter_id, next_chapter_identifier=next_chapter_identifier, prev_chapter_id_identifier=prev_chapter_id_identifier, chapter_option_list=chapter_option_list, related_manga=related_manga, total_bookmark=total_bookmark, chapter_id=chapter_id)
 
 
 
