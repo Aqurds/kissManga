@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, session, redirect, abort
+from flask import Flask, render_template, url_for, request, session, redirect, abort, send_from_directory
 from flask_pymongo import PyMongo, pymongo
 import bcrypt
 import json
@@ -1170,6 +1170,13 @@ def logout():
 
 
 
+
+
+
+# robots.txt route
+@app.route('/robots.txt')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 
