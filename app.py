@@ -5,9 +5,9 @@ import json
 
 app = Flask(__name__)
 
-app.config['MONGO_DBNAME'] = 'mangastuff'
-app.config['MONGO_URI'] = 'mongodb://user:2252010baby@ds159785-a0.mlab.com:59785,ds159785-a1.mlab.com:59785/mangastuff?replicaSet=rs-ds159785'
-app.config['SECRET_KEY'] = '0f9dc56d2288afa6e10b8d97577fe25b'
+app.config['MONGO_DBNAME'] = 'YOUR MONGO DB NAME'
+app.config['MONGO_URI'] = 'YOUR MONGO URI'
+app.config['SECRET_KEY'] = 'YOUR SECRET KEY'
 
 
 mongo = PyMongo(app)
